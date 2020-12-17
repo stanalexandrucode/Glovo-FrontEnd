@@ -14,6 +14,7 @@ const Meal = ({idMeal, strMeal, strMealThumb, inFavorites, price}) => {
         };
         let res = await axiosSpring.post("/favorites", object);
         if (res.status === 200) {
+            console.log("add=>>>>>>>>>>>>>>>>>>>>>")
             setAddedToFav(true);
         }
     };
@@ -28,37 +29,28 @@ const Meal = ({idMeal, strMeal, strMealThumb, inFavorites, price}) => {
 
     return (
         <>
-            <Link className="" to={`/meal/${idMeal}`}>
-                <h3>{strMeal}</h3>
-            </Link>
-            <img src={strMealThumb} alt={strMeal}/>
-            <p>${price}</p>
-            <div>
-                {!addedToFav ?
-                    <button className="btn-primary" onClick={handleAdd}> add</button>
-                    :
-                    <button className="btn-primary" onClick={handleDelete}>remove</button>}
+            <div className='container-meal'>
+                <div className='header-detailMeal'>
+                    <Link className='text-name-meal' to={`/meal/${idMeal}`}>
+                        <h3>{strMeal}</h3>
+                    </Link>
+                </div>
+                <div>
+                    <div>
+                        <img className='photo' src={strMealThumb} alt={strMeal}/>
+                        <p>${price}</p>
+                        <div>
+                            {!addedToFav ?
+                                <button className="btn-primary" onClick={handleAdd}> add</button>
+                                :
+                                <button className="btn-primary" onClick={handleDelete}>remove</button>}
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </>
     );
-const Meal = ({ idMeal, strMeal, strMealThumb, strCategory }) => {
-  return (
-    <>
-      <div  className='container-meal'>
-        <div className='header-detailMeal'>
-          <Link className='text-name-meal' to={`/meal/${idMeal}`}>
-            <h3 >{strMeal}</h3>
-          </Link>
-        </div>
-        <div>
-          <div>
-            <img className='photo' src={strMealThumb} alt={strMeal} />
-            <button className='btn-primary'>Add</button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
 };
 
 export default Meal;
