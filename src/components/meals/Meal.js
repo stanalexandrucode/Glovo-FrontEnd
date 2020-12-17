@@ -4,11 +4,8 @@ import {Link} from "react-router-dom";
 
 const Meal = ({idMeal, strMeal, strMealThumb, inFavorites, price}) => {
     const [addedToFav, setAddedToFav] = useState(inFavorites);
-    // useEffect(() => {
-    //     console.log("schimb culorile cu style");
-    // }, [addedToFav]);
 
-    const handleAddAndRemoveToFavorites = async () => {
+    const handleAdd = async () => {
         const object = {
             name: `${strMeal}`,
             id: `${idMeal}`,
@@ -18,9 +15,16 @@ const Meal = ({idMeal, strMeal, strMealThumb, inFavorites, price}) => {
         let res = await axiosSpring.post("/favorites", object);
         if (res.status === 200) {
             setAddedToFav(true);
-            // console.log("fac butonul rosu - addedToFav se schimba in true");
         }
     };
+
+    const handleDelete = async () => {
+        let res = await axiosSpring.delete(`/favorites/${idMeal}`);
+        window.location.reload();
+        if (res.status === 200) {
+            setAddedToFav(false);
+        }
+    }
 
     return (
         <>
@@ -29,9 +33,12 @@ const Meal = ({idMeal, strMeal, strMealThumb, inFavorites, price}) => {
             </Link>
             <img src={strMealThumb} alt={strMeal}/>
             <p>${price}</p>
-            <button className="btn-primary" onClick={handleAddAndRemoveToFavorites}>
-                {addedToFav ? "remove" : "add"}
-            </button>
+            <div>
+                {!addedToFav ?
+                    <button className="btn-primary" onClick={handleAdd}> add</button>
+                    :
+                    <button className="btn-primary" onClick={handleDelete}>remove</button>}
+            </div>
         </>
     );
 };
