@@ -20,7 +20,7 @@ const Meals = () => {
       setMealsApi(response.data.meals);
       setTimeout(() => {
         setLoading(false);
-      }, 1300);
+      }, 1000);
     }
   };
   useEffect(() => {

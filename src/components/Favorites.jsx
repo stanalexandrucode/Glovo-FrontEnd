@@ -16,7 +16,7 @@ export default function Favorites() {
       console.log(response.data.map((product) => product.id));
       setTimeout(() => {
         setLoading(false);
-      }, 1300);
+      }, 1000);
     }
   };
 
