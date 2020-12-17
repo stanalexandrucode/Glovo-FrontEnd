@@ -9,7 +9,7 @@ const Meal = ({ idMeal, strMeal, strMealThumb }) => {
   }, [addedToFav]);
 
   const handleAddToFavorites = async () => {
-    const object = { name: `${strMeal}`, id: `${idMeal}` };
+    const object = { name: `${strMeal}`, id: `${idMeal}`, thumbnail: `${strMealThumb}` };
     let res = await axiosSpring.post("/favorites", object);
     if (res.status === 200) {
       setAddedToFav(true);
