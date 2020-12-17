@@ -10,7 +10,7 @@ const Category = ({
 }) => {
   return (
     
-    <div>
+    <div >
       <Link className="" to={`/meals/${strCategory}`} >
         <h3>{strCategory}</h3>
       </Link>

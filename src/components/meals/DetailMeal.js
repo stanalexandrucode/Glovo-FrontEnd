@@ -42,23 +42,22 @@ const DetailMeal = () => {
           const { strMeal, strArea, strMealThumb, strInstructions } = meal;
 
           return (
-              <div className="container">
-            <div className='header-detailMeal'>
-              <div className='underline'>
-                <h2>{strMeal}</h2>
-              </div>
-              <div className='detailMeal-page'>
-                <div>
-                  <img src={strMealThumb} className='photo'></img>
+            <div className='container'>
+              <div className='header-detailMeal'>
+                <div className='underline'>
+                  <h2>{strMeal}</h2>
                 </div>
-                <div>
-                  <h5>Instructions:</h5>
-                  <p>{strInstructions}</p>
-                  <h5>Area food: {strArea}</h5>
+                <div className='detailMeal-page'>
+                  <div>
+                    <img src={strMealThumb} className='photo'></img>
+                  </div>
+                  <div>
+                    <h5>Instructions:</h5>
+                    <p>{strInstructions}</p>
+                    <h5>Area food: {strArea}</h5>
+                  </div>
                 </div>
               </div>
-              
-            </div>
             </div>
           );
         })}

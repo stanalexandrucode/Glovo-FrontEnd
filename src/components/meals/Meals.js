@@ -37,11 +37,13 @@ const Meals = () => {
 
   return (
     <>
-      <h3>{category}</h3>
-      <div>
+    <div>
+      <h1 className="text-name-category">{category}</h1>
+      <div className="meal-page">
         {mealsApi.map((meal) => {
           return <Meal key={meal.idMeal} {...meal} />;
         })}
+      </div>
       </div>
     </>
   );

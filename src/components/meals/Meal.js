@@ -4,12 +4,18 @@ import { Link } from 'react-router-dom';
 const Meal = ({ idMeal, strMeal, strMealThumb, strCategory }) => {
   return (
     <>
-      <div>
-        <Link className='' to={`/meal/${idMeal}`}>
-          <h3>{strMeal}</h3>
-        </Link>
-        <img src={strMealThumb} alt={strMeal} />
-        <button className='btn-primary'>Add</button>
+      <div  className='container-meal'>
+        <div className='header-detailMeal'>
+          <Link className='text-name-meal' to={`/meal/${idMeal}`}>
+            <h3 >{strMeal}</h3>
+          </Link>
+        </div>
+        <div>
+          <div>
+            <img className='photo' src={strMealThumb} alt={strMeal} />
+            <button className='btn-primary'>Add</button>
+          </div>
+        </div>
       </div>
     </>
   );
