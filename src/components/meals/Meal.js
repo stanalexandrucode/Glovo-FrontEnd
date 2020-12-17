@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosSpring } from "../../common/axios";
+import { Link } from "react-router-dom";
 
 const Meal = ({ idMeal, strMeal, strMealThumb, inFavorites }) => {
   const [addedToFav, setAddedToFav] = useState(inFavorites);
@@ -21,11 +22,11 @@ const Meal = ({ idMeal, strMeal, strMealThumb, inFavorites }) => {
     }
   };
 
-  
-
   return (
     <>
-      <h3>{strMeal}</h3>
+      <Link className="" to={`/meal/${idMeal}`}>
+        <h3>{strMeal}</h3>
+      </Link>
       <img src={strMealThumb} alt={strMeal} />
       <button className="btn-primary" onClick={handleAddAndRemoveToFavorites}>
         {addedToFav ? "remove" : "add"}
