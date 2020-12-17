@@ -11,6 +11,9 @@ const NavBar = () => {
       <Link className="navbar-brand" to="/categories">
         categories 
       </Link>
+      <Link className="navbar-brand" to="/meals">
+        meals 
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
