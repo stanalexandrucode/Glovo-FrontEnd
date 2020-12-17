@@ -17,7 +17,7 @@ function App() {
                 <Switch>
                     <Route path="/not-found" component={NotFound}/>
                     <Route path="/categories" component={Categories}/>
-                    <Route path="/meals" component={Meals}/>
+                    <Route path="/meals/:strCategory" component={Meals} />
                     <Redirect from="/" exact to="/"/>
                     <Redirect to="/not-found"/>
                 </Switch>
