@@ -41,7 +41,7 @@ const Meals = () => {
       <h1 className="text-name-category">{category}</h1>
       <div className="meal-page">
         {mealsApi.map((meal) => {
-          return <Meal key={meal.idMeal} {...meal} />;
+          return <Meal key={meal.idMeal} {...meal} price={Math.floor(Math.random() * 100)}/>;;
         })}
       </div>
       </div>

@@ -14,7 +14,6 @@ const Meal = ({idMeal, strMeal, strMealThumb, inFavorites, price}) => {
         };
         let res = await axiosSpring.post("/favorites", object);
         if (res.status === 200) {
-            console.log("add=>>>>>>>>>>>>>>>>>>>>>")
             setAddedToFav(true);
         }
     };
