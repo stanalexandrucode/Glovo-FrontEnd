@@ -1,18 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import Category from "./Category";
 import {axios} from "../../common/axios";
 import Loading from "../loading/Loading";
 
-
-const Categories = () => {
-
+const Meals = () => {
     const [loading, setLoading] = useState(true);
     const [categoriesApi, setCategoriesApi] = useState();
 
 
-    const getCategoriesApi = async () => {
+    const getMealsApi = async () => {
         setLoading(true)
-        const response = await axios.get('/categories.php').catch((err) => console.log("Error:", err))
+        const response = await axios.get('/filter.php?c=Seafood').catch((err) => console.log("Error:", err))
         if (response && response.data) {
             setCategoriesApi(response.data.categories)
             setTimeout(() => {
@@ -23,7 +20,7 @@ const Categories = () => {
 
     }
     useEffect(() => {
-        getCategoriesApi();
+        getMealsApi();
     }, [])
 
     if (loading) {
@@ -33,17 +30,10 @@ const Categories = () => {
             </main>)
     }
     return (
-        <section>
-            <div className='title'>
-                <h2>Menu</h2>
-                <div>
-                    {categoriesApi.map((category) => {
-                        return <Category key={category.idCategory} {...category}/>
-                    })}
-                </div>
-            </div>
-        </section>
+        <div>
+            
+        </div>
     );
 };
 
-export default Categories;
+export default Meals;

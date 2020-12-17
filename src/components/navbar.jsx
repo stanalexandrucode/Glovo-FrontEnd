@@ -8,6 +8,9 @@ const NavBar = () => {
       <Link className="navbar-brand" to="/">
         Team-Team <strong>Delivery</strong>
       </Link>
+      <Link className="navbar-brand" to="/categories">
+        categories 
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
