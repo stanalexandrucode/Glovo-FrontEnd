@@ -15,9 +15,8 @@ function App() {
         setLoading(true)
         const response = await axios.get('/categories.php').catch((err) => console.log("Error:", err))
         if (response && response.data) {
-            setCategoriesApi(response.data)
+            setCategoriesApi(response.data.categories)
             setLoading(false)
-            console.log("data:", response.data)
         }
 
 
@@ -31,11 +30,11 @@ function App() {
             <Loading/>
         </main>)
     }
-
+    console.log("data:",categoriesApi)
     return (
         <>
             <div>
-                <Categories categories={categoriesApi}/>
+                <Categories categoriesApi={categoriesApi}/>
             </div>
 
         </>)

@@ -2,8 +2,6 @@
 
 # dependencies
 .idea/
-/target
-/public
 /node_modules
 /.pnp
 .pnp.js
