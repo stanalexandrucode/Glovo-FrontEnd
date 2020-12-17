@@ -5,6 +5,7 @@ import NotFound from "./components/NotFound";
 import NavBar from "./components/navbar";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import Categories from "./components/category/Categories";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <main className="container">
         <Switch>
           <Route path="/not-found" component={NotFound} />
+          <Route path="/categories" component={Categories}/>
           <Redirect from="/" exact to="/" />
           <Redirect to="/not-found" />
         </Switch>
