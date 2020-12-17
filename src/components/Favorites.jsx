@@ -1,4 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react'
+import { axiosSpring } from '../common/axios';
+
+export default function Favorites() {
+
+  const [loading, setLoading] = useState(true);
+  const [mealsApi, setMealsApi] = useState();
+
+  const getFavoritesMealsApi = async () => {
+    setLoading(true);
+    const response = await axiosSpring
+      .get(`/favorites`)
+      .catch((err) => console.log("Error:", err));
+    if (response && response.data) {
+    //   setMealsApi(response.data.meals);
+    console.log(response.data);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1300);
+    }
+  };
+  useEffect(() => {
+    getFavoritesMealsApi();
+  }, []);
+
+    return (
+        <div>
+            
+        </div>
+    )
+}
+
+
+/**
+ * import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { axios } from "../../common/axios";
 import Loading from "../loading/Loading";
@@ -48,3 +82,5 @@ const Meals = () => {
 };
 
 export default Meals;
+
+ */
