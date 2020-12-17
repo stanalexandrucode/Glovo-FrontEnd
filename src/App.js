@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Categories from "./components/category/Categories";
 import Meals from "./components/meals/Meals";
+import DetailMeal from './components/meals/DetailMeal';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/not-found" component={NotFound}/>
                     <Route path="/categories" component={Categories}/>
                     <Route path="/meals/:strCategory" component={Meals} />
+                    <Route path="/meal/:id" component={DetailMeal} />
                     <Redirect from="/" exact to="/"/>
                     <Redirect to="/not-found"/>
                 </Switch>

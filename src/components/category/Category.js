@@ -9,6 +9,7 @@ const Category = ({
   strCategoryDescription,
 }) => {
   return (
+    
     <div>
       <Link className="" to={`/meals/${strCategory}`} >
         <h3>{strCategory}</h3>

@@ -16,7 +16,7 @@ const Categories = () => {
       setCategoriesApi(response.data.categories);
       setTimeout(() => {
         setLoading(false);
-      }, 1300);
+      }, 1000);
     }
   };
   useEffect(() => {

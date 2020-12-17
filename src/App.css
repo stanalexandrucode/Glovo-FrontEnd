@@ -1,55 +1,103 @@
+:root {
+  --clr-gold: #c59d5f;
+  --radius: 1.25rem;
+}
+
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+  height: 40vmin;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
-    color: #61dafb;
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .fp-container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: #f8f8f8ad;
-
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #f8f8f8ad;
 }
 
 .fp-container .fp-loader {
-    top: 30%;
-    left: 50%;
-    z-index: 1000;
-    position: absolute;
+  top: 30%;
+  left: 50%;
+  z-index: 1000;
+  position: absolute;
+}
+
+.detailMeal-page {
+  padding-top: 1.5rem;
+  width: 190vw;
+  margin: 0 auto;
+  max-width: 1170px;
+  display: grid;
+  gap: 3rem 2rem;
+  justify-items: center;
+}
+.photo {
+  object-fit: cover;
+  border: 0.25rem solid var(--clr-gold);
+  border-radius: var(--radius);
+  display: left;
+}
+.header-detailMeal {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 1rem;
+}
+
+.container {
+  justify-content: center;
+  display: flex;
+  margin-bottom: auto;
+  position: relative;
+}
+.underline {
+  background: var(--clr-gold);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 1200px) {
+  .detailMeal-page {
+    width: 95vw;
+    grid-template-columns: 1fr 1fr;
+  }
+  .photo {
+    height: 600px;
+    radius: 10px;
+  }
 }
