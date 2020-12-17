@@ -42,6 +42,7 @@ export default function Favorites() {
               idMeal={product.id}
               strMeal={product.name}
               strMealThumb={product.thumbnail}
+              inFavorites={true}
             />
           );
         })}
