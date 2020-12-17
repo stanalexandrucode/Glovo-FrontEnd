@@ -20,7 +20,7 @@ function App() {
                     <Route path="/categories" component={Categories}/>
                     <Route path="/favorites" component={Favorites}/>
                     <Route path="/meals/:strCategory" component={Meals} />
-                    <Redirect from="/" exact to="/"/>
+                    <Redirect from="/" exact to="/categories"/>
                     <Redirect to="/not-found"/>
                 </Switch>
             </main>
