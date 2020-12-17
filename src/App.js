@@ -1,25 +1,44 @@
-import logo from './logo.svg';
+import React, {useEffect, useState} from "react";
 import './App.css';
 
+import {axios} from "./common/axios";
+import Categories from "./components/category/Categories";
+import Loading from "./components/loading/Loading";
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [loading, setLoading] = useState(true);
+    const [categoriesApi, setCategoriesApi] = useState();
+
+
+    const getCategoriesApi = async () => {
+        setLoading(true)
+        const response = await axios.get('/categories.php').catch((err) => console.log("Error:", err))
+        if (response && response.data) {
+            setCategoriesApi(response.data)
+            setLoading(false)
+            console.log("data:", response.data)
+        }
+
+
+    }
+    useEffect(() => {
+        getCategoriesApi();
+    }, [])
+
+    if (loading) {
+        return (<main>
+            <Loading/>
+        </main>)
+    }
+
+    return (
+        <>
+            <div>
+                <Categories categories={categoriesApi}/>
+            </div>
+
+        </>)
 }
 
 export default App;
