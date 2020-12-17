@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -9,10 +8,10 @@ const NavBar = () => {
         Team-Team <strong>Delivery</strong>
       </Link>
       <Link className="navbar-brand" to="/categories">
-        categories 
+        categories
       </Link>
-      <Link className="navbar-brand" to="/meals">
-        meals 
+      <Link className="navbar-brand" to="/favorites">
+        my favorites
       </Link>
       <button
         className="navbar-toggler"

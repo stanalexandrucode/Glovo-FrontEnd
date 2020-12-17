@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Meals from "../meals/Meals";
 
 const Category = ({
   idCategory,
@@ -9,9 +8,8 @@ const Category = ({
   strCategoryDescription,
 }) => {
   return (
-    
     <div>
-      <Link className="" to={`/meals/${strCategory}`} >
+      <Link className="" to={`/meals/${strCategory}`}>
         <h3>{strCategory}</h3>
       </Link>
       <img src={strCategoryThumb} alt={strCategory} />
