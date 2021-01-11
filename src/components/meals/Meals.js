@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {axios} from "../../common/axios";
+import {axios, axiosSpring} from "../../common/axios";
 import Loading from "../loading/Loading";
 import Meal from "./Meal";
 
 const Meals = () => {
     const [loading, setLoading] = useState(true);
     const [mealsApi, setMealsApi] = useState();
+    const [mealPrices, setMealPrices] = useState();
+
 
     const param = useParams();
     const category = param.strCategory;
@@ -23,9 +25,22 @@ const Meals = () => {
             }, 1000);
         }
     };
+
+
+    const getMealPrices = async () => {
+        setLoading(true);
+        const response = await axiosSpring.get("/prices")
+            .catch((err) => console.log("Error:", err));
+        if (response && response.data) {
+            setMealPrices(response.data);
+
+        }
+    }
     useEffect(() => {
         getMealsApi();
+        getMealPrices();
     }, []);
+
 
     if (loading) {
         return (
@@ -35,18 +50,23 @@ const Meals = () => {
         );
     }
 
-  return (
-    <>
-    <div>
-      <h1 className="text-name-category">{category}</h1>
-      <div className="meal-page">
-        {mealsApi.map((meal) => {
-          return <Meal key={meal.idMeal} {...meal} price={Math.floor(Math.random() * 100)}/>;;
-        })}
-      </div>
-      </div>
-    </>
-  );
+
+    return (
+        <>
+            <div>
+                <h1 className="text-name-category">{category}</h1>
+                <div className="meal-page">
+                    {mealsApi.map((meal) => {
+                        return <Meal key={meal.idMeal} {...meal} price={mealPrices.filter(
+                            price => {
+                                return price.id === parseInt(meal.idMeal)
+                            })[0].price
+                        }/>;
+                    })}
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default Meals;
