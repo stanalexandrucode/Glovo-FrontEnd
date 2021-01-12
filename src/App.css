@@ -1,5 +1,5 @@
 body {
-  background: url('background1.jpg') no-repeat fixed center center !important;
+  background: url("background1.jpg") no-repeat fixed center center !important;
   background-size: cover !important;
   background-color: #f7f7f7 !important;
   z-index: -1;
@@ -81,26 +81,25 @@ body {
   max-width: 25rem;
 }
 .categories-page {
-    padding-top: 1.5rem;
-    width: 90vw;
-    margin-bottom: 1rem;
-    max-width: 1270px;
-    display: grid;
-    gap: 3rem 2rem;
-    justify-items: center;
-    border-radius: var(--radius);
-  }
-  .meal-page {
-    padding-top: 1.5rem;
-    width: 90vw;
-    margin-bottom: 1rem;
-    max-width: 1270px;
-    display: grid;
-    gap: 3rem 2rem;
-    justify-items: center;
-    border-radius: var(--radius);
-  }
-
+  padding-top: 1.5rem;
+  width: 90vw;
+  margin-bottom: 1rem;
+  max-width: 1270px;
+  display: grid;
+  gap: 3rem 2rem;
+  justify-items: center;
+  border-radius: var(--radius);
+}
+.meal-page {
+  padding-top: 1.5rem;
+  width: 90vw;
+  margin-bottom: 1rem;
+  max-width: 1270px;
+  display: grid;
+  gap: 3rem 2rem;
+  justify-items: center;
+  border-radius: var(--radius);
+}
 
 .photo {
   object-fit: cover;
@@ -146,18 +145,17 @@ body {
   margin-right: auto;
 }
 .text-name-meal {
-    font-family: "Sofia", sans-serif;
-    font-size: 30px;
-    text-shadow: 3px 3px 3px #ababab;
- 
+  font-family: "Sofia", sans-serif;
+  font-size: 30px;
+  text-shadow: 3px 3px 3px #ababab;
 }
 .text-name-category {
-    font-family: "Sofia", sans-serif;
-    font-size: 30px;
-    text-shadow: 3px 3px 3px #ababab;
+  font-family: "Sofia", sans-serif;
+  font-size: 30px;
+  text-shadow: 3px 3px 3px #ababab;
   font-size: 90px;
   -webkit-text-decoration-line: underline; /* Safari */
-   text-decoration-line: underline; 
+  text-decoration-line: underline;
 }
 
 @media screen and (min-width: 1200px) {
@@ -173,7 +171,7 @@ body {
   .categories-page {
     width: 90vw;
     grid-template-columns: 2fr 1fr;
-}
+  }
   .photo {
     height: 600px;
     radius: 10px;

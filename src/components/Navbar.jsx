@@ -7,9 +7,6 @@ const Navbar = () => {
       <Link className="navbar-brand" to="/">
         Team-Team <strong>Delivery</strong>
       </Link>
-      <Link className="navbar-brand" to="/categories">
-        categories
-      </Link>
       <Link className="navbar-brand" to="/favorites">
         my favorites
       </Link>
