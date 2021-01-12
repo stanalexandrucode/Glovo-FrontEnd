@@ -1,18 +1,17 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
         Team-Team <strong>Delivery</strong>
       </Link>
       <Link className="navbar-brand" to="/categories">
-        categories 
+        categories
       </Link>
-      <Link className="navbar-brand" to="/meals">
-        meals 
+      <Link className="navbar-brand" to="/favorites">
+        my favorites
       </Link>
       <button
         className="navbar-toggler"
@@ -29,4 +28,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;
