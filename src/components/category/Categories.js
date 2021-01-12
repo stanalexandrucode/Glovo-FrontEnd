@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Category from "./Category";
-import { axios } from "../../common/axios";
-import Loading from "../loading/Loading";
+import React, { useEffect, useState } from 'react';
+import Category from './Category';
+import { axios } from '../../common/axios';
+import Loading from '../loading/Loading';
 
 const Categories = () => {
   const [loading, setLoading] = useState(true);
@@ -10,8 +10,8 @@ const Categories = () => {
   const getCategoriesApi = async () => {
     setLoading(true);
     const response = await axios
-      .get("/categories.php")
-      .catch((err) => console.log("Error:", err));
+      .get('/categories.php')
+      .catch((err) => console.log('Error:', err));
     if (response && response.data) {
       setCategoriesApi(response.data.categories);
       setTimeout(() => {
@@ -32,12 +32,12 @@ const Categories = () => {
   }
   return (
     <section>
-        <h2 className="text-name-category">Menu</h2>
-        <div className="categories-page">
-          {categoriesApi.map((category) => {
-            return <Category key={category.idCategory} {...category} />;
-          })}
-        </div>
+      <h2 className="text-name-category">Menu</h2>
+      <div className="categories-page">
+        {categoriesApi.map((category) => {
+          return <Category key={category.idCategory} {...category} />;
+        })}
+      </div>
     </section>
   );
 };

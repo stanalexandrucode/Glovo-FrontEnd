@@ -1,6 +1,6 @@
 import React from "react";
-import {Redirect, Route, Switch} from "react-router-dom";
-import {ToastContainer} from "react-toastify";
+import { Redirect, Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import NotFound from "./components/NotFound";
 import Navbar from "./components/Navbar";
 import Categories from "./components/category/Categories";

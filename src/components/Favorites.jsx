@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
-import {axiosSpring} from "../common/axios";
+import React, { useState, useEffect } from "react";
+import { axiosSpring } from "../common/axios";
 import Meal from "./meals/Meal";
 import Loading from "./loading/Loading";
 
 export default function Favorites() {
-    const [loading, setLoading] = useState(true);
-    const [mealsDb, setMealsDb] = useState();
+  const [loading, setLoading] = useState(true);
+  const [mealsDb, setMealsDb] = useState();
 
     const getFavoritesMealsDb = async () => {
         setLoading(true);
@@ -20,34 +20,34 @@ export default function Favorites() {
         }
     };
 
-    useEffect(() => {
-        getFavoritesMealsDb();
-    }, []);
+  useEffect(() => {
+    getFavoritesMealsDb();
+  }, []);
 
-    if (loading) {
-        return (
-            <main>
-                <Loading/>
-            </main>
-        );
-    }
-
+  if (loading) {
     return (
-        <>
-            <div>
-                {mealsDb.map((product) => {
-                    return (
-                        <Meal
-                            key={product.id}
-                            idMeal={product.id}
-                            strMeal={product.name}
-                            strMealThumb={product.thumbnail}
-                            price={product.price}
-                            inFavorites={true}
-                        />
-                    );
-                })}
-            </div>
-        </>
+      <main>
+        <Loading />
+      </main>
     );
+  }
+
+  return (
+    <>
+      <div>
+        {mealsDb.map((product) => {
+          return (
+            <Meal
+              key={product.id}
+              idMeal={product.id}
+              strMeal={product.name}
+              strMealThumb={product.thumbnail}
+              price={product.price}
+              inFavorites={true}
+            />
+          );
+        })}
+      </div>
+    </>
+  );
 }
