@@ -16,7 +16,7 @@ export default function Favorites() {
             setMealsDb(response.data);
             setTimeout(() => {
                 setLoading(false);
-            }, 1000);
+            }, 500);
         }
     };
 

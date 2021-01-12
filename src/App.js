@@ -9,6 +9,7 @@ import Favorites from "./components/Favorites";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import DetailMeal from "./components/meals/DetailMeal";
+import Carusel from "./components/carusel/Carusel";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
             <Navbar/>
             <main className="container">
                 <Switch>
+                    <Route path="/carusel" component = {Carusel}/>
                     <Route path="/not-found" component={NotFound}/>
                     <Route path="/categories" component={Categories}/>
                     <Route path="/favorites" component={Favorites}/>

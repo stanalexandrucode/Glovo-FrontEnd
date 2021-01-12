@@ -8,6 +8,7 @@ const Meals = () => {
     const [loading, setLoading] = useState(true);
     const [mealsApi, setMealsApi] = useState();
     const [mealPrices, setMealPrices] = useState();
+    const [favorite, setFavorite] = useState()
 
 
     const param = useParams();
@@ -20,9 +21,7 @@ const Meals = () => {
             .catch((err) => console.log("Error:", err));
         if (response && response.data) {
             setMealsApi(response.data.meals);
-            setTimeout(() => {
-                setLoading(false);
-            }, 1000);
+            setLoading(false);
         }
     };
 
@@ -36,6 +35,21 @@ const Meals = () => {
 
         }
     }
+
+
+    const handleAdd = async (id, price) => {
+        setFavorite({id: id, price: price})
+        // const object = {
+        //     id: `${id}`,
+        //     price: `${price}`
+        // };
+        let res = await axiosSpring.post("/favorites", favorite);
+        if (res.status === 200) {
+            console.log(favorite)
+        }
+    }
+
+
     useEffect(() => {
         getMealsApi();
         getMealPrices();
@@ -57,7 +71,7 @@ const Meals = () => {
                 <h1 className="text-name-category">{category}</h1>
                 <div className="meal-page">
                     {mealsApi.map((meal) => {
-                        return <Meal key={meal.idMeal} {...meal} price={mealPrices.filter(
+                        return <Meal key={meal.idMeal} handleAdd={handleAdd} {...meal} price={mealPrices.filter(
                             price => {
                                 return price.id === parseInt(meal.idMeal)
                             })[0].price

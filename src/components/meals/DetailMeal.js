@@ -20,7 +20,7 @@ const DetailMeal = () => {
             setDetailMealApi(response.data.meals);
             setTimeout(() => {
                 setLoading(false);
-            }, 1300);
+            }, 400);
         }
     };
     useEffect(() => {
