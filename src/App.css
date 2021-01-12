@@ -109,6 +109,15 @@ body {
   display: left;
   box-shadow: 0 0 11px 1px rgba(231, 193, 22, 0.5);
 }
+
+.photo-meal {
+  object-fit: cover;
+  border: 0.25rem solid var(--clr-gold);
+  border-radius: var(--radius);
+  display: flex;
+  box-shadow: 0 0 11px 1px rgba(231, 193, 22, 0.5);
+}
+
 .header-detailMeal {
   text-align: center;
   margin-top: 4rem;
@@ -151,6 +160,15 @@ body {
     text-shadow: 3px 3px 3px #ababab;
  
 }
+
+.text-name-favorite-meal{
+  font-family: "Sofia", sans-serif;
+    font-size: 30px;
+    text-shadow: 3px 3px 3px #ababab;
+    margin-bottom: auto;
+    padding-bottom: 20rem;
+}
+
 .text-name-category {
     font-family: "Sofia", sans-serif;
     font-size: 30px;
@@ -158,6 +176,30 @@ body {
   font-size: 90px;
   -webkit-text-decoration-line: underline; /* Safari */
    text-decoration-line: underline; 
+}
+
+.favorites-meals {
+  padding-top: 3rem;
+  width: 220vw;
+  margin-bottom: 1rem;
+ -ms-flex: 50%; /* IE 10 */
+ flex: 50%;
+ padding: 0 4px;
+  border-radius: var(--radius);
+  display:flexbox;
+  /* grid-template-columns: auto auto auto;
+  background-color: #e0deda;
+  padding: 30px; */
+
+}
+
+.favorite-meal{
+  width: 20%;
+  margin-bottom:30px;
+  display:-moz-grid-line;
+  border-bottom: #282c34 1px solid ;
+
+ 
 }
 
 @media screen and (min-width: 1200px) {
@@ -178,4 +220,11 @@ body {
     height: 600px;
     radius: 10px;
   }
+
+  .photo-meal {
+    height: 300px;
+    radius: 10px;
+  }
+
+  
 }
