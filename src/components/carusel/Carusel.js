@@ -5,6 +5,7 @@ import Title from "./Title";
 import LeftButton from "./LeftButton";
 import RightButton from "./RightButton";
 import RandomMealCarusel from "./RandomMealCarusel";
+import "./Carusel.css";
 
 
 function Carusel() {

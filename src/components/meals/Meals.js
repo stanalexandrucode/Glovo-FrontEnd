@@ -15,19 +15,17 @@ const Meals = () => {
     const category = param.strCategory;
 
     const getMealsApi = async () => {
-        setLoading(true);
         const response = await axios
             .get(`/filter.php?c=${category}`)
             .catch((err) => console.log("Error:", err));
         if (response && response.data) {
             setMealsApi(response.data.meals);
-            setLoading(false);
+
         }
     };
 
 
     const getMealPrices = async () => {
-        setLoading(true);
         const response = await axiosSpring.get("/prices")
             .catch((err) => console.log("Error:", err));
         if (response && response.data) {
@@ -38,21 +36,24 @@ const Meals = () => {
 
 
     const handleAdd = async (id, price) => {
-        setFavorite({id: id, price: price})
-        // const object = {
-        //     id: `${id}`,
-        //     price: `${price}`
-        // };
-        let res = await axiosSpring.post("/favorites", favorite);
-        if (res.status === 200) {
+
+        let res = await axiosSpring.post("/favorites", {id: `${id}`, price: `${price}`});
+        if (res.status !== 200) {
             console.log(favorite)
         }
+        setFavorite({id: id, price: price})
+    }
+
+    const matchingPrices = async () => {
+        setLoading(true)
+        await getMealsApi();
+        await getMealPrices();
+        setLoading(false)
     }
 
 
     useEffect(() => {
-        getMealsApi();
-        getMealPrices();
+        matchingPrices();
     }, []);
 
 

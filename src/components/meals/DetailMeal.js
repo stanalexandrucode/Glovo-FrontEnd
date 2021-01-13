@@ -6,6 +6,7 @@ import Loading from '../loading/Loading';
 const DetailMeal = () => {
     const [loading, setLoading] = useState(true);
     const [detailMealApi, setDetailMealApi] = useState();
+    const [readMore, setReadMore] = useState(false)
 
     const param = useParams();
 
@@ -46,7 +47,11 @@ const DetailMeal = () => {
                     </div>
                     <div>
                         <h5>Instructions:</h5>
-                        <p>{detailMealApi.strInstructions}</p>
+                        <p>{readMore ? detailMealApi.strInstructions : `${detailMealApi.strInstructions.substring(0, 200)}...`}
+                            <button className="showBtn" onClick={() => setReadMore(!readMore)}>
+                                {readMore ? "show less" : "read more"}
+                            </button>
+                        </p>
                         <h5>Area food: {detailMealApi.strArea}</h5>
                     </div>
                 </div>
