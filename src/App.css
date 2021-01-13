@@ -51,16 +51,15 @@ body {
 }
 
 .fp-container {
-  position: fixed;
+  position: relative;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
+  justify-content: ;
   background: #f8f8f8ad;
 }
 
 .fp-container .fp-loader {
-  top: 30%;
+  top: 50%;
   left: 50%;
   z-index: 1000;
   position: absolute;
@@ -81,26 +80,25 @@ body {
   max-width: 25rem;
 }
 .categories-page {
-    padding-top: 1.5rem;
-    width: 90vw;
-    margin-bottom: 1rem;
-    max-width: 1270px;
-    display: grid;
-    gap: 3rem 2rem;
-    justify-items: center;
-    border-radius: var(--radius);
-  }
-  .meal-page {
-    padding-top: 1.5rem;
-    width: 90vw;
-    margin-bottom: 1rem;
-    max-width: 1270px;
-    display: grid;
-    gap: 3rem 2rem;
-    justify-items: center;
-    border-radius: var(--radius);
-  }
-
+  padding-top: 1.5rem;
+  width: 90vw;
+  margin-bottom: 1rem;
+  max-width: 1270px;
+  display: grid;
+  gap: 3rem 2rem;
+  justify-items: center;
+  border-radius: var(--radius);
+}
+.meal-page {
+  padding-top: 1.5rem;
+  width: 90vw;
+  margin-bottom: 1rem;
+  max-width: 1270px;
+  display: grid;
+  gap: 3rem 2rem;
+  justify-items: center;
+  border-radius: var(--radius);
+}
 
 .photo {
   object-fit: cover;
@@ -138,7 +136,6 @@ body {
 }
 
 .container {
-  justify-content: center;
   display: flex;
   margin-bottom: auto;
   position: relative;
@@ -155,54 +152,54 @@ body {
   margin-right: auto;
 }
 .text-name-meal {
-    font-family: "Sofia", sans-serif;
-    font-size: 30px;
-    text-shadow: 3px 3px 3px #ababab;
- 
+  font-family: 'Sofia', sans-serif;
+  font-size: 30px;
+  text-shadow: 3px 3px 3px #ababab;
 }
 
-.text-name-favorite-meal{
-  font-family: "Sofia", sans-serif;
-    font-size: 30px;
-    text-shadow: 3px 3px 3px #ababab;
-    margin-bottom: auto;
-    padding-bottom: 20rem;
+.text-name-favorite-meal {
+  font-family: 'Sofia', sans-serif;
+  font-size: 30px;
+  text-shadow: 3px 3px 3px #ababab;
+  margin-bottom: auto;
+  padding-bottom: 20rem;
 }
 
 .text-name-category {
-    font-family: "Sofia", sans-serif;
-    font-size: 30px;
-    text-shadow: 3px 3px 3px #ababab;
+  font-family: 'Sofia', sans-serif;
+  font-size: 30px;
+  text-shadow: 3px 3px 3px #ababab;
   font-size: 90px;
   -webkit-text-decoration-line: underline; /* Safari */
-   text-decoration-line: underline; 
+  text-decoration-line: underline;
 }
 
 .favorites-meals {
   padding-top: 3rem;
   width: 220vw;
   margin-bottom: 1rem;
- -ms-flex: 50%; /* IE 10 */
- flex: 50%;
- padding: 0 4px;
+  -ms-flex: 50%; /* IE 10 */
+  flex: 50%;
+  padding: 0 4px;
   border-radius: var(--radius);
-  display:flexbox;
-  /* grid-template-columns: auto auto auto;
-  background-color: #e0deda;
-  padding: 30px; */
-
+  display: grid;
+  grid-row-gap: 50px;
+  grid-template-columns: repeat(2, 1200px);
 }
 
-.favorite-meal{
-  width: 20%;
-  margin-bottom:30px;
-  display:-moz-grid-line;
-  border-bottom: #282c34 1px solid ;
-
- 
+.favorite-meal {
+  box-shadow: 0 7px 28px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 3%;
+  transition: 0.3s;
+  width: 80%;
 }
 
-@media screen and (min-width: 1200px) {
+#main {
+  display: inline;
+  margin-left: 0%;
+}
+
+@media screen and (min-width: 100px) {
   .detailMeal-page {
     width: 95vw;
     grid-template-columns: 1fr 1fr;
@@ -215,7 +212,7 @@ body {
   .categories-page {
     width: 90vw;
     grid-template-columns: 2fr 1fr;
-}
+  }
   .photo {
     height: 600px;
     radius: 10px;
@@ -225,6 +222,4 @@ body {
     height: 300px;
     radius: 10px;
   }
-
-  
 }
