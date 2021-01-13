@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { axiosSpring } from '../../common/axios';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 const FavoriteMeal = ({
   idMeal,

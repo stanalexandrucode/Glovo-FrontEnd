@@ -63,7 +63,7 @@ export default function Favorites() {
       <div className='favorites-meals'>
         {mealsApi.map((product) => {
           return (
-            <FavoriteMeal
+            <FavoriteMeal key={product.idMeal}
               handleDelete={handleDelete}
               {...product}
               price={
