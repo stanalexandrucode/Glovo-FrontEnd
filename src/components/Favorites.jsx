@@ -14,9 +14,7 @@ export default function Favorites() {
             .catch((err) => console.log("Error:", err));
         if (response && response.data) {
             setMealsDb(response.data);
-            setTimeout(() => {
                 setLoading(false);
-            }, 500);
         }
     };
 

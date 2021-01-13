@@ -18,13 +18,13 @@ function App() {
             <Navbar/>
             <main className="container">
                 <Switch>
-                    <Route path="/carusel" component = {Carusel}/>
+                    <Route path="/" exact component = {Carusel}/>
                     <Route path="/not-found" component={NotFound}/>
                     <Route path="/categories" component={Categories}/>
                     <Route path="/favorites" component={Favorites}/>
                     <Route path="/meals/:strCategory" component={Meals}/>
                     <Route path="/meal/:id" component={DetailMeal}/>
-                    <Redirect from="/" exact to="/categories"/>
+                    {/*<Redirect from="/" exact to="/categories"/>*/}
                     <Redirect to="/not-found"/>
                 </Switch>
             </main>

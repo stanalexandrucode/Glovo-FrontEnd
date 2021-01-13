@@ -1,8 +1,9 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 
 
 const RandomMeal = ({
-                        // idMeal,
+                        idMeal,
                         strMeal,
                         // strCategory,
                         // strArea,
@@ -25,10 +26,13 @@ const RandomMeal = ({
 
     return (
         <article className={position}>
-            <img src={strMealThumb} alt={strMeal} className='person-img'/>
+            <Link className='text-name-meal' to={`/meal/${idMeal}`}>
+                <img src={strMealThumb} alt={strMeal} className='person-img'/>
+            </Link>
             <h4>{strMeal}</h4>
         </article>
     )
+
 
 }
 export default RandomMeal

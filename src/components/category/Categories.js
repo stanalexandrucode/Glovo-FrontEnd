@@ -14,9 +14,7 @@ const Categories = () => {
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
       setCategoriesApi(response.data.categories);
-      setTimeout(() => {
         setLoading(false);
-      }, 1000);
     }
   };
   useEffect(() => {
