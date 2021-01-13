@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ auth }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
@@ -9,6 +9,12 @@ const Navbar = () => {
       </Link>
       <Link className="navbar-brand" to="/favorites">
         my favorites
+      </Link>
+      <Link className="navbar-brand" to="/login">
+        login
+      </Link>
+      <Link className="navbar-brand" to="/register">
+        register
       </Link>
       <button
         className="navbar-toggler"
