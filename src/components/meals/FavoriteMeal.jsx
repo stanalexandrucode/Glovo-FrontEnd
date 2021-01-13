@@ -6,17 +6,15 @@ const FavoriteMeal = ({
   idMeal,
   strMeal,
   strMealThumb,
-  inFavorites,
   price,
+  handleDelete
 }) => {
   
 
-  const handleDelete = async () => {
-    let res = await axiosSpring.delete(`/favorites/${idMeal}`);
-    window.location.reload();
-  };
+ 
 
   return (
+    
     <>
       <div className='favorite-meal'>
         <div className='header-detailMeal'>
@@ -29,7 +27,7 @@ const FavoriteMeal = ({
             <img className='photo-meal' src={strMealThumb} alt={strMeal} />
             <p>${price}</p>
             <div>
-              <button className='btn-primary' onClick={handleDelete}>
+              <button className='btn-primary' onClick={()=>handleDelete(idMeal)}>
                 remove
               </button>
             </div>
