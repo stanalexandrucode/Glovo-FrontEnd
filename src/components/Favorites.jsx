@@ -1,28 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { axiosSpring } from "../common/axios";
-import Meal from "./meals/Meal";
-import Loading from "./loading/Loading";
+import React, { useState, useEffect } from 'react';
+import { axios, axiosSpring } from '../common/axios';
+import FavoriteMeal from './meals/FavoriteMeal';
+import Loading from './loading/Loading';
+
 
 export default function Favorites() {
   const [loading, setLoading] = useState(true);
-  const [mealsDb, setMealsDb] = useState();
+  const [mealsDb, setMealsDb] = useState([]);
+  const [mealsApi, setMealsApi] = useState([]);
 
   const getFavoritesMealsDb = async () => {
-    setLoading(true);
     const response = await axiosSpring
       .get(`/favorites`)
-      .catch((err) => console.log("Error:", err));
+      .catch((err) => console.log('Error:', err));
     if (response && response.data) {
       setMealsDb(response.data);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+      return response.data;
     }
   };
 
+  const getMealsApi = async (meals) => {
+    let dataApi = [];
+    for (var i = 0; i < meals.length; i++) {
+      const response = await axios.get(`/lookup.php?i=${meals[i].id}`);
+      if (response && response.data) {
+        dataApi.push(response.data.meals[0]);
+      }
+    }
+    setMealsApi(dataApi);
+  };
+
+  const showMeals = async () => {
+    setLoading(true);
+    let meals = await getFavoritesMealsDb();
+    await getMealsApi(meals);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    getFavoritesMealsDb();
+    showMeals();
   }, []);
+
+  const handleDelete = async (id) => {
+    let removeMealDbById = mealsApi.filter((meal) => meal.idMeal !== id);
+    await axiosSpring.delete(`/favorites/${id}`);
+    setMealsApi(removeMealDbById);
+  };
 
   if (loading) {
     return (
@@ -34,19 +57,25 @@ export default function Favorites() {
 
   return (
     <>
-      <div>
-        {mealsDb.map((product) => {
+    <div className="table" >
+    <div>
+    <h3 className='text-name-category'>My favorites</h3>
+    </div>
+      <div className='favorites-meals'>
+        {mealsApi.map((product) => {
           return (
-            <Meal
-              key={product.id}
-              idMeal={product.id}
-              strMeal={product.name}
-              strMealThumb={product.thumbnail}
-              price={product.price}
-              inFavorites={true}
+            <FavoriteMeal key={product.idMeal}
+              handleDelete={handleDelete}
+              {...product}
+              price={
+                mealsDb.filter((price) => {
+                  return price.id === parseInt(product.idMeal);
+                })[0].price
+              }
             />
           );
         })}
+      </div>
       </div>
     </>
   );

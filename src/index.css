@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+@font-face {
+  font-family: 'Single Sleeve';
+  src: local('Single Sleeve'), url(./fonts/sing.ttf) format('truetype');
+}
+
+.showBtn {
+  background: var(--clr-primary-7);
+  display: inline-block;
+  padding: 0.025rem 0.05rem;
+  border-radius: var(--radius);
+  text-transform: capitalize;
+  color: var(--clr-white);
+  letter-spacing: var(--spacing);
+  border-color: transparent;
+  cursor: pointer;
+  /*margin-top: 2rem;*/
+  /*font-size: 1.2rem;*/
+}
+h5{
+  color: rgb(39, 211, 211);
+}
+
+

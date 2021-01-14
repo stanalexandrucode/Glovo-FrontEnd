@@ -36,3 +36,6 @@ function App() {
 }
 
 export default App;
+
+//   {/* <Route path="/search/:country" component={HotelsList} />
+//           <Route path="/search" component={Search} /> */}

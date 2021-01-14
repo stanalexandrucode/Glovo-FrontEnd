@@ -8,9 +8,9 @@ const Category = ({
   strCategoryDescription,
 }) => {
   return (
-    <div>
-      <Link className="" to={`/meals/${strCategory}`}>
-        <h3>{strCategory}</h3>
+    <div className="card-category">
+      <Link className="category-meals" to={`/meals/${strCategory}`} >
+        <h3 className="text-category">{strCategory}</h3>
       </Link>
       <img src={strCategoryThumb} alt={strCategory} />
       <p>Description {strCategoryDescription}</p>

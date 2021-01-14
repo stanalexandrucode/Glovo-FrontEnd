@@ -14,9 +14,7 @@ const Categories = () => {
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
       setCategoriesApi(response.data.categories);
-      setTimeout(() => {
         setLoading(false);
-      }, 1000);
     }
   };
   useEffect(() => {
@@ -32,7 +30,7 @@ const Categories = () => {
   }
   return (
     <section>
-      <h2 className="text-name-category">Menu</h2>
+      <h2 className="text-name-category">Categories</h2>
       <div className="categories-page">
         {categoriesApi.map((category) => {
           return <Category key={category.idCategory} {...category} />;

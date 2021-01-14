@@ -1,75 +1,88 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { axios, axiosSpring } from '../../common/axios';
-import Loading from '../loading/Loading';
-import Meal from './Meal';
+import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {axios, axiosSpring} from "../../common/axios";
+import Loading from "../loading/Loading";
+import Meal from "./Meal";
 
 const Meals = () => {
-  const [loading, setLoading] = useState(true);
-  const [mealsApi, setMealsApi] = useState();
-  const [mealPrices, setMealPrices] = useState();
+    const [loading, setLoading] = useState(true);
+    const [mealsApi, setMealsApi] = useState();
+    const [mealPrices, setMealPrices] = useState();
+    const [favorite, setFavorite] = useState()
 
-  const param = useParams();
-  const category = param.strCategory;
 
-  const getMealsApi = async () => {
-    setLoading(true);
-    const response = await axios
-      .get(`/filter.php?c=${category}`)
-      .catch((err) => console.log('Error:', err));
-    if (response && response.data) {
-      setMealsApi(response.data.meals);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+    const param = useParams();
+    const category = param.strCategory;
+
+    const getMealsApi = async () => {
+        const response = await axios
+            .get(`/filter.php?c=${category}`)
+            .catch((err) => console.log("Error:", err));
+        if (response && response.data) {
+            setMealsApi(response.data.meals);
+
+        }
+    };
+
+
+    const getMealPrices = async () => {
+        const response = await axiosSpring.get("/prices")
+            .catch((err) => console.log("Error:", err));
+        if (response && response.data) {
+            console.log("listapreturi", response)
+            setMealPrices(response.data);
+
+        }
     }
-  };
 
-  const getMealPrices = async () => {
-    setLoading(true);
-    const response = await axiosSpring
-      .get('/prices')
-      .catch((err) => console.log('Error:', err));
-    if (response && response.data) {
-      setMealPrices(response.data);
+
+    const handleAdd = async (id, price) => {
+
+        let res = await axiosSpring.post("/favorites", {id: `${id}`, price: `${price}`});
+        if (res.status !== 200) {
+            console.log(favorite)
+        }
+        setFavorite({id: id, price: price})
     }
-  };
 
-  useEffect(() => {
-    getMealsApi();
-    getMealPrices();
-  }, []);
+    const matchingPrices = async () => {
+        setLoading(true)
+        await getMealsApi();
+        await getMealPrices();
+        setLoading(false)
+    }
 
-  if (loading) {
+
+    useEffect(() => {
+        matchingPrices();
+    }, []);
+
+
+    if (loading) {
+        return (
+            <main>
+                <Loading/>
+            </main>
+        );
+    }
+
+
     return (
-      <main>
-        <Loading />
-      </main>
+        <>
+            <div>
+                <h1 className="text-name-category">{category}</h1>
+                <div className="meal-page">
+                    {mealsApi.map((meal) => {
+                        return <Meal key={meal.idMeal} handleAdd={handleAdd} {...meal} price={mealPrices.filter(
+                            price => {
+                                return price.id === parseInt(meal.idMeal)
+                            })[0].price
+                        }/>;
+                    })}
+                </div>
+            </div>
+        </>
     );
-  }
-
-  return (
-    <>
-      <div>
-        <h1 className="text-name-category">{category}</h1>
-        <div className="meal-page">
-          {mealsApi.map((meal) => {
-            return (
-              <Meal
-                key={meal.idMeal}
-                {...meal}
-                price={
-                  mealPrices.filter((price) => {
-                    return price.id === parseInt(meal.idMeal);
-                  })[0].price
-                }
-              />
-            );
-          })}
-        </div>
-      </div>
-    </>
-  );
 };
 
 export default Meals;
