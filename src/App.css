@@ -1,5 +1,5 @@
 body {
-  width: 1920px;
+  width: 100%;
   background: url('background12.jpg') no-repeat fixed center center !important;
   /* background-size: cover !important;
   background-color: #f7f7f7 !important;
@@ -55,6 +55,7 @@ body {
 
 } */
 :root {
+  width: 100%;
   --clr-gold: #c59d5f;
   --radius: 1.25rem;
   --radius1: 0.25rem;
@@ -133,6 +134,7 @@ body {
 .categories-page {
   padding-top: 1.5rem;
   width: 100%;
+  margin-left: 350px;
   margin-bottom: 1rem;
   max-width: 1150px;
   display: grid;
@@ -171,6 +173,9 @@ body {
   display: flex;
   box-shadow: 0 0 11px 1px rgba(231, 193, 22, 0.5);
 }
+.photo-category{
+  width: 400px;
+}
 
 .header-detailMeal {
   text-align: center;
@@ -180,7 +185,7 @@ body {
 .navbar {
   text-transform:capitalize !important;
   position: relative; width: 45%; text-align: center; margin-top: 5px !important;
-  margin-left: 650px;
+  margin-left: 550px;
   /* border: 0.1rem solid var(--clr-gold); */
   opacity: 80%;
   height: 60px;
@@ -203,6 +208,7 @@ body {
 
 .container-fluid {
   width: 100%;
+  margin-top: 100px;
   margin-left: 15px;
   position: absolute;
   opacity: 100%;
@@ -227,10 +233,11 @@ body {
   color: var(--clr-primary-5);
 }
 .text-category {
+  font-size: 50px;
   font-family: 'Single Sleeve', sans-serif;
-  margin-left: 20px;
+  margin-left: 50px;
   justify-content: center;
-  padding: 20%;
+  padding: 10%;
   color: var(--clr-primary-5);
 }
 
@@ -254,7 +261,7 @@ body {
 }
 
 .text-name-category {
-  left: 200px;
+  margin-left: 200px;
   font-family: 'Single Sleeve', sans-serif;
   font-size: 30px;
   text-shadow: 1px 2px 3px #13121260;
@@ -303,8 +310,16 @@ body {
   transition: 0.3s;
   width: 80%;
 }
-
-
+ .meal-page {
+   display: grid;
+    margin-left: 200px;
+    width: 90vw;
+    grid-template-columns: 3fr 1fr;
+  
+  }
+.price{
+  color: aliceblue;
+}
 
 
 @media screen and (min-width: 100px) {
@@ -312,12 +327,10 @@ body {
     width: 95vw;
     grid-template-columns: 1fr 1fr;
   }
-  .meal-page {
-    width: 90vw;
-    grid-template-columns: 2fr 1fr;
-  }
+ 
 
   .categories-page {
+    
     width: 90vw;
     grid-template-columns: 2fr 1fr;
   }

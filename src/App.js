@@ -27,7 +27,7 @@ function App() {
       <ToastContainer />
       <AuthContext.Provider value={{ authorization: [auth, setAuth] }}>
         <Navbar auth={auth} />
-        <main className="container">
+        <main className="container-fluid">
           <Routes />
         </main>
       </AuthContext.Provider>

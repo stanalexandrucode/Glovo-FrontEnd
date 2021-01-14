@@ -15,7 +15,7 @@ const Meal = ({idMeal, strMeal, strMealThumb, price, handleAdd}) => {
                 <div>
                     <div>
                         <img className='photo' src={strMealThumb} alt={strMeal}/>
-                        <p>${price}</p>
+                        <p className="price">${price}</p>
                         <div>
                             <button className="btn-primary" onClick={() => handleAdd(idMeal, price)}> add</button>
                         </div>

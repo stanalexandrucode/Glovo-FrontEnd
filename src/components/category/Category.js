@@ -12,7 +12,7 @@ const Category = ({
       <Link className="category-meals" to={`/meals/${strCategory}`} >
         <h3 className="text-category">{strCategory}</h3>
       </Link>
-      <img src={strCategoryThumb} alt={strCategory} />
+      <img className="photo-category" src={strCategoryThumb} alt={strCategory} />
       {/* <p>Description {strCategoryDescription}</p> */}
     </div>
   );
