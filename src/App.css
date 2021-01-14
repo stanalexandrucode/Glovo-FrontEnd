@@ -185,7 +185,7 @@ body {
 .navbar {
   text-transform:capitalize !important;
   position: relative; width: 45%; text-align: center; margin-top: 5px !important;
-  margin-left: 550px;
+  margin-left: 820px;
   /* border: 0.1rem solid var(--clr-gold); */
   opacity: 80%;
   height: 60px;
@@ -239,6 +239,9 @@ body {
   justify-content: center;
   padding: 10%;
   color: var(--clr-primary-5);
+}
+.description-meal{
+  color: aliceblue;
 }
 
 .text-name-favorite-meal {

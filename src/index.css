@@ -17,23 +17,23 @@ code {
 }
 
 .showBtn {
-  background: var(--clr-primary-7);
-  display: inline-block;
-  padding: 0.025rem 0.05rem;
+  /* background: var(--clr-primary-7); */
+  
   border-radius: var(--radius);
   text-transform: capitalize;
-  color: var(--clr-white);
-  letter-spacing: var(--spacing);
-  border-color: transparent;
+
+  /* letter-spacing: var(--spacing); */
+
+
   cursor: pointer;
   /*margin-top: 2rem;*/
   /*font-size: 1.2rem;*/
 }
 h5, h2{
  
- padding: 12px;
-  color: rgb(39, 211, 211);
-  font-family: 'Single Sleeve', sans-serif;
+ padding: 17px;
+  color: rgb(229, 238, 238);
+  font-family: 'Segoe UI', sans-serif;
 }
 
 
