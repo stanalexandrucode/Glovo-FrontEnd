@@ -48,9 +48,10 @@ const DetailMeal = () => {
                     <div>
                         <h5>Instructions:</h5>
                         <p>{readMore ? detailMealApi.strInstructions : `${detailMealApi.strInstructions.substring(0, 200)}...`}
+                            {detailMealApi.strInstructions.length > 200 &&
                             <button className="showBtn" onClick={() => setReadMore(!readMore)}>
                                 {readMore ? "show less" : "read more"}
-                            </button>
+                            </button>}
                         </p>
                         <h5>Area food: {detailMealApi.strArea}</h5>
                     </div>
