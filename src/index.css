@@ -29,8 +29,11 @@ code {
   /*margin-top: 2rem;*/
   /*font-size: 1.2rem;*/
 }
-h5{
+h5, h2{
+ 
+ padding: 12px;
   color: rgb(39, 211, 211);
+  font-family: 'Single Sleeve', sans-serif;
 }
 
 

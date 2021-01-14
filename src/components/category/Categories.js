@@ -29,14 +29,14 @@ const Categories = () => {
     );
   }
   return (
-    <section>
+    <div className="">
       <h2 className="text-name-category">Categories</h2>
       <div className="categories-page">
         {categoriesApi.map((category) => {
           return <Category key={category.idCategory} {...category} />;
         })}
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -129,6 +129,7 @@ p {
   max-width: var(--max-width);
   background-color: rgba(29, 26, 26, 0.600);
   box-shadow: 0 7px 28px 0 rgba(230, 232, 238, 0.616);
+  /* border: #cce2e9 0.1px solid; */
 
 }
 

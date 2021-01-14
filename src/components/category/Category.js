@@ -13,7 +13,7 @@ const Category = ({
         <h3 className="text-category">{strCategory}</h3>
       </Link>
       <img src={strCategoryThumb} alt={strCategory} />
-      <p>Description {strCategoryDescription}</p>
+      {/* <p>Description {strCategoryDescription}</p> */}
     </div>
   );
 };

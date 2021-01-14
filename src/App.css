@@ -99,6 +99,9 @@ body {
   }
 }
 
+ 
+
+
 .fp-container {
   position: relative;
   width: 100%;
@@ -129,13 +132,18 @@ body {
 }
 .categories-page {
   padding-top: 1.5rem;
-  width: 90vw;
+  width: 100%;
   margin-bottom: 1rem;
-  max-width: 1270px;
+  max-width: 1150px;
   display: grid;
-  gap: 3rem 2rem;
-  justify-items: center;
+  gap: 3rem 1rem;
+ 
   border-radius: var(--radius);
+
+}
+.container-categories{
+  display:grid;
+  width: 100%;
 }
 .meal-page {
   padding-top: 1.5rem;
@@ -170,23 +178,27 @@ body {
   padding: 1rem;
 }
 .navbar {
-  border: 0.1rem solid var(--clr-gold);
+  text-transform:capitalize !important;
+  position: relative; width: 45%; text-align: center; margin-top: 5px !important;
+  margin-left: 650px;
+  /* border: 0.1rem solid var(--clr-gold); */
   opacity: 80%;
   height: 60px;
-  border-radius: var(--radius);
-  box-shadow: 0 0 11px 1px rgba(231, 193, 22, 0.5);
+  /* border-radius: var(--radius); */
+  /* box-shadow: 0 0 11px 1px rgba(231, 193, 22, 0.5); */
+ color: var(--clr-primary-5);
 }
-/* .navbar-brand{
-    box-shadow: 0 0 7px 1px rgba(0, 140, 186, 0.5);
-    border-radius: var(--radius);
-} */
-.navbar-brand:hover {
-  width: 150px;
-  background-color: #cce2e9;
-  border-radius: var(--radius);
+
+.navbar-brand{
+  color: var(--clr-primary-5);
 }
-.navbar.bg-light {
+
+
+.navbar .navbar-expand-lg {
   opacity: 70%;
+  box-shadow: 0 7px 28px 0 rgba(230, 232, 238, 0.616);
+  border: #cce2e9 0.1px solid;
+  color: var(--clr-primary-5);
 }
 
 .container-fluid {
@@ -205,18 +217,21 @@ body {
   background: var(--clr-gold);
   margin-left: auto;
   margin-right: auto;
+  width: 1200px;
 }
 
 .text-name-meal {
   font-family: 'Single Sleeve', sans-serif;
   font-size: 30px;
   text-shadow: 1px 2px 3px #13121260;
+  color: var(--clr-primary-5);
 }
 .text-category {
   font-family: 'Single Sleeve', sans-serif;
   margin-left: 20px;
   justify-content: center;
   padding: 20%;
+  color: var(--clr-primary-5);
 }
 
 .text-name-favorite-meal {
@@ -225,13 +240,17 @@ body {
   text-shadow: 1px 2px 3px #13121260;
   margin-bottom: auto;
   padding-bottom: 20rem;
+  color: var(--clr-primary-5);
 }
 
 .btn-primary {
   font-family: 'Courier New', Courier, monospace, sans-serif;
   width: 60px;
   height: 200;
-  font-size: 13px;
+  font-size: 15px;
+ background-color: var(--clr-primary-5)!important;
+ border: var(--clr-primary-5) 2px solid!important;
+
 }
 
 .text-name-category {
@@ -248,16 +267,19 @@ body {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  border: #cce2e9 1px solid;
+  
 }
 
 .card-category {
+  
   grid-template-columns: repeat(5, 200);
   border: #cce2e9 1px solid;
   width: 400px;
   height: 300;
   background-color: #282c34;
   opacity: 80%;
+  border-radius: 50%;
+  box-shadow: 0 7px 28px 0 rgba(230, 232, 238, 0.616);
 }
 
 .favorites-meals {
@@ -281,15 +303,9 @@ body {
   transition: 0.3s;
   width: 80%;
 }
-.showBtn {
-  background-color: #f50a0a;
-}
 
-#main {
-  display: grid;
-  margin-left: 0%;
-  grid-template-rows: repeat(2, 400px);
-}
+
+
 
 @media screen and (min-width: 100px) {
   .detailMeal-page {

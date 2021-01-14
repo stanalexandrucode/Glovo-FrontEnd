@@ -4,11 +4,11 @@ import logo from '../../logo2.png';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar ">
       <Link className="navbar-brand" to="/">
         <img src={logo} width="150" />
       </Link>
-      <Link className="navbar-brand" to="/favorites">
+      <Link className="navbar-brand" to="/favorites" >
         my favorites
       </Link>
       <Link className="navbar-brand" to="/login">

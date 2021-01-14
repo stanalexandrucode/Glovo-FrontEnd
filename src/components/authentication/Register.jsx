@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { axiosSpring } from '../../common/axios';
 import { Link } from 'react-router-dom';
+import './Register.css'
 
 export default function Register() {
   const [userData, setUserData] = useState('');
@@ -53,9 +54,9 @@ export default function Register() {
 
   return (
     <>
-      <Card>
+      <Card className="register-form">
         <Card.Body>
-          <h2 className="text-center mb-4">Register</h2>
+       
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id="firstName">
@@ -83,7 +84,7 @@ export default function Register() {
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
             <Button className="w-100" type="submit">
-              Register
+             <h2> Register</h2>
             </Button>
           </Form>
         </Card.Body>
