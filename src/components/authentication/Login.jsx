@@ -35,9 +35,10 @@ const Login = () => {
       Cookies.set('user', res.data);
       // setUser(res.data)
       return true;
+    } else {
+      toast.error('Login not successful! Please check input data');
+      return false;
     }
-    toast.error('Login not successful! Please check input data');
-    return false;
   };
 
   return (
