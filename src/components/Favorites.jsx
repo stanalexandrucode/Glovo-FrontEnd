@@ -3,6 +3,7 @@ import { axios, axiosSpring } from '../common/axios';
 import FavoriteMeal from './meals/FavoriteMeal';
 import Loading from './loading/Loading';
 
+
 export default function Favorites() {
   const [loading, setLoading] = useState(true);
   const [mealsDb, setMealsDb] = useState([]);

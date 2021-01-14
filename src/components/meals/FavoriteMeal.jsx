@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+
 const FavoriteMeal = ({
   idMeal,
   strMeal,
@@ -21,7 +22,7 @@ const FavoriteMeal = ({
             <h3>{strMeal}</h3>
           </Link>
         </div>
-        <div>
+  
           <div>
             <img className='photo-meal' src={strMealThumb} alt={strMeal} />
             <p>${price}</p>
@@ -31,7 +32,7 @@ const FavoriteMeal = ({
               </button>
             </div>
           </div>
-        </div>
+     
       </div>
     </>
   );

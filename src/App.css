@@ -1,10 +1,59 @@
 body {
-  background: url('background1.jpg') no-repeat fixed center center !important;
-  background-size: cover !important;
+  width: 1920px;
+  background: url('background6-2.jpg') no-repeat fixed center center !important;
+  /* background-size: cover !important;
   background-color: #f7f7f7 !important;
+  z-index: -1; */
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
   z-index: -1;
+
+  height: 100vh !important;
+  width: 100% !important;
+  /* background-image: url('background3.jpg')  !important; */
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  transition: 5s !important;
+
+  animation: animate !important;
+  animation-direction: alternate-reverse !important ;
+  animation-duration: 30s;
+  animation-fill-mode: forwards !important;
+  animation-iteration-count: infinite;
+  animation-play-state: running !important;
+  animation-timing-function: ease-in-out !important;
 }
 
+@keyframes animate {
+  0% {
+    background-image: url('background3.jpg') !important;
+  }
+  20% {
+    background-image: url('background4.jpg') !important;
+  }
+  40% {
+    background-image: url('background5.jpg') !important;
+  }
+  60% {
+    background-image: url('background6.jpg') !important;
+  }
+  80% {
+    background-image: url('background1.jpg') !important;
+  }
+  100% {
+    background-image: url('background2.jpg') !important;
+  }
+}
+
+/* .navbar-brand{
+  background-color: #282c34;
+  display: grid;
+  margin-right: 1300px!important;
+
+} */
 :root {
   --clr-gold: #c59d5f;
   --radius: 1.25rem;
@@ -122,6 +171,8 @@ body {
 }
 .navbar {
   border: 0.1rem solid var(--clr-gold);
+  opacity: 80%;
+  height: 60px;
   border-radius: var(--radius);
   box-shadow: 0 0 11px 1px rgba(231, 193, 22, 0.5);
 }
@@ -133,11 +184,15 @@ body {
   background-color: #cce2e9;
   border-radius: var(--radius);
 }
+.navbar.bg-light{
+  opacity: 70%;
+}
 
 .container {
-  display: flex;
-  margin-bottom: auto;
-  position: relative;
+ 
+  margin-left: 15px;
+  position: absolute;
+  opacity: 100%;
 }
 .container-meal {
   justify-content: center;
@@ -151,30 +206,55 @@ body {
   margin-right: auto;
 }
 .text-name-meal {
-  font-family: 'Sofia', sans-serif;
+  font-family: 'Single Sleeve', sans-serif;
   font-size: 30px;
-  text-shadow: 3px 3px 3px #ababab;
+  text-shadow: 1px 2px 3px #13121260;
+}
+.text-category{
+  font-family: 'Single Sleeve', sans-serif;
+  margin-left: 20px;
+  justify-content: center;
+  padding: 20%;
 }
 
 .text-name-favorite-meal {
-  font-family: 'Sofia', sans-serif;
+  font-family: 'Single Sleeve', sans-serif;
   font-size: 30px;
-  text-shadow: 3px 3px 3px #ababab;
+  text-shadow: 1px 2px 3px #13121260;
   margin-bottom: auto;
   padding-bottom: 20rem;
 }
 
 .text-name-category {
-  font-family: 'Sofia', sans-serif;
+  margin-left: 200px;
+  font-family: 'Single Sleeve', sans-serif;
   font-size: 30px;
-  text-shadow: 3px 3px 3px #ababab;
+  text-shadow: 1px 2px 3px #13121260;
   font-size: 90px;
   -webkit-text-decoration-line: underline; /* Safari */
   text-decoration-line: underline;
 }
+.card-categories{
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  border: #cce2e9 1px solid;
+  
+}
+
+.card-category{
+  grid-template-columns: repeat(3,1fr);
+  border: #cce2e9 1px solid;
+  width: 400px;
+  height: auto;
+  background-color: #282c34;
+  opacity: 80%;
+}
 
 .favorites-meals {
+
   padding-top: 3rem;
+  margin-left: 150px;
   width: 220vw;
   margin-bottom: 1rem;
   -ms-flex: 50%; /* IE 10 */
@@ -183,7 +263,7 @@ body {
   border-radius: var(--radius);
   display: grid;
   grid-row-gap: 50px;
-  grid-template-columns: repeat(2, 1200px);
+  grid-template-columns: repeat(3, 500px);
 }
 
 .favorite-meal {
@@ -191,11 +271,13 @@ body {
   border-radius: 3%;
   transition: 0.3s;
   width: 80%;
+
 }
 
 #main {
-  display: inline;
+  display: grid;
   margin-left: 0%;
+  grid-template-rows: repeat(2, 400px);
 }
 
 @media screen and (min-width: 100px) {
@@ -214,11 +296,11 @@ body {
   }
   .photo {
     height: 600px;
-    radius: 10px;
+    border-radius: 10px;
   }
 
   .photo-meal {
     height: 300px;
-    radius: 10px;
+    border-radius: 19px;
   }
 }

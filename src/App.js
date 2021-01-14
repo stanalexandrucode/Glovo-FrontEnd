@@ -11,12 +11,13 @@ import "./App.css";
 import DetailMeal from "./components/meals/DetailMeal";
 import Carusel from "./components/carusel/Carusel";
 
+
 function App() {
     return (
         <React.Fragment>
             <ToastContainer/>
             <Navbar/>
-            <main className="container">
+            <main className="container-fluid">
                 <Switch>
                     <Route path="/" exact component = {Carusel}/>
                     <Route path="/not-found" component={NotFound}/>
@@ -27,7 +28,12 @@ function App() {
                     {/*<Redirect from="/" exact to="/categories"/>*/}
                     <Redirect to="/not-found"/>
                 </Switch>
+               
             </main>
+            <div className="card-categories">
+                <Categories/>
+                </div>
+            
         </React.Fragment>
     );
 }

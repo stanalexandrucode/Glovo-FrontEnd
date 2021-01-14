@@ -4,7 +4,7 @@ const Title = () => {
     return (
         <div className='title'>
             <h2>
-                Meal
+              Chef recommends
             </h2>
         </div>
     )
