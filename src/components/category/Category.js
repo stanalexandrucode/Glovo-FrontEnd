@@ -9,7 +9,7 @@ const Category = ({
 }) => {
   return (
     <div className="card-category">
-      <Link className="" to={`/meals/${strCategory}`} >
+      <Link className="category-meals" to={`/meals/${strCategory}`} >
         <h3 className="text-category">{strCategory}</h3>
       </Link>
       <img src={strCategoryThumb} alt={strCategory} />

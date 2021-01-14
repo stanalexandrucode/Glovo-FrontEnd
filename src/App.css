@@ -1,6 +1,6 @@
 body {
   width: 1920px;
-  background: url('background6-2.jpg') no-repeat fixed center center !important;
+  background: url('background12.jpg') no-repeat fixed center center !important;
   /* background-size: cover !important;
   background-color: #f7f7f7 !important;
   z-index: -1; */
@@ -181,36 +181,37 @@ body {
     border-radius: var(--radius);
 } */
 .navbar-brand:hover {
+  width: 150px;
   background-color: #cce2e9;
   border-radius: var(--radius);
 }
-.navbar.bg-light{
+.navbar.bg-light {
   opacity: 70%;
 }
 
-.container {
- 
+.container-fluid {
+  width: 100%;
   margin-left: 15px;
   position: absolute;
   opacity: 100%;
 }
-.container-meal {
+/* .container-meal {
   justify-content: center;
   display: flex;
   margin-bottom: auto;
-}
+} */
 
 .underline {
   background: var(--clr-gold);
   margin-left: auto;
   margin-right: auto;
 }
-.text-name-meal {
+.text-name-meal  {
   font-family: 'Single Sleeve', sans-serif;
   font-size: 30px;
   text-shadow: 1px 2px 3px #13121260;
 }
-.text-category{
+.text-category {
   font-family: 'Single Sleeve', sans-serif;
   margin-left: 20px;
   justify-content: center;
@@ -225,6 +226,13 @@ body {
   padding-bottom: 20rem;
 }
 
+.btn-primary{
+  font-family:'Courier New', Courier, monospace, sans-serif;
+  width: 60px;
+  height: 200;
+  font-size: 13px;
+}
+
 .text-name-category {
   margin-left: 200px;
   font-family: 'Single Sleeve', sans-serif;
@@ -233,26 +241,27 @@ body {
   font-size: 90px;
   -webkit-text-decoration-line: underline; /* Safari */
   text-decoration-line: underline;
+  color: #cce2e9;
 }
-.card-categories{
+.card-categories {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   border: #cce2e9 1px solid;
-  
 }
 
-.card-category{
-  grid-template-columns: repeat(3,1fr);
+.card-category {
+  grid-template-columns: repeat(5, 200);
   border: #cce2e9 1px solid;
   width: 400px;
-  height: auto;
+  height: 300;
   background-color: #282c34;
   opacity: 80%;
 }
 
-.favorites-meals {
 
+
+.favorites-meals{
   padding-top: 3rem;
   margin-left: 150px;
   width: 220vw;
@@ -266,12 +275,14 @@ body {
   grid-template-columns: repeat(3, 500px);
 }
 
-.favorite-meal {
+.favorite-meal, .container-meal{
   box-shadow: 0 7px 28px 0 rgba(0, 0, 0, 0.2);
   border-radius: 3%;
   transition: 0.3s;
   width: 80%;
-
+}
+.showBtn {
+  background-color: #f50a0a;
 }
 
 #main {

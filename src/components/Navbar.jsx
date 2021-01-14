@@ -1,27 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import logo from '../logo2.png'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../logo2.png';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
-     
-<img src={logo} width="150"/>
+    <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+      <Link className='navbar-brand' to='/'>
+        <img src={logo} width='150' />
       </Link>
-      <Link className="navbar-brand" to="/favorites">
+      <Link className='navbar-brand' to='/favorites'>
         my favorites
       </Link>
       <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        className='navbar-toggler'
+        type='button'
+        data-toggle='collapse'
+        data-target='#navbarNav'
+        aria-controls='navbarNav'
+        aria-expanded='false'
+        aria-label='Toggle navigation'
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className='navbar-toggler-icon'></span>
       </button>
     </nav>
   );

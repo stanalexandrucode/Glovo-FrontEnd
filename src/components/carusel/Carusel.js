@@ -6,6 +6,7 @@ import LeftButton from "./LeftButton";
 import RightButton from "./RightButton";
 import RandomMealCarusel from "./RandomMealCarusel";
 import "./Carusel.css";
+import Categories from './../category/Categories';
 
 
 function Carusel() {
@@ -70,6 +71,7 @@ function Carusel() {
 
 
     return (
+        <>
         <section className='section'>
             <Title/>
             <div className='section-center'>
@@ -78,6 +80,10 @@ function Carusel() {
                 <RightButton handleNextPersonBtn={handleNextPersonBtn}/>
             </div>
         </section>
+        <div className="card-categories">
+                <Categories/>
+                </div>
+        </>
     )
 }
 
