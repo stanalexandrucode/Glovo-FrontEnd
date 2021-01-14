@@ -39,7 +39,7 @@ const DetailMeal = () => {
         <div className="container">
             <div className="header-detailMeal">
                 <div className="underline">
-                    <h2>{detailMealApi.strMeal}</h2>
+                    <h3>{detailMealApi.strMeal}</h3>
                 </div>
                 <div className="detailMeal-page">
                     <div>
@@ -47,7 +47,7 @@ const DetailMeal = () => {
                     </div>
                     <div>
                         <h5>Instructions:</h5>
-                        <p>{readMore ? detailMealApi.strInstructions : `${detailMealApi.strInstructions.substring(0, 200)}...`}
+                        <p className="description-meal">{readMore ? detailMealApi.strInstructions : `${detailMealApi.strInstructions.substring(0, 200)}...`}
                             <button className="showBtn" onClick={() => setReadMore(!readMore)}>
                                 {readMore ? "show less" : "read more"}
                             </button>
