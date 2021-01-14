@@ -3,7 +3,6 @@ import { axios, axiosSpring } from '../common/axios';
 import FavoriteMeal from './meals/FavoriteMeal';
 import Loading from './loading/Loading';
 
-
 export default function Favorites() {
   const [loading, setLoading] = useState(true);
   const [mealsDb, setMealsDb] = useState([]);
@@ -57,25 +56,26 @@ export default function Favorites() {
 
   return (
     <>
-    <div className="table" >
-    <div>
-    <h3 className='text-name-category'>My favorites</h3>
-    </div>
-      <div className='favorites-meals'>
-        {mealsApi.map((product) => {
-          return (
-            <FavoriteMeal key={product.idMeal}
-              handleDelete={handleDelete}
-              {...product}
-              price={
-                mealsDb.filter((price) => {
-                  return price.id === parseInt(product.idMeal);
-                })[0].price
-              }
-            />
-          );
-        })}
-      </div>
+      <div className="table">
+        <div>
+          <h3 className="text-name-category">My favorites</h3>
+        </div>
+        <div className="favorites-meals">
+          {mealsApi.map((product) => {
+            return (
+              <FavoriteMeal
+                key={product.idMeal}
+                handleDelete={handleDelete}
+                {...product}
+                price={
+                  mealsDb.filter((price) => {
+                    return price.id === parseInt(product.idMeal);
+                  })[0].price
+                }
+              />
+            );
+          })}
+        </div>
       </div>
     </>
   );

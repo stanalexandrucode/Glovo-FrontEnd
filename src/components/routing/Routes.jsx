@@ -33,12 +33,13 @@ const Routes = () => {
           auth={Auth.auth}
           component={Login}
         />
+
         <Route path="/not-found" component={NotFound} />
         <Route path="/" exact component={Carusel} />
         <Route path="/categories" component={Categories} />
         <Route path="/favorites" component={Favorites} />
-        <Route path="/register" component={Register} />
         <Route path="/logout" component={Logout} />
+        <Route path="/register" component={Register} />
         <Route path="/meals/:strCategory" component={Meals} />
         <Route path="/meal/:id" component={DetailMeal} />
         <Redirect from="/" exact to="/categories" />
