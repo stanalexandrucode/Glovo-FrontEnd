@@ -1,30 +1,50 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
+import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { axiosSpring } from '../../common/axios';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
   const [userData, setUserData] = useState('');
+  const [error, setError] = useState('');
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const usernameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
+  const [loading, setLoading] = useState(false);
 
-  const handleOnClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (register() === true) {
-      toast.success('Registration successful!');
-      //redirect pe login
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      toast.error('Passwords do not match');
     }
-    toast.error('Register not successful! Please check input data');
+    try {
+      setError('');
+      if (register() === true) {
+        toast.success('Registration successful!');
+        //TODO redirect pe login
+      }
+    } catch {
+      toast.error('Register not successful! Please check input data');
+      setError('Failed to create an account');
+    }
   };
 
   const register = async () => {
     const object = {
-      firstName: 'nae2',
-      lastName: 'tot nae2',
-      email: 'nae email2',
-      password: 'parola lui nae2',
-      username: 'userul lui nae2',
+      firstName: firstNameRef.current.value,
+      lastName: lastNameRef.current.value,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+      username: usernameRef.current.value,
     };
-    let res = await axiosSpring.post('/register', object);
 
+
+    let res = await axiosSpring.post('/register', object);
     if (res.status === 200 && res.data) {
       return true;
     }
@@ -32,9 +52,45 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <h1>Welcome to register</h1>
-      <button onClick={handleOnClick}>Register</button>
-    </div>
+    <>
+      <Card>
+        <Card.Body>
+          <h2 className="text-center mb-4">Register</h2>
+          {error && <Alert variant="danger">{error}</Alert>}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group id="firstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text" ref={firstNameRef} required />
+            </Form.Group>
+            <Form.Group id="lastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="text" ref={lastNameRef} required />
+            </Form.Group>
+            <Form.Group id="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" ref={usernameRef} required />
+            </Form.Group>
+            <Form.Group id="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" ref={emailRef} required />
+            </Form.Group>
+            <Form.Group id="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" ref={passwordRef} required />
+            </Form.Group>
+            <Form.Group id="password-confirm">
+              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Control type="password" ref={passwordConfirmRef} required />
+            </Form.Group>
+            <Button className="w-100" type="submit">
+              Register
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+      <div className="w-100 text-center mt-2">
+        Already have an account? <Link to="/login">Log In</Link>
+      </div>
+    </>
   );
 }
