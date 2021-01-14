@@ -8,7 +8,7 @@ import Favorites from '../Favorites';
 import Meals from '../meals/Meals';
 import DetailMeal from '../meals/DetailMeal';
 import Login from '../authentication/Login';
-import Carusel from "./components/carusel/Carusel";
+import Carusel from '../carusel/Carusel';
 import ProtectedRoute from '../authentication/ProtectedRoute';
 import Register from '../authentication/Register';
 import Payment from '../authentication/Payment';
@@ -34,7 +34,7 @@ const Routes = () => {
           component={Login}
         />
         <Route path="/not-found" component={NotFound} />
-        <Route path="/" exact component = {Carusel}/>
+        <Route path="/" exact component={Carusel} />
         <Route path="/categories" component={Categories} />
         <Route path="/favorites" component={Favorites} />
         <Route path="/register" component={Register} />
