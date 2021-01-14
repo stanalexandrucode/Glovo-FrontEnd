@@ -1,5 +1,5 @@
 body {
-  background: url("background1.jpg") no-repeat fixed center center !important;
+  background: url('background1.jpg') no-repeat fixed center center !important;
   background-size: cover !important;
   background-color: #f7f7f7 !important;
   z-index: -1;
@@ -145,12 +145,12 @@ body {
   margin-right: auto;
 }
 .text-name-meal {
-  font-family: "Sofia", sans-serif;
+  font-family: 'Sofia', sans-serif;
   font-size: 30px;
   text-shadow: 3px 3px 3px #ababab;
 }
 .text-name-category {
-  font-family: "Sofia", sans-serif;
+  font-family: 'Sofia', sans-serif;
   font-size: 30px;
   text-shadow: 3px 3px 3px #ababab;
   font-size: 90px;

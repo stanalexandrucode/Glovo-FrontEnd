@@ -1,24 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import Navbar from './components/routing/Navbar';
-import AuthApi from './components/authentication/AuthApi';
+import { AuthContext } from './components/authentication/AuthContext';
 import { useState } from 'react';
 import Routes from './components/routing/Routes';
+import Cookies from 'js-cookie';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 function App() {
   const [auth, setAuth] = useState(false);
 
+  const readCookie = () => {
+    const user = Cookies.get('user');
+    if (user) {
+      setAuth(true);
+    }
+  };
+
+  useEffect(() => {
+    readCookie();
+  }, []);
+
   return (
     <React.Fragment>
       <ToastContainer />
-      <Navbar auth={auth} />
-      <main className="container">
-        <AuthApi.Provider value={(auth, setAuth)}>
+      <AuthContext.Provider value={{ authorization: [auth, setAuth] }}>
+        <Navbar auth={auth} />
+        <main className="container">
           <Routes />
-        </AuthApi.Provider>
-      </main>
+        </main>
+      </AuthContext.Provider>
     </React.Fragment>
   );
 }

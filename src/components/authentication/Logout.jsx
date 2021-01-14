@@ -2,23 +2,21 @@ import React, { useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import Cookies from 'js-cookie';
 
-const Login = () => {
+export default function Logout() {
   const { authorization } = useContext(AuthContext);
 
   const [auth, setAuth] = authorization;
   console.log(auth);
 
   const handleOnClick = () => {
-    setAuth(true);
-    Cookies.set('user', 'true');
+    setAuth(false);
+    Cookies.remove('user');
   };
 
   return (
     <div>
-      <h1>Welcome to login</h1>
-      <button onClick={handleOnClick}>Login</button>
+      <h1>Welcome to logout</h1>
+      <button onClick={handleOnClick}>Logout</button>
     </div>
   );
-};
-
-export default Login;
+}

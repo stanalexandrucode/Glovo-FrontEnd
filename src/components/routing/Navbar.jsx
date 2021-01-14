@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ auth }) => {
+const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
@@ -15,6 +15,9 @@ const Navbar = ({ auth }) => {
       </Link>
       <Link className="navbar-brand" to="/register">
         register
+      </Link>
+      <Link className="navbar-brand" to="/logout">
+        logout
       </Link>
       <button
         className="navbar-toggler"
