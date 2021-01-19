@@ -56,11 +56,11 @@ export default function Favorites() {
 
   return (
     <>
-      <div className="table">
+      <div className="">
         <div>
-          <h3 className="text-name-category">My favorites</h3>
+          <h3 className="">My favorites</h3>
         </div>
-        <div className="favorites-meals">
+        <div className="">
           {mealsApi.map((product) => {
             return (
               <FavoriteMeal

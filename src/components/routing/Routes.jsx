@@ -14,6 +14,7 @@ import Register from '../authentication/Register';
 import Payment from '../authentication/Payment';
 import ProtectedLogin from '../authentication/ProtectedLogin';
 import Logout from '../authentication/Logout';
+import MainPage from './../MainPage';
 
 const Routes = () => {
   const Auth = useContext(AuthContext);
@@ -35,7 +36,7 @@ const Routes = () => {
         />
 
         <Route path="/not-found" component={NotFound} />
-        <Route path="/" exact component={Carusel} />
+        <Route path="/" exact component={MainPage} />
         <Route path="/categories" component={Categories} />
         <Route path="/favorites" component={Favorites} />
         <Route path="/logout" component={Logout} />

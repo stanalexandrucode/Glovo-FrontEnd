@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Category from './Category';
 import { axios } from '../../common/axios';
 import Loading from '../loading/Loading';
+import "./Category.css";
 
 const Categories = () => {
   const [loading, setLoading] = useState(true);
@@ -29,9 +30,9 @@ const Categories = () => {
     );
   }
   return (
-    <div className="">
-      <h2 className="text-name-category">Categories</h2>
-      <div className="categories-page">
+    <div  className="categories">
+      <h2 >Categories</h2>
+      <div className="display-categories" >
         {categoriesApi.map((category) => {
           return <Category key={category.idCategory} {...category} />;
         })}
