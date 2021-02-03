@@ -23,11 +23,11 @@ function App() {
   }, []);
 
   return (
-    <React.Fragment>
+    <React.Fragment >
       <ToastContainer />
-      <AuthContext.Provider value={{ authorization: [auth, setAuth] }}>
+      <AuthContext.Provider  value={{ authorization: [auth, setAuth] }}>
         <Navbar auth={auth} />
-        <main className="container-fluid">
+        <main >
           <Routes />
         </main>
       </AuthContext.Provider>

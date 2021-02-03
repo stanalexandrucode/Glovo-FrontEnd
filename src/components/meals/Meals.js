@@ -4,6 +4,7 @@ import { axios, axiosSpring } from '../../common/axios';
 import Loading from '../loading/Loading';
 import Meal from './Meal';
 
+
 const Meals = () => {
   const [loading, setLoading] = useState(true);
   const [mealsApi, setMealsApi] = useState();
@@ -64,9 +65,9 @@ const Meals = () => {
 
   return (
     <>
-      <div>
-        <h2 className="text-name-category">{category}</h2>
-        <div className="meal-page">
+      <div className="category-meals">
+        <h2 >{category}</h2>
+        <div className="meals-category">
           {mealsApi.map((meal) => {
             return (
               <Meal

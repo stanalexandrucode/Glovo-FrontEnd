@@ -6,7 +6,7 @@ import LeftButton from './LeftButton';
 import RightButton from './RightButton';
 import RandomMealCarusel from './RandomMealCarusel';
 import './Carusel.css';
-import Categories from './../category/Categories';
+
 
 function Carusel() {
   const [loading, setLoading] = useState(true);
@@ -69,8 +69,8 @@ function Carusel() {
   }
 
   return (
-    <div>
-      <div>
+    <div className="main-page"> 
+      
         <section className='section'>
           <Title />
           <div className='section-center'>
@@ -82,11 +82,8 @@ function Carusel() {
             <RightButton handleNextPersonBtn={handleNextPersonBtn} />
           </div>
         </section>
-      </div>
-      <div className='container-fluid'>
-        <Categories />
-      </div>
-    </div>
+     </div>
+      
   );
 }
 
