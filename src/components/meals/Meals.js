@@ -42,7 +42,6 @@ const Meals = () => {
       price: `${price}`,
     });
     if (res.status !== 200) {
-      console.log(favorite);
     }
     setFavorite({ id: id, price: price });
   };
