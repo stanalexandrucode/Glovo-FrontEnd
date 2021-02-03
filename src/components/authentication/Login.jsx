@@ -30,7 +30,8 @@ const Login = () => {
     let res = await axiosSpring.post('/login', object);
     if (res.status === 200 && res.data) {
       setError('');
-      window.location.href = 'http://localhost:3000/';
+      // window.location.href = 'http://localhost:3000/';
+      console.log(authorization);
       setAuth(true);
       Cookies.set('user', res.data);
       // setUser(res.data)

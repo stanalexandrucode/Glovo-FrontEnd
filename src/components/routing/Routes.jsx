@@ -24,13 +24,13 @@ const Routes = () => {
         <ProtectedRoute
           exact
           path="/pay"
-          auth={Auth.auth}
+          auth={Auth.authorization}
           component={Payment}
         />
         <ProtectedLogin
           exact
           path="/login"
-          auth={Auth.auth}
+          auth={Auth.authorization}
           component={Login}
         />
 
