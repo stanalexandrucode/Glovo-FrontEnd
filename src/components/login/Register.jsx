@@ -1,10 +1,11 @@
-import React from 'react';
-import { useState, useRef } from 'react';
+import React, { useState, useEffect,containerRef, useRef } from 'react';
+import loginImg from '../../logo.png';
 import { toast } from 'react-toastify';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { axiosSpring } from '../../common/axios';
 import { Link } from 'react-router-dom';
-import './Register.css'
+import './Style.scss';
+
 
 export default function Register() {
   const [error, setError] = useState('');
@@ -34,7 +35,6 @@ export default function Register() {
     };
 
     let res = await axiosSpring.post('/register', object);
-      console.log(object);
     if (res.status === 200 && res.data) {
       setError('');
       window.location.href = 'http://localhost:3000/login';
@@ -45,46 +45,60 @@ export default function Register() {
     return false;
   };
 
-  return (
-    <>
-      <Card className="register-form">
-        <Card.Body>
-       
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
+
+   
+    return (
+      <Card className='base-container' ref={containerRef}>
+         <Card.Body>
+         <div className='header'>Register</div>
+       {error && <Alert variant="danger">{error}</Alert>}
+       <Form className="form" onSubmit={handleSubmit}>
+        {/* <div className='header'>Register</div> */}
+     
+        <div className="form-group">
             <Form.Group id="firstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control type="text" ref={firstNameRef} required />
             </Form.Group>
+            </div>
+            <div className="form-group">
             <Form.Group id="lastName">
               <Form.Label>Last Name</Form.Label>
               <Form.Control type="text" ref={lastNameRef} required />
             </Form.Group>
+            </div>
+            <div className="form-group">
             <Form.Group id="username">
               <Form.Label>Username</Form.Label>
               <Form.Control type="text" ref={usernameRef} required />
             </Form.Group>
+            </div>
+            <div className="form-group">
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
+            </div>
+            <div className="form-group">
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
+           </div>
+           <div className="form-group">
             <Form.Group id="password-confirm">
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
-            <Button className="w-100" type="submit">
-             <h2> Register</h2>
+           </div>
+            <Button className="btn" type="submit">
+              Register
             </Button>
-          </Form>
+        </Form>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
-        Already have an account? <Link to="/login">Log In</Link>
-      </div>
-    </>
-  );
-}
+    );
+  }
+
+
+

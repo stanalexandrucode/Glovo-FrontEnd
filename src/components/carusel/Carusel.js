@@ -6,7 +6,7 @@ import LeftButton from './LeftButton';
 import RightButton from './RightButton';
 import RandomMealCarusel from './RandomMealCarusel';
 import './Carusel.css';
-import Categories from './../category/Categories';
+
 
 function Carusel() {
   const [loading, setLoading] = useState(true);

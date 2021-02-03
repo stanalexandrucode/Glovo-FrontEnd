@@ -1,3 +1,6 @@
+/*Custom fonts*/
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
 body {
   width: 100%;
   background: url('resources/background12.jpg') no-repeat fixed center center !important;
@@ -17,19 +20,28 @@ body {
 }
 
 .navbar{
+  /* height: 7em !important; */
   display: flex !important;
   width: 73%!important;
   margin: 0 auto !important;
-  padding: 0em !important;
+  padding: 0 !important;
 justify-content: center !important;
+ /* align-items: inherit !important; */
 }
 
 .navbar-brand{
+  margin-top: 0.1em!important;
  padding: 0 !important;
+ color: #c59d5f !important;
   margin-right: 1rem;
   font-size: 1.25rem;
   line-height:normal !important;
-  white-space: nowrap;
+  white-space: nowrap !important;
+ 
+}
+
+.img-logo{
+  width: 100%;
 }
 @media only screen and (max-width: 950px) {
   .navbar {

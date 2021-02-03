@@ -7,14 +7,14 @@ import Categories from '../category/Categories';
 import Favorites from '../Favorites';
 import Meals from '../meals/Meals';
 import DetailMeal from '../meals/DetailMeal';
-import Login from '../authentication/Login';
-import Carusel from '../carusel/Carusel';
+import Login from '../login/Login';
 import ProtectedRoute from '../authentication/ProtectedRoute';
 import Register from '../authentication/Register';
 import Payment from '../authentication/Payment';
 import ProtectedLogin from '../authentication/ProtectedLogin';
 import Logout from '../authentication/Logout';
 import MainPage from './../MainPage';
+import AppLogin from './../login/AppLogin';
 
 const Routes = () => {
   const Auth = useContext(AuthContext);
@@ -40,7 +40,7 @@ const Routes = () => {
         <Route path="/categories" component={Categories} />
         <Route path="/favorites" component={Favorites} />
         <Route path="/logout" component={Logout} />
-        <Route path="/register" component={Register} />
+        <Route path="/register" component={AppLogin} />
         <Route path="/meals/:strCategory" component={Meals} />
         <Route path="/meal/:id" component={DetailMeal} />
         <Redirect from="/" exact to="/categories" />

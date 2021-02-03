@@ -3,7 +3,7 @@
     margin: 2em;
 }
 .category-meals h2 {
-    margin-left: 4em;
+    margin-left:6.5em;
     font-family: 'Single Sleeve', sans-serif;
    font-size: 4rem;
     justify-content: space-between;
@@ -31,7 +31,7 @@
 .photo{
     border: 2px solid chocolate;
     box-shadow: #cce2e9;
-    width: 60%;
+    width: 80%;
     border-radius: 50%;
    justify-content: flex-start;
    box-shadow: 0 1px 12px 0 rgba(230, 232, 238, 0.616);
@@ -41,7 +41,7 @@
 .text-meal{
     padding: 2em;
     float: right;
-    margin-right: 2em;
+    margin-right: em;
     margin-top: 3em;
     font-size: .3rem;
 }
