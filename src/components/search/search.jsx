@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import Input from './input';
+import React, { useState } from 'react';
+import Input from './Input';
 
-
-export default function Search(props) {
-  const [searchArgument, setSearchArgument] = useState("");
+export default function Search() {
+  const [searchArgument, setSearchArgument] = useState('');
 
   const handleChange = (e) => {
     setSearchArgument(e.target.value);
@@ -11,12 +10,13 @@ export default function Search(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.location.href = `/search/${searchArgument}`;
+    console.log(searchArgument);
+    // window.location.href = `/search/${searchArgument}`;
   };
 
   return (
     <div id="search-form">
-      <form onSubmit={handleSubmit} {...props}>
+      <form onSubmit={handleSubmit}>
         <Input name="search" value={searchArgument} onChange={handleChange} />
         <small id="emailHelp" className="form-text text-muted"></small>
       </form>
