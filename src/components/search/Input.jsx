@@ -15,7 +15,7 @@ export default function Input(props) {
         id={params.name}
         name={params.name}
         aria-describedby="searchHelp"
-        placeholder="Search for a Meal..."
+        placeholder="Search by ingredient..."
       />
     </div>
   );
