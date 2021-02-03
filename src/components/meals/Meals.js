@@ -14,6 +14,9 @@ const Meals = () => {
   const param = useParams();
   const category = param.strCategory;
 
+
+
+
   const getMealsApi = async () => {
     const response = await axios
       .get(`/filter.php?c=${category}`)

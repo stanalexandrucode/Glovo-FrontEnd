@@ -9,12 +9,12 @@ import Meals from '../meals/Meals';
 import DetailMeal from '../meals/DetailMeal';
 import Login from '../login/Login';
 import ProtectedRoute from '../authentication/ProtectedRoute';
-import Register from '../authentication/Register';
 import Payment from '../authentication/Payment';
 import ProtectedLogin from '../authentication/ProtectedLogin';
 import Logout from '../authentication/Logout';
 import MainPage from './../MainPage';
 import AppLogin from './../login/AppLogin';
+import SearchItems from '../search/SearchItems';
 
 const Routes = () => {
   const Auth = useContext(AuthContext);
@@ -35,14 +35,15 @@ const Routes = () => {
           component={Login}
         />
 
-        <Route path="/not-found" component={NotFound} />
-        <Route path="/" exact component={MainPage} />
-        <Route path="/categories" component={Categories} />
-        <Route path="/favorites" component={Favorites} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/register" component={AppLogin} />
         <Route path="/meals/:strCategory" component={Meals} />
         <Route path="/meal/:id" component={DetailMeal} />
+        <Route path="/search/:mainIngredient" component={SearchItems} />
+        <Route path="/register" component={AppLogin} />
+        <Route path="/logout" component={Logout} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/categories" component={Categories} />
+        <Route path="/not-found" component={NotFound} />
+        <Route path="/" exact component={MainPage} />
         <Redirect from="/" exact to="/categories" />
         <Redirect to="/not-found" />
       </Switch>

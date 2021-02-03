@@ -2,6 +2,7 @@ import React from 'react';
 
 export default function Input(props) {
   let params = props;
+  console.log(props);
 
   return (
     <div className="form-group">
@@ -14,7 +15,7 @@ export default function Input(props) {
         id={params.name}
         name={params.name}
         aria-describedby="searchHelp"
-        placeholder="Search city"
+        placeholder="Search for a Meal..."
       />
     </div>
   );

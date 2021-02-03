@@ -11,7 +11,7 @@ export default function Search() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(searchArgument);
-    // window.location.href = `/search/${searchArgument}`;
+    window.location.href = `/search/${searchArgument}`;
   };
 
   return (

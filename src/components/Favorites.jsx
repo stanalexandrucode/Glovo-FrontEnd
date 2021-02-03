@@ -32,6 +32,7 @@ export default function Favorites() {
   const showMeals = async () => {
     setLoading(true);
     let meals = await getFavoritesMealsDb();
+    console.log(meals)
     await getMealsApi(meals);
     setLoading(false);
   };
