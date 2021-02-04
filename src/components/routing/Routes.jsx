@@ -15,6 +15,7 @@ import Logout from '../authentication/Logout';
 import MainPage from './../MainPage';
 import AppLogin from './../login/AppLogin';
 import SearchItems from '../search/SearchItems';
+import { Cart } from '../cart/Cart';
 
 const Routes = () => {
   const Auth = useContext(AuthContext);
@@ -38,6 +39,7 @@ const Routes = () => {
         <Route path="/meals/:strCategory" component={Meals} />
         <Route path="/meal/:id" component={DetailMeal} />
         <Route path="/search/:mainIngredient" component={SearchItems} />
+        <Route path="/cart" exact component={Cart} />
         <Route path="/register" component={AppLogin} />
         <Route path="/logout" component={Logout} />
         <Route path="/favorites" component={Favorites} />

@@ -10,6 +10,7 @@ const Meals = () => {
   const [mealsApi, setMealsApi] = useState();
   const [mealPrices, setMealPrices] = useState();
   const [favorite, setFavorite] = useState();
+  const [cart, setCart] = useState();
 
   const param = useParams();
   const category = param.strCategory;
@@ -36,7 +37,7 @@ const Meals = () => {
     }
   };
 
-  const handleAdd = async (id, price) => {
+  const handleAddToFav = async (id, price) => {
     let res = await axiosSpring.post('/favorites', {
       id: `${id}`,
       price: `${price}`,
@@ -44,6 +45,16 @@ const Meals = () => {
     if (res.status !== 200) {
     }
     setFavorite({ id: id, price: price });
+  };
+
+  const handleAddToCart = async (id, price) => {
+    let res = await axiosSpring.post('/cart', {
+      id: `${id}`,
+      price: `${price}`,
+    });
+    if (res.status !== 200) {
+    }
+    setCart({ id: id, price: price });
   };
 
   const matchingPrices = async () => {
@@ -74,7 +85,8 @@ const Meals = () => {
             return (
               <Meal
                 key={meal.idMeal}
-                handleAdd={handleAdd}
+                handleAddToFav={handleAddToFav}
+                handleAddToCart={handleAddToCart}
                 {...meal}
                 price={
                   mealPrices.filter((price) => {

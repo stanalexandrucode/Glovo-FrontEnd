@@ -20,6 +20,9 @@ const Navbar = () => {
       <Link className="navbar-brand" to="/logout">
         logout
       </Link>
+      <NavLink className="navbar-brand" to="/cart">
+        cart
+      </NavLink>
       <button
         className="navbar-toggler"
         type="button"

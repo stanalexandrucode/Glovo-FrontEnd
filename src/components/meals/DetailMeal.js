@@ -17,7 +17,6 @@ const DetailMeal = () => {
             .get(`/lookup.php?i=${param.id}`)
             .catch((err) => console.log('Error:', err));
         if (response && response.data) {
-            console.log('ceva', response.data.meals[0]);
             setDetailMealApi(response.data.meals[0]);
             setLoading(false);
         }
@@ -28,19 +27,24 @@ const DetailMeal = () => {
             .get('/prices')
             .catch((err) => console.log('Error:', err));
         if (response && response.data) {
-            console.log('listapreturi', response);
             setMealPrices(response.data);
         }
     };
 
 
-    const handleAdd = async () => {
+    const handleAddToFav = async () => {
         await axiosSpring.post('/favorites', {
             id: `${detailMealApi.idMeal}`,
             price: `${prices}`,
         });
     };
 
+    const handleAddToCart = async () => {
+        await axiosSpring.post('/cart', {
+            id: `${detailMealApi.idMeal}`,
+            price: `${prices}`,
+        });
+    };
 
     useEffect(() => {
         getDetailMealApi();
@@ -85,14 +89,14 @@ const DetailMeal = () => {
                             >
                                 {readMore ? 'show less' : 'read more'}
                             </button>
-                            }
                         </p>
                         <h5>Area food: {detailMealApi.strArea}</h5>
                         <p>Price {prices}$
                         </p>
 
                         <div>
-                            <button className="btn-meal" onClick={handleAdd}> add</button>
+                            <button className="btn-meal" onClick={handleAddToFav}> add</button>
+                            <button className="btn-addCart" onClick={handleAddToCart}>Add to cart</button>
                         </div>
 
 
