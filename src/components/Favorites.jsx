@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { axios, axiosSpring } from '../common/axios';
 import FavoriteMeal from './meals/FavoriteMeal';
-import Loading from './loading/Loading';
+
 
 export default function Favorites() {
-  const [loading, setLoading] = useState(true);
+
   const [mealsDb, setMealsDb] = useState([]);
   const [mealsApi, setMealsApi] = useState([]);
 
@@ -30,11 +30,10 @@ export default function Favorites() {
   };
 
   const showMeals = async () => {
-    setLoading(true);
+
     let meals = await getFavoritesMealsDb();
-    console.log(meals)
     await getMealsApi(meals);
-    setLoading(false);
+
   };
 
   useEffect(() => {
@@ -46,14 +45,6 @@ export default function Favorites() {
     await axiosSpring.delete(`/favorites/${id}`);
     setMealsApi(removeMealDbById);
   };
-
-  if (loading) {
-    return (
-      <main>
-        <Loading />
-      </main>
-    );
-  }
 
   return (
     <>

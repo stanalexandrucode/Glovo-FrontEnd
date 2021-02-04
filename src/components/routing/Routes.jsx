@@ -15,7 +15,8 @@ import Logout from '../authentication/Logout';
 import MainPage from './../MainPage';
 import AppLogin from './../login/AppLogin';
 import SearchItems from '../search/SearchItems';
-import { Cart } from '../cart/Cart';
+import Cart from '../cart/Cart';
+
 
 const Routes = () => {
   const Auth = useContext(AuthContext);
