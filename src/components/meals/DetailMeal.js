@@ -34,9 +34,9 @@ const DetailMeal = () => {
   }
 
   return (
-    <div className="container">
+    <div className="detail-mail-container">
       <div className="header-detailMeal">
-        <div className="underline">
+        <div className="text-name-detail-meal">
           <h3>{detailMealApi.strMeal}</h3>
         </div>
         <div className="detailMeal-page">

@@ -8,7 +8,7 @@ const Meal = ({idMeal, strMeal, strMealThumb, price, handleAdd}) => {
     return (
         <>
             <div className='meal'>
-                <div className='text-meal'>
+                <div className='text-name-favorite-meal'>
                     <Link to={`/meal/${idMeal}`}>
                         <h3>{strMeal}</h3>
                     </Link>

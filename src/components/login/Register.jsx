@@ -34,7 +34,8 @@ export default function Register() {
       username: usernameRef.current.value,
     };
 
-    let res = await axiosSpring.post('/register', object);
+    let res = await axiosSpring.post('/register', object)
+    .then;
     if (res.status === 200 && res.data) {
       setError('');
       window.location.href = 'http://localhost:3000/login';
@@ -76,7 +77,7 @@ export default function Register() {
             <div className="form-group">
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" ref={emailRef} required />
+              <Form.Control type="text" ref={emailRef} required />
             </Form.Group>
             </div>
             <div className="form-group">

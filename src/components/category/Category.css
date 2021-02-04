@@ -33,7 +33,7 @@ h3{
     border: #cce2e9 1px solid;
     width: 90%;
     margin-bottom: 4em;
-    background-color: #282c34;
+    background-color: rgba(29, 26, 26, 0.600);
     opacity: 80%;
     border-radius: 50%;
   }

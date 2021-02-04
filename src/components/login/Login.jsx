@@ -26,21 +26,25 @@ const Login = () =>  {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
-
-    let res = await axiosSpring.post('/login', object);
+     
+    let res = await axiosSpring.post('/login',object)
+    .then( response=> {console.log(response)})
+ .catch(function (error) {
+     console.log(error.response.status) // 401
+     console.log(error.response.data.error) 
     
-    if (res.status === 200 && res.data) {
-      setError('');
-      window.location.href = 'http://localhost:3000/';
-      // setAuth(true);
-      Cookies.set('user', res.data);
-      // setUser(res.data)
-      return true;
-    } else {
-      toast.error('Login not successful! Please check input data');
-      return false;
-    }
-    };
+    // if (res.status === 200 && res.data) {
+    //   setError('');
+    //   window.location.href = 'http://localhost:3000/';
+    //   // setAuth(true);
+    //   Cookies.set('user', res.data);
+    //   // setUser(res.data)
+    //   return true;
+    // } else {
+    //   toast.error('Login not successful! Please check input data');
+    //   return false;
+    // }
+    })};
 
  
     return (
@@ -49,7 +53,7 @@ const Login = () =>  {
         <div className='header'>Login</div>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleLogin}>
-            <Form.Group id="email">
+            <Form.Group id="text">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>

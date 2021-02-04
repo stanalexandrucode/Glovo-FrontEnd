@@ -22,7 +22,7 @@
     border: #cce2e9 1px solid;
     width: 100%;
     margin-bottom: 4em;
-    background-color: #282c34;
+    background-color: rgba(29, 26, 26, 0.600);
     opacity: 80%;
     border-radius: 15%;
     
@@ -35,15 +35,30 @@
     border-radius: 50%;
    justify-content: flex-start;
    box-shadow: 0 1px 12px 0 rgba(230, 232, 238, 0.616);
+   
   
 }
+.photo{
+    margin-bottom: -1em;
+    margin-left: 2em;
+}
 
-.text-meal{
+.text-name-favorite-meal{
     padding: 2em;
     float: right;
     margin-right: em;
     margin-top: 3em;
     font-size: .3rem;
+    
+}
+.text-name-detail-meal {
+    color: #007bff;
+    padding: 2em;
+    float: right;
+    margin-right: 3em;
+    margin-top: 3em;
+    font-size: .3rem;
+    font-family: 'Single Sleeve', sans-serif;
 }
 
 .price-add-meal{
@@ -55,7 +70,7 @@
     display : block;
     border-radius: 50%;
     color: aqua;
-    background     : #2f5289;
+    background   : #2f5289;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 10px;
@@ -64,4 +79,37 @@
     font-family: Arial, Helvetica, sans-serif;
     transition: .7s;
     letter-spacing: 1px;
+}
+
+.btn-meal-remove{
+    display : block;
+    border-radius: 50%;
+    color: aqua;
+    background     : #2f5289;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 10px;
+    text-align: center;
+    padding: 11px 4px;
+    margin-left: 2em;
+    margin-bottom: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: .7s;
+    letter-spacing: 1px;
+}
+
+.detail-mail-container{
+    border: #cce2e9 1px solid;
+    width: 30%;
+    display: flex;
+   margin:0 auto;
+    align-content: center;
+    margin-bottom: 4em;
+    background-color: rgba(29, 26, 26, 0.600);
+    opacity: 80%;
+    border-radius: 5%;
+}
+.description-meal{
+    color: #cce2e9;
+    padding: 1.5em;
 }

@@ -16,7 +16,7 @@ const FavoriteMeal = ({
   return (
     
     <>
-      <div className='favorite-meal'>
+      <div className='meal'>
         <div className='header-detailMeal'>
           <Link className='text-name-favorite-meal' to={`/meal/${idMeal}`}>
             <h3>{strMeal}</h3>
@@ -24,10 +24,10 @@ const FavoriteMeal = ({
         </div>
   
           <div>
-            <img className='photo-meal' src={strMealThumb} alt={strMeal} />
-            <p className="price">${price}</p>
+            <img className='photo' src={strMealThumb} alt={strMeal} />
+            <p className="price-add-meal">${price}</p>
             <div>
-              <button className='btn-primary' onClick={()=>handleDelete(idMeal)}>
+              <button className='btn-meal-remove' onClick={()=>handleDelete(idMeal)}>
                 remove
               </button>
             </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { axios, axiosSpring } from '../common/axios';
-import FavoriteMeal from './meals/FavoriteMeal';
-import Loading from './loading/Loading';
+import { axios, axiosSpring } from '../../common/axios';
+import FavoriteMeal from './FavoriteMeal';
+import Loading from '../loading/Loading';
 
 export default function Favorites() {
   const [loading, setLoading] = useState(true);
@@ -56,11 +56,11 @@ export default function Favorites() {
 
   return (
     <>
-      <div className="">
+      <div className="categories">
         <div>
-          <h3 className="">My favorites</h3>
+          <h2 className="">My favorites</h2>
         </div>
-        <div className="">
+        <div className="display-categories">
           {mealsApi.map((product) => {
             return (
               <FavoriteMeal

@@ -4,7 +4,7 @@ import { AuthContext } from '../authentication/AuthContext';
 import { Route } from 'react-router-dom';
 import NotFound from '../NotFound';
 import Categories from '../category/Categories';
-import Favorites from '../Favorites';
+import Favorites from '../meals/Favorites';
 import Meals from '../meals/Meals';
 import DetailMeal from '../meals/DetailMeal';
 import Login from '../login/Login';
