@@ -1,9 +1,20 @@
-
+h5{
+    margin-left: 4em;
+}
 .category-meals{
     margin: 2em;
 }
+
+.container h2 {
+    font-family: 'Single Sleeve', sans-serif !important;
+    margin-left:9em !important;
+    font-size: 3.5rem !important;
+    justify-content: space-between !important;
+    
+}
+
 .category-meals h2 {
-    margin-left:6.5em;
+    margin-left:14em;
     font-family: 'Single Sleeve', sans-serif;
    font-size: 4rem;
     justify-content: space-between;
@@ -19,7 +30,7 @@
 
 
 .meal{
-    border: #cce2e9 1px solid;
+    border: #b8913dd3 1px solid;
     width: 100%;
     margin-bottom: 4em;
     background-color: rgba(29, 26, 26, 0.600);
@@ -29,7 +40,7 @@
 }
 
 .photo{
-    border: 2px solid chocolate;
+    border: 2px solid rgb(210, 105, 30);
     box-shadow: #cce2e9;
     width: 80%;
     border-radius: 50%;
@@ -39,20 +50,23 @@
   
 }
 .photo{
+    margin-top: 1em;
     margin-bottom: -1em;
     margin-left: 2em;
 }
 
 .text-name-favorite-meal{
+    color: rgb(210, 105, 30);
     padding: 2em;
     float: right;
-    margin-right: em;
+    margin-right: 22em;
     margin-top: 3em;
     font-size: .3rem;
     
 }
 .text-name-detail-meal {
-    color: #007bff;
+
+    color: rgb(210, 105, 30);
     padding: 2em;
     float: right;
     margin-right: 3em;
@@ -62,8 +76,19 @@
 }
 
 .price-add-meal{
+   
     margin-left: 1em;
     padding: 1em;
+    color: white;
+}
+.price{
+    color: white;
+}
+.showBtn{
+    margin: 1em;
+    background-color: chocolate;
+    color:white
+    
 }
 
 .btn-meal{
@@ -90,8 +115,8 @@
     font-weight: bold;
     font-size: 10px;
     text-align: center;
-    padding: 7px 4px;
-    margin-left: 2em;
+    padding: .5em 1em;
+    margin-left: 12em;
     margin-bottom: 1em;
     font-family: Arial, Helvetica, sans-serif;
     transition: .7s;
@@ -99,7 +124,7 @@
 }
 
 .detail-mail-container{
-    border: #cce2e9 1px solid;
+    border: #b8913dd3 1px solid;
     width: 30%;
     display: flex;
    margin:0 auto;
@@ -107,9 +132,10 @@
     margin-bottom: 4em;
     background-color: rgba(29, 26, 26, 0.600);
     opacity: 80%;
-    border-radius: 5%;
+    border-radius: 2%;
 }
 .description-meal{
     color: #cce2e9;
     padding: 1.5em;
+    font-size: 1.8rem;
 }

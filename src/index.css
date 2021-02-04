@@ -21,6 +21,9 @@ code {
 
   border-radius: var(--radius);
   text-transform: capitalize;
+  font-size: 1.2rem;
+  padding: 0.2em;
+  
 
   /* letter-spacing: var(--spacing); */
 

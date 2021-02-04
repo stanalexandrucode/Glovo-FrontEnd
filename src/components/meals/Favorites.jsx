@@ -56,7 +56,7 @@ export default function Favorites() {
 
   return (
     <>
-      <div className="categories">
+      <div className="container">
         <div>
           <h2 className="">My favorites</h2>
         </div>

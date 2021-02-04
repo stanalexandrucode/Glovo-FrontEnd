@@ -13,7 +13,7 @@ h3{
 }
 
 .categories h2{
-    margin-left: 4em;
+    margin-left: 14em;
     font-family: 'Single Sleeve', sans-serif;
    font-size: 4rem;
     justify-content: space-between;
@@ -30,7 +30,7 @@ h3{
 
 .card-category {
 
-    border: #cce2e9 1px solid;
+    border: #b8913dd3 1px solid;
     width: 90%;
     margin-bottom: 4em;
     background-color: rgba(29, 26, 26, 0.600);
@@ -39,6 +39,7 @@ h3{
   }
 
 .text-card-category{
+     color: rgb(210, 105, 30);
     margin-top: 2em;
     margin-left: 2em;
 }
