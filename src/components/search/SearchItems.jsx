@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { axios, axiosSpring } from '../../common/axios';
-import Loading from '../loading/Loading';
-import Meal from './Meal';
 
+import Meal from '../meals/Meal';
+// import PageLoader from '../loading/Loading';
 
-const Meals = () => {
+export default function SearchItems() {
   const [loading, setLoading] = useState(true);
-  const [mealsApi, setMealsApi] = useState();
+  const [mealsByIngredient, setMealsByIngredient] = useState();
   const [mealPrices, setMealPrices] = useState();
   const [favorite, setFavorite] = useState();
 
   const param = useParams();
-  const category = param.strCategory;
-
-
-
+  const ingredient = param.mainIngredient;
 
   const getMealsApi = async () => {
     const response = await axios
-      .get(`/filter.php?c=${category}`)
+      .get(`/filter.php?i=${ingredient}`)
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
-      setMealsApi(response.data.meals);
+      setMealsByIngredient(response.data.meals);
     }
   };
 
@@ -31,7 +28,6 @@ const Meals = () => {
       .get('/prices')
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
-      console.log('listapreturi', response);
       setMealPrices(response.data);
     }
   };
@@ -42,6 +38,7 @@ const Meals = () => {
       price: `${price}`,
     });
     if (res.status !== 200) {
+      console.log(favorite);
     }
     setFavorite({ id: id, price: price });
   };
@@ -60,7 +57,7 @@ const Meals = () => {
   if (loading) {
     return (
       <main>
-        <Loading />
+        <loading />
       </main>
     );
   }
@@ -68,9 +65,9 @@ const Meals = () => {
   return (
     <>
       <div className="category-meals">
-        <h2 >{category}</h2>
+        <h2>Selections having {ingredient}</h2>
         <div className="meals-category">
-          {mealsApi.map((meal) => {
+          {mealsByIngredient.map((meal) => {
             return (
               <Meal
                 key={meal.idMeal}
@@ -88,6 +85,4 @@ const Meals = () => {
       </div>
     </>
   );
-};
-
-export default Meals;
+}
