@@ -34,11 +34,10 @@ export default function Register() {
       username: usernameRef.current.value,
     };
 
-    let res = await axiosSpring.post('/register', object)
-    .then;
+    let res = await axiosSpring.post('/register', object);
     if (res.status === 200 && res.data) {
       setError('');
-      window.location.href = 'http://localhost:3000/login';
+      window.location.href = 'http://localhost:3000';
       toast.success('Registration successful!');
       return true;
     }
