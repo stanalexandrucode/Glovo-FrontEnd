@@ -39,14 +39,14 @@ export default function Cart() {
   };
 
   const reduction = () => {
-      "pula"
+      "msg"
   }
   const increase = () => {
-    "pula"
+    "msg"
 }
 
 const removeProduct = () => {
-    "pula"
+    "msg"
 }
   useEffect(() => {
     showMeals();
