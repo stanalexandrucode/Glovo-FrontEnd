@@ -60,7 +60,7 @@ const DetailMeal = () => {
               >
                 {readMore ? 'show less' : 'read more'}
               </button>
-              }
+              
             </p>
             <h5>Area food: {detailMealApi.strArea}</h5>
           </div>
