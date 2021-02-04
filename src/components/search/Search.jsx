@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Input from './Input';
+import  './Search.css';
 
 export default function Search() {
   const [searchArgument, setSearchArgument] = useState('');

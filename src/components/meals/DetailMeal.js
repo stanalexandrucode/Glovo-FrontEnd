@@ -85,10 +85,10 @@ const DetailMeal = () => {
               </button>
             </p>
             <h5>Area food: {detailMealApi.strArea}</h5>
-            <p>Price {prices}$</p>
+            <p className="price">Price {prices}$</p>
 
             <div>
-              <button className='btn-meal' onClick={handleAdd}>
+              <button className='btn-detail-meal' onClick={handleAdd}>
                 {' '}
                 add
               </button>

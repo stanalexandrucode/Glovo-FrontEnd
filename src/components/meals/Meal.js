@@ -8,9 +8,9 @@ const Meal = ({idMeal, strMeal, strMealThumb, price, handleAdd}) => {
     return (
         <>
             <div className='meal'>
-                <div className='text-name-favorite-meal'>
+                <div >
                     <Link to={`/meal/${idMeal}`}>
-                        <h3>{strMeal}</h3>
+                        <h3 className="text-meal">{strMeal}</h3>
                     </Link>
                 </div>
                 <div>
