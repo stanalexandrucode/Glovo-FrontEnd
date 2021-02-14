@@ -17,7 +17,6 @@ const DetailMeal = () => {
       .get(`/lookup.php?i=${param.id}`)
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
-      console.log('ceva', response.data.meals[0]);
       setDetailMealApi(response.data.meals[0]);
       setLoading(false);
     }
@@ -56,28 +55,28 @@ const DetailMeal = () => {
   })[0].price;
 
   return (
-    <div className='detail-mail-container'>
-      <div className='header-detailMeal'>
-        <div className='text-name-detail-meal'>
+    <div className="detail-mail-container">
+      <div className="header-detailMeal">
+        <div className="text-name-detail-meal">
           <h3>{detailMealApi.strMeal}</h3>
         </div>
-        <div className='detailMeal-page'>
+        <div className="detailMeal-page">
           <div>
             <img
               src={detailMealApi.strMealThumb}
-              className='photo'
+              className="photo"
               alt={detailMealApi.strMeal}
             />
           </div>
           <div>
             <h5>Instructions:</h5>
 
-            <p className='description-meal'>
+            <p className="description-meal">
               {readMore
                 ? detailMealApi.strInstructions
                 : `${detailMealApi.strInstructions.substring(0, 200)}...`}
               <button
-                className='showBtn'
+                className="showBtn"
                 onClick={() => setReadMore(!readMore)}
               >
                 {readMore ? 'show less' : 'read more'}
@@ -87,7 +86,7 @@ const DetailMeal = () => {
             <p className="price">Price {prices}$</p>
 
             <div>
-              <button className='btn-detail-meal' onClick={handleAdd}>
+              <button className="btn-detail-meal" onClick={handleAdd}>
                 {' '}
                 add
               </button>

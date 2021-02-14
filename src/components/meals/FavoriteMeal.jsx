@@ -10,9 +10,6 @@ const FavoriteMeal = ({
   handleDelete
 }) => {
   
-
- 
-
   return (
     
     <>
@@ -32,7 +29,6 @@ const FavoriteMeal = ({
               </button>
             </div>
           </div>
-     
       </div>
     </>
   );
