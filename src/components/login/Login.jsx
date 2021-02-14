@@ -30,7 +30,7 @@ const Login = () =>  {
     };
      
     let res = await axiosSpring.post('/login',object)
-    console.log(res);
+    console.log(res.data);
 
     if (res.status === 200 && res.data) {
       setError('');
