@@ -6,16 +6,17 @@ import RightSide from './RightSide';
 import './Style.scss';
 
 export default function AppLogin() {
-  const [isLoginActive, setIsLoginActive] = useState(true);
-  const current = isLoginActive ? 'Register' : 'Login';
+  const [toggle, setToggle] = useState(false);
+  const current = toggle ? 'Register' : 'Login';
   // const currentActive = isLoginActive ? 'login' : 'register';
 
   const handleOnClick = () => {
-    setIsLoginActive(!isLoginActive);
+    setToggle(!toggle);
   };
 
   useEffect(() => {
-    setIsLoginActive(!isLoginActive);
+    // setToggle(!toggle);
+    
   }, []);
 
   return (
@@ -25,7 +26,7 @@ export default function AppLogin() {
           <div className="image">
             <img src={loginImg}></img>
           </div>
-          {isLoginActive ? (
+          {toggle ? (
             <Login containerRef={current} />
           ) : (
             <Register containerRef={current} />

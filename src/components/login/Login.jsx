@@ -5,6 +5,7 @@ import React, {
   useRef,
   useContext,
 } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { axiosSpring } from '../../common/axios';
@@ -13,6 +14,7 @@ import loginImg from '../../logo.png';
 import './Style.scss';
 
 const Login = () => {
+  const history = useHistory();
   const [error, setError] = useState('');
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -33,8 +35,8 @@ const Login = () => {
     if (res.status === 200 && res.data) {
       setError('');
       toast.success('Hi, ' + res.data.name + ' !');
-      window.location.href = '/';
       Cookies.set('token', res.data.token);
+      history.push('/');
       return true;
     } else {
       toast.error('Login not successful! Please check input data');
