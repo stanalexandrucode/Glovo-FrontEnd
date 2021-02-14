@@ -8,7 +8,6 @@ import React, {
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { axiosSpring } from '../../common/axios';
-import { AuthContext } from './AuthContext';
 import Cookies from 'js-cookie';
 import loginImg from '../../logo.png';
 import './Style.scss';
@@ -17,9 +16,6 @@ const Login = () => {
   const [error, setError] = useState('');
   const emailRef = useRef();
   const passwordRef = useRef();
-
-  // const { authorization } = useContext(AuthContext);
-  // const [auth, setAuth] = authorization;
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -37,13 +33,8 @@ const Login = () => {
     if (res.status === 200 && res.data) {
       setError('');
       toast.success('Hi, ' + res.data.name + ' !');
-      console.log('aici');
       window.location.href = '/';
-      // setAuth(true);
       Cookies.set('token', res.data.token);
-      console.log('aici login');
-      console.log(Cookies.get('token'));
-      // setUser(res.data)
       return true;
     } else {
       toast.error('Login not successful! Please check input data');

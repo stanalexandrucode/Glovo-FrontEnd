@@ -43,7 +43,7 @@ export default function Favorites() {
   useEffect(() => {
     setToken(Cookies.get('token'));
 
-    if (token && token != '') {
+    if (token && token !== '') {
       setNotFound(false);
       showMeals();
     }
