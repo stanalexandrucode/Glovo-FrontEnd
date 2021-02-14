@@ -28,7 +28,6 @@ const DetailMeal = () => {
       .get('/prices')
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
-      console.log('listapreturi', response);
       setMealPrices(response.data);
     }
   };

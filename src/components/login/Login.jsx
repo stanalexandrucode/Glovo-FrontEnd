@@ -20,6 +20,8 @@ const Login = () =>  {
     login();
   };
 
+  
+
   const login = async () => {
     const object = {
     
@@ -28,23 +30,20 @@ const Login = () =>  {
     };
      
     let res = await axiosSpring.post('/login',object)
-    .then( response=> {console.log(response)})
- .catch(function (error) {
-     console.log(error.response.status) // 401
-     console.log(error.response.data.error) 
-    
-    // if (res.status === 200 && res.data) {
-    //   setError('');
-    //   window.location.href = 'http://localhost:3000/';
-    //   // setAuth(true);
-    //   Cookies.set('user', res.data);
-    //   // setUser(res.data)
-    //   return true;
-    // } else {
-    //   toast.error('Login not successful! Please check input data');
-    //   return false;
-    // }
-    })};
+    console.log(res);
+
+    if (res.status === 200 && res.data) {
+      setError('');
+      window.location.href = 'http://localhost:3000/';
+      // setAuth(true);
+      Cookies.set('user', res.data);
+      // setUser(res.data)
+      return true;
+    } else {
+      toast.error('Login not successful! Please check input data');
+      return false;
+    }
+    };
 
  
     return (

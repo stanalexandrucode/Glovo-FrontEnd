@@ -11,7 +11,6 @@ export default function Register() {
   const [error, setError] = useState('');
   const firstNameRef = useRef();
   const lastNameRef = useRef();
-  const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -25,13 +24,13 @@ export default function Register() {
     }
   };
 
+
   const register = async () => {
     const object = {
       firstName: firstNameRef.current.value,
       lastName: lastNameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
-      username: usernameRef.current.value,
     };
 
     let res = await axiosSpring.post('/register', object);
@@ -68,10 +67,6 @@ export default function Register() {
             </Form.Group>
             </div>
             <div className="form-group">
-            <Form.Group id="username">
-              <Form.Label>Username</Form.Label>
-              <Form.Control type="text" ref={usernameRef} required />
-            </Form.Group>
             </div>
             <div className="form-group">
             <Form.Group id="email">
