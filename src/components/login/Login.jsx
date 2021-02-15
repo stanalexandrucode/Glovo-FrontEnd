@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  containerRef,
-  useRef,
-  useContext,
-} from 'react';
+import React, { useState, containerRef, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { toast } from 'react-toastify';
@@ -40,6 +34,7 @@ const Login = () => {
       return true;
     } else {
       toast.error('Login not successful! Please check input data');
+      Cookies.remove('token', 'slide');
       return false;
     }
   };

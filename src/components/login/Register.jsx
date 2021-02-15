@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { axiosSpring } from '../../common/axios';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import './Style.scss';
 
 export default function Register() {
@@ -34,6 +35,7 @@ export default function Register() {
     let res = await axiosSpring.post('/register', object);
     if (res.status === 200 && res.data) {
       setError('');
+      Cookies.set('slide', true);
       toast.success('Registration successful!');
       // window.location.href = 'http://localhost:3000';
 

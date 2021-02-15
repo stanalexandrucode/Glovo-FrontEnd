@@ -1,13 +1,11 @@
 import React from 'react';
-
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
 
 export default function Logout() {
-
   const history = useHistory();
   const navigateTo = () => {
-    Cookies.remove('token');
+    Cookies.remove('token', 'slide');
     history.push('/');
   };
 
@@ -18,4 +16,3 @@ export default function Logout() {
     </div>
   );
 }
-
