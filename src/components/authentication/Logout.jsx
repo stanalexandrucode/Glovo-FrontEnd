@@ -1,21 +1,18 @@
-import React, { useContext } from 'react';
-import { AuthContext } from './AuthContext';
+import React from 'react';
 import Cookies from 'js-cookie';
+import { useHistory } from 'react-router-dom';
 
 export default function Logout() {
-  const { authorization } = useContext(AuthContext);
-
-  const [auth, setAuth] = authorization;
-
-  const handleOnClick = () => {
-    setAuth(false);
-    Cookies.remove('user');
+  const history = useHistory();
+  const navigateTo = () => {
+    Cookies.remove('token', 'slide');
+    history.push('/');
   };
 
   return (
     <div>
       <h1>Welcome to logout</h1>
-      <button onClick={handleOnClick}>Logout</button>
+      <button onClick={navigateTo}>Logout</button>
     </div>
   );
 }

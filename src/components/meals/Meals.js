@@ -4,7 +4,6 @@ import { axios, axiosSpring } from '../../common/axios';
 import Loading from '../loading/Loading';
 import Meal from './Meal';
 
-
 const Meals = () => {
   const [loading, setLoading] = useState(true);
   const [mealsApi, setMealsApi] = useState();
@@ -13,9 +12,6 @@ const Meals = () => {
 
   const param = useParams();
   const category = param.strCategory;
-
-
-
 
   const getMealsApi = async () => {
     const response = await axios
@@ -31,7 +27,6 @@ const Meals = () => {
       .get('/prices')
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
-      console.log('listapreturi', response);
       setMealPrices(response.data);
     }
   };
@@ -68,7 +63,7 @@ const Meals = () => {
   return (
     <>
       <div className="category-meals">
-        <h2 >{category}</h2>
+        <h2>{category}</h2>
         <div className="meals-category">
           {mealsApi.map((meal) => {
             return (

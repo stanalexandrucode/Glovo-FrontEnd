@@ -3,7 +3,6 @@ import  './Search.css';
 
 export default function Input(props) {
   let params = props;
-  console.log(props);
 
   return (
     <div className="form-group-input">
@@ -20,8 +19,4 @@ export default function Input(props) {
       />
     </div>
   );
-}
-
-{
-  /* <label htmlFor={params.name}>{params.label}</label> */
 }
