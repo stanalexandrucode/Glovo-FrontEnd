@@ -1,11 +1,11 @@
 import React from 'react';
+import  './Search.css';
 
 export default function Input(props) {
   let params = props;
-  console.log(props);
 
   return (
-    <div className="form-group">
+    <div className="form-group-input">
       <input
         value={params.value}
         onChange={params.onChange}
@@ -19,8 +19,4 @@ export default function Input(props) {
       />
     </div>
   );
-}
-
-{
-  /* <label htmlFor={params.name}>{params.label}</label> */
 }
