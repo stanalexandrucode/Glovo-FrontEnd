@@ -45,7 +45,7 @@ export default function Register() {
     toast.error('Register not successful! Please check input data');
     return false;
   };
-  console.log('prov', provider);
+
   return (
     <Card className='base-container' ref={containerRef}>
       <Card.Body>
