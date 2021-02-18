@@ -21,6 +21,7 @@ export default function Cart() {
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
       setCart(response.data);
+      console.log('cart', cart);
       return response.data;
     }
   };
@@ -28,17 +29,16 @@ export default function Cart() {
   const getMealsApi = async () => {
     let dataApi = [];
     for (let i = 0; i < cart.length; i++) {
-      // console.log('meal id', cart[i].id);
+      console.log('meal  ', cart[i]);
       const response = await axios
-        .get(`/lookup.php?i=${cart[i].id.mealId}`)
+        .get(`/lookup.php?i=${cart[i].mealId}`)
         .catch((err) => console.log('Error:', err));
       if (response && response.data) {
-        console.log(36, response.data.meals[0]);
+        console.log(37, response.data.meals[0]);
         dataApi.push(response.data.meals[0]);
       }
     }
     setMealsApi(dataApi);
-    // console.log('set meals api ', mealsApi);
   };
 
   const showMeals = async () => {
@@ -59,10 +59,15 @@ export default function Cart() {
     'msg';
     console.log('remove');
   };
+
+  // const filterForPrice = (mealIds) => {
+  //   return cart.filter((i) => i.price);
+  // };
+
   useEffect(() => {
     showMeals();
-    // console.log(cart);
-  }, []);
+
+  }, [total]);
 
   if (cart.length === 0) {
     return <h2 style={{ textAlign: 'center' }}>No Product</h2>;
@@ -71,11 +76,18 @@ export default function Cart() {
       <>
         {mealsApi.map((item) => (
           <div className="details cart" key={item.idMeal}>
+            <div style={{ color: 'red' }}>{}</div>
             <img src={item.strMealThumb} alt="" />
             <div className="box">
               <div className="row">
                 <h2>{item.strMeal}</h2>
-                <span>${item.price * item.count}</span>
+                <span>
+                  {cart.filter((cartItem) => {
+                    return cartItem.mealId == item.idMeal;
+                  })[0].price * cart.filter((cartItem) => {
+                    return cartItem.mealId == item.idMeal;
+                  })[0].quantity}
+                </span>
               </div>
 
               <p>
@@ -87,19 +99,28 @@ export default function Cart() {
               <div className="amount">
                 <button
                   className="count"
-                  onClick={() => reduction(item.idMeal)}
+                  onClick={() => reduction(cart.filter((cartItem) => {
+                    return cartItem.mealId == item.idMeal;
+                  })[0].quantity)}
                 >
                   {' '}
                   -{' '}
                 </button>
-                <span>{item.count}</span>
-                <button className="count" onClick={() => increase(item.idMeal)}>
+                <span>{cart.filter((cartItem) => {
+                    return cartItem.mealId == item.idMeal;
+                  })[0].quantity}</span>
+                <button
+                  className="count"
+                  onClick={() => increase(cart.filter((cartItem) => {
+                    return cartItem.mealId == item.idMeal;
+                  })[0].quantity)}
+                >
                   {' '}
                   +{' '}
                 </button>
               </div>
             </div>
-            <div className="delete" onClick={() => removeProduct(item.idMeal)}>
+            <div className="delete" onClick={() => removeProduct(item.mealId)}>
               X
             </div>
           </div>
