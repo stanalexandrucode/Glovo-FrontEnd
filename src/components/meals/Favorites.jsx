@@ -10,20 +10,6 @@ export default function Favorites() {
     const [token, setToken] = useState('');
     const [notFound, setNotFound] = useState(true);
 
-    // const getFavoritesMealsDb = async () => {
-    //   const response = await axiosSpring
-    //     .get(`/favorites`, {
-    //       headers: {
-    //         Authorization: 'Bearer ' + token,
-    //       },
-    //     })
-    //     .catch((err) => console.log('Error:', err));
-    //   if (response && response.data) {
-    //     setMealsDb(response.data);
-    //     return response.data;
-    //   }
-    // };
-
 
     const getFavoritesMealsDb = async () => {
         let response = await axios({
@@ -36,7 +22,7 @@ export default function Favorites() {
             .catch((err) => console.log('Error:', err));
         if (response && response.data) {
             setMealsDb(response.data);
-            console.log("responeeeee",  response.data);
+            console.log("responeeeee", response.data);
             return response.data;
         }
     };
@@ -45,7 +31,7 @@ export default function Favorites() {
     const getMealsApi = async (meals) => {
         let dataApi = [];
         for (var i = 0; i < meals.length; i++) {
-            console.log( "meluriii" ,meals[i])
+            console.log("meluriii", meals[i])
             const response = await axios.get(`/lookup.php?i=${meals[i]}`);
             if (response && response.data) {
                 dataApi.push(response.data.meals[0]);
@@ -67,15 +53,21 @@ export default function Favorites() {
         }
     }, [token]);
 
+
     const handleDelete = async (id) => {
         let removeMealDbById = mealsApi.filter((meal) => meal.idMeal !== id);
-        await axiosSpring.delete(`/favorites/${id}`, {
+        let res = await axios({
+            method: 'delete',
+            url: `http://localhost:8080/favorite/${id}`,
             headers: {
-                Authorization: 'Bearer ' + token,
-            },
-        });
-        setMealsApi(removeMealDbById);
-    };
+                Authorization: 'Bearer ' + token
+            }
+        }).catch((err) => console.log('Error:', err));
+        if (res.status === 200) {
+            setMealsApi(removeMealDbById);
+        }
+    }
+
 
     if (notFound) {
         return (
@@ -97,11 +89,11 @@ export default function Favorites() {
                                     key={product.idMeal}
                                     handleDelete={handleDelete}
                                     {...product}
-                                    price={
-                                        mealsDb.filter((price) => {
-                                            return price.id === parseInt(product.idMeal);
-                                        })[0].price
-                                    }
+                                    // price={
+                                    //     mealsDb.filter((price) => {
+                                    //         return price.id === parseInt(product.idMeal);
+                                    //     })[0].price
+                                    // }
                                 />
                             );
                         })}

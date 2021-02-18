@@ -49,7 +49,7 @@ const Meals = () => {
                 Authorization: 'Bearer ' + token
             }
         }).catch((err) => console.log('Error:', err));
-        if (res.status !== 200) {
+        if (res.status === 200) {
             setFavorite({mealId: id, price: price});
         }
     }
