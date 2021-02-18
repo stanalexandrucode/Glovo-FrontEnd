@@ -21,7 +21,6 @@ export default function Cart() {
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
       setCart(response.data);
-      console.log('cart', cart);
       return response.data;
     }
   };
@@ -29,12 +28,10 @@ export default function Cart() {
   const getMealsApi = async () => {
     let dataApi = [];
     for (let i = 0; i < cart.length; i++) {
-      console.log('meal  ', cart[i]);
       const response = await axios
         .get(`/lookup.php?i=${cart[i].mealId}`)
         .catch((err) => console.log('Error:', err));
       if (response && response.data) {
-        console.log(37, response.data.meals[0]);
         dataApi.push(response.data.meals[0]);
       }
     }
@@ -44,36 +41,48 @@ export default function Cart() {
   const showMeals = async () => {
     let meals = await getCartMealsDb();
     await getMealsApi(meals);
+    getTotal();
   };
 
   const reduction = () => {
     'msg';
-    console.log('reductiion');
+    console.log('reduction');
   };
   const increase = () => {
     'msg';
     console.log('increase');
   };
 
-  const removeProduct = () => {
-    'msg';
+  const removeProduct = (mealId) => {
+    const response = await axiosSpring
+    .delete('/cart', {
+      headers: {
+        Authorization: 'Bearer ' + Cookies.get('token'),
+      },
+    })
+    .catch((err) => console.log('Error:', err));
+    if (response && response.data) {
     console.log('remove');
+    }
+    console.log(teapa);
   };
 
-  // const filterForPrice = (mealIds) => {
-  //   return cart.filter((i) => i.price);
-  // };
+  const getTotal = () => {
+    let sum = cart
+      .map((cartItem) => cartItem.price * cartItem.quantity)
+      .reduce((a, b) => a + b, 0);
+    setTotal(sum);
+  };
 
   useEffect(() => {
     showMeals();
-
   }, [total]);
 
   if (cart.length === 0) {
     return <h2 style={{ textAlign: 'center' }}>No Product</h2>;
   } else {
     return (
-      <>
+      <section className="cart-box">
         {mealsApi.map((item) => (
           <div className="details cart" key={item.idMeal}>
             <div style={{ color: 'red' }}>{}</div>
@@ -84,9 +93,10 @@ export default function Cart() {
                 <span>
                   {cart.filter((cartItem) => {
                     return cartItem.mealId == item.idMeal;
-                  })[0].price * cart.filter((cartItem) => {
-                    return cartItem.mealId == item.idMeal;
-                  })[0].quantity}
+                  })[0].price *
+                    cart.filter((cartItem) => {
+                      return cartItem.mealId == item.idMeal;
+                    })[0].quantity}
                 </span>
               </div>
 
@@ -99,21 +109,33 @@ export default function Cart() {
               <div className="amount">
                 <button
                   className="count"
-                  onClick={() => reduction(cart.filter((cartItem) => {
-                    return cartItem.mealId == item.idMeal;
-                  })[0].quantity)}
+                  onClick={() =>
+                    reduction(
+                      cart.filter((cartItem) => {
+                        return cartItem.mealId == item.idMeal;
+                      })[0].quantity
+                    )
+                  }
                 >
                   {' '}
                   -{' '}
                 </button>
-                <span>{cart.filter((cartItem) => {
-                    return cartItem.mealId == item.idMeal;
-                  })[0].quantity}</span>
+                <span>
+                  {
+                    cart.filter((cartItem) => {
+                      return cartItem.mealId == item.idMeal;
+                    })[0].quantity
+                  }
+                </span>
                 <button
                   className="count"
-                  onClick={() => increase(cart.filter((cartItem) => {
-                    return cartItem.mealId == item.idMeal;
-                  })[0].quantity)}
+                  onClick={() =>
+                    increase(
+                      cart.filter((cartItem) => {
+                        return cartItem.mealId == item.idMeal;
+                      })[0].quantity
+                    )
+                  }
                 >
                   {' '}
                   +{' '}
@@ -125,11 +147,13 @@ export default function Cart() {
             </div>
           </div>
         ))}
-        <div className="total">
-          <Link to="/payment">Payment</Link>
-          <h3>Total: ${total}</h3>
+        <div className="details cart">
+          <div className="total">
+            <Link to="/payment">Payment</Link>
+            <h3>Total: ${total}</h3>
+          </div>
         </div>
-      </>
+      </section>
     );
   }
 }
