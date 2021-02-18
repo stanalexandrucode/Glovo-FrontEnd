@@ -12,7 +12,7 @@ function App() {
   const [auth, setAuth] = useState(false);
 
   const readCookie = () => {
-    const user = Cookies.get('user');
+    const user = Cookies.get('name');
     if (user) {
       setAuth(true);
     }
@@ -23,11 +23,11 @@ function App() {
   }, []);
 
   return (
-    <React.Fragment >
+    <React.Fragment>
       <ToastContainer />
-      <AuthContext.Provider  value={{ authorization: [auth, setAuth] }}>
+      <AuthContext.Provider value={{ authorization: [auth, setAuth] }}>
         <Navbar auth={auth} />
-        <main >
+        <main>
           <Routes />
         </main>
       </AuthContext.Provider>
