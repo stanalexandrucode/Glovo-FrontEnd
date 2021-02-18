@@ -5,6 +5,7 @@ import { axios, axiosSpring } from '../../common/axios';
 import Cookies from 'js-cookie';
 import './Details.css';
 import './Cart.css';
+import { toast } from 'react-toastify';
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
@@ -53,18 +54,22 @@ export default function Cart() {
     console.log('increase');
   };
 
-  const removeProduct = (mealId) => {
+  const removeProduct = async (mealId) => {
     const response = await axiosSpring
-    .delete('/cart', {
-      headers: {
-        Authorization: 'Bearer ' + Cookies.get('token'),
-      },
-    })
-    .catch((err) => console.log('Error:', err));
-    if (response && response.data) {
-    console.log('remove');
+      .delete(`/cart/delete-meal/${mealId}`, {
+        headers: {
+          Authorization: 'Bearer ' + Cookies.get('token'),
+        },
+      })
+      .catch((err) => console.log('Error:', err));
+    if (response.status === 200) {
+      toast.success('Delete successful!');
+      const newCart = cart.filter((item) => {
+        return item.mealId !== mealId;
+      });
+      setCart(newCart);
     }
-    console.log(teapa);
+    toast.error('Not Deleted');
   };
 
   const getTotal = () => {
@@ -142,7 +147,7 @@ export default function Cart() {
                 </button>
               </div>
             </div>
-            <div className="delete" onClick={() => removeProduct(item.mealId)}>
+            <div className="delete" onClick={() => removeProduct(item.idMeal)}>
               X
             </div>
           </div>
