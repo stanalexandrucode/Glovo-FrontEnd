@@ -33,13 +33,10 @@ const DetailMeal = () => {
   };
 
   const handleAdd = async () => {
-    await axiosSpring.post(
-      '/favorites',
-      {
-        id: `${detailMealApi.idMeal}`,
-        price: `${prices}`,
-      }
-    );
+    await axiosSpring.post('/favorites', {
+      id: `${detailMealApi.idMeal}`,
+      price: `${prices}`,
+    });
   };
 
   useEffect(() => {
