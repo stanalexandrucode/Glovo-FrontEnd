@@ -32,6 +32,7 @@ const Meals = () => {
   };
 
   const handleAdd = async (id, price) => {
+
     let res = await axiosSpring.post('/favorites', {
       id: `${id}`,
       price: `${price}`,

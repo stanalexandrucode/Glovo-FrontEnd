@@ -25,9 +25,11 @@ const Login = () => {
     };
 
     let res = await axiosSpring.post('/login', object);
+    console.log(res)
 
     if (res.status === 200 && res.data) {
       setError('');
+    
       toast.success('Hi, ' + res.data.name + ' !');
       Cookies.set('token', res.data.token);
       history.push('/');
