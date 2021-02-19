@@ -63,9 +63,9 @@ export default function Favorites() {
                 Authorization: 'Bearer ' + token
             }
         }).catch((err) => console.log('Error:', err));
-        if (res.status === 200) {
+        // if (res.status === 200) {
+        // }
             setMealsApi(removeMealDbById);
-        }
     }
 
 

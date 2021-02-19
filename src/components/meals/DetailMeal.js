@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { axios, axiosSpring } from '../../common/axios';
 import Loading from '../loading/Loading';
-import { Cookies } from 'js-cookie';
+import Cookies from 'js-cookie';
 
 
 const DetailMeal = () => {

@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { axios, axiosSpring } from '../../common/axios';
 import Meal from './Meal';
+
 import { toast } from 'react-toastify';
-import { Cookies } from 'js-cookie';
+import Cookies from 'js-cookie';
 
 const Meals = () => {
+  const [loading, setLoading] = useState(true);
   const [mealsApi, setMealsApi] = useState();
   const [mealPrices, setMealPrices] = useState();
   const [favorite, setFavorite] = useState();
-  const [cart, setCart] = useState();
-  const [token, setToken] = useState('');
+  let token = Cookies.get('token');
 
   const param = useParams();
   const category = param.strCategory;
 
   const getMealsApi = async () => {
-    const response = await axios
+    let response = await axios
       .get(`/filter.php?c=${category}`)
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
@@ -25,12 +26,30 @@ const Meals = () => {
   };
 
   const getMealPrices = async () => {
-    const response = await axiosSpring
-      .get('/prices')
-      .catch((err) => console.log('Error:', err));
+    let response = await axios({
+      method: 'get',
+      url: 'http://localhost:8080/prices',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    }).catch((err) => console.log('Error:', err));
     if (response && response.data) {
       setMealPrices(response.data);
     }
+  };
+
+  const handleAdd = async (id, price) => {
+    let res = await axios({
+      method: 'post',
+      url: 'http://localhost:8080/favorite/addMeal',
+      data: { mealId: id, price: price },
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    }).catch((err) => console.log('Error:', err));
+    // if (res.status !== 200) {
+    // }
+    setFavorite({ mealId: id, price: price });
   };
 
   const handleAddToFav = async (id, price) => {
@@ -53,7 +72,7 @@ const Meals = () => {
       },
       {
         headers: {
-          Authorization: 'Bearer ' + token,
+          Authorization: 'Bearer ' + Cookies.get('token'),
         },
       }
     );
@@ -64,21 +83,43 @@ const Meals = () => {
   };
 
   const matchingPrices = async () => {
+    setLoading(true);
     await getMealsApi();
     await getMealPrices();
+    setLoading(false);
   };
 
-  // useEffect(() => {
-  //   matchingPrices();
-  // }, []);
+  useEffect(() => {
+    matchingPrices();
+  }, []);
 
   useEffect(() => {
     setToken(Cookies.get('token'));
     if (token && token !== '') {
       // setNotFound(false);
     }
-    matchingPrices();
-  }, [token]);
+  });
+
+  // return (
+  //     <>
+  //         <div className="category-meals">
+  //             <h2>{category}</h2>
+  //             <div className="meals-category">
+  //                 {mealsApi.map((meal) => {
+  //                     return (
+  //                         <Meal
+  //                             key={meal.idMeal} handleAdd={handleAdd}{...meal}
+  //                             price={mealPrices.filter((price) => {
+  //                                 return price.id === parseInt(meal.idMeal);
+  //                             })[0].price
+  //                             }
+  //                         />
+  //                     );
+  //                 })}
+  //             </div>
+  //         </div>
+  //     </>
+  // );
 
   return (
     <>
@@ -89,7 +130,7 @@ const Meals = () => {
             return (
               <Meal
                 key={meal.idMeal}
-                handleAddToFav={handleAddToFav}
+                handleAddToFav={handleAdd}
                 handleAddToCart={handleAddToCart}
                 {...meal}
                 price={
