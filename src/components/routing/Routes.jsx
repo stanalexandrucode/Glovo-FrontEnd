@@ -20,6 +20,8 @@ import Recipes from './../provider/Recipes';
 
 
 
+import Cart from '../cart/Cart';
+
 
 const Routes = () => {
   const Auth = useContext(AuthContext);
@@ -43,9 +45,10 @@ const Routes = () => {
         <Route path="/meals/:strCategory" component={Meals} />
         <Route path="/meal/:id" component={DetailMeal} />
         <Route path="/search/:mainIngredient" component={SearchItems} />
+        <Route path="/cart" exact component={Cart} />
         <Route path="/register" component={AppLogin} />
         <Route path="/logout" component={Logout} />
-        <Route path="/favoriteMeal" component={Favorites} />
+        <Route path="/favorites" component={Favorites} />
         <Route path="/categories" component={Categories} />
         <Route path="/recipes/all" component={Recipes}/>
         <Route path="/recipes/addRecipe" component={AddRecipes}/>
