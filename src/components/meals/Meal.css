@@ -20,14 +20,22 @@ h5{
     justify-content: space-between;
 }
 
-.meals-category{
-    width: 100%;
-    margin:0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 3em;
+.meals-category {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 3em;
 }
 
+.meal {
+  border: #cce2e9 1px solid;
+  width: 100%;
+  margin-bottom: 4em;
+  background-color: #282c34;
+  opacity: 80%;
+  border-radius: 15%;
+}
 
 .meal{
     border: #b8913dd3 1px solid;

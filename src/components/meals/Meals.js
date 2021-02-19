@@ -3,15 +3,17 @@ import {useParams} from 'react-router-dom';
 import {axios, axiosSpring} from '../../common/axios';
 import Loading from '../loading/Loading';
 import Meal from './Meal';
-import Cookies from 'js-cookie';
 
+import { toast } from 'react-toastify';
+import { Cookies } from 'js-cookie';
 
 const Meals = () => {
-    const [loading, setLoading] = useState(true);
-    const [mealsApi, setMealsApi] = useState();
-    const [mealPrices, setMealPrices] = useState();
-    const [favorite, setFavorite] = useState();
-    let token = Cookies.get('token');
+  const [loading, setLoading] = useState(true);
+  const [mealsApi, setMealsApi] = useState();
+  const [mealPrices, setMealPrices] = useState();
+  const [favorite, setFavorite] = useState();
+  let token = Cookies.get('token');
+
 
     const param = useParams();
     const category = param.strCategory;
@@ -52,8 +54,36 @@ const Meals = () => {
         if (res.status === 200) {
             setFavorite({mealId: id, price: price});
         }
+
     }
 
+
+  const handleAddToCart = async (id, price) => {
+    let res = await axiosSpring.post(
+      '/cart/add-meal',
+      {
+        mealId: `${id}`,
+        price: `${price}`,
+        quantity: 1,
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + Cookies.get('token'),
+        },
+      }
+    );
+    if (res.status !== 200) {
+      toast.success('Add successful in Meals!');
+    }
+    // setCart({ id: id, price: price });
+  };
+
+  const matchingPrices = async () => {
+    setLoading(true);
+    await getMealsApi();
+    await getMealPrices();
+    setLoading(false);
+  };
 
     const matchingPrices = async () => {
         setLoading(true);
@@ -94,6 +124,32 @@ const Meals = () => {
             </div>
         </>
     );
+  }
+
+  return (
+    <>
+      <div className="category-meals">
+        <h2>{category}</h2>
+        <div className="meals-category">
+          {mealsApi.map((meal) => {
+            return (
+              <Meal
+                key={meal.idMeal}
+                handleAddToFav={handleAddToFav}
+                handleAddToCart={handleAddToCart}
+                {...meal}
+                price={
+                  mealPrices.filter((price) => {
+                    return price.id === parseInt(meal.idMeal);
+                  })[0].price
+                }
+              />
+            );
+          })}
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Meals;
