@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { axios, axiosSpring } from '../../common/axios';
+import Loading from '../loading/Loading';
 import Meal from './Meal';
-
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 
@@ -52,31 +52,23 @@ const Meals = () => {
     setFavorite({ mealId: id, price: price });
   };
 
-  const handleAddToFav = async (id, price) => {
-    let res = await axiosSpring.post('/favorites', {
-      id: `${id}`,
-      price: `${price}`,
-    });
-    if (res.status !== 200) {
-    }
-    setFavorite({ id: id, price: price });
-  };
-
   const handleAddToCart = async (id, price) => {
-    let res = await axiosSpring.post(
-      '/cart/add-meal',
-      {
-        mealId: `${id}`,
-        price: `${price}`,
-        quantity: 1,
-      },
-      {
+    const object = {
+      mealId: `${id}`,
+      price: `${price}`,
+      quantity: 1,
+    };
+    let res = await axiosSpring
+      .post('/cart/add-meal', object, {
         headers: {
           Authorization: 'Bearer ' + Cookies.get('token'),
         },
-      }
-    );
-    if (res.status !== 200) {
+      })
+      .catch(() => {
+        toast.error();
+      });
+
+    if (res.status === 201 && res.data) {
       toast.success('Add successful in Meals!');
     }
     // setCart({ id: id, price: price });
@@ -93,33 +85,13 @@ const Meals = () => {
     matchingPrices();
   }, []);
 
-  useEffect(() => {
-    setToken(Cookies.get('token'));
-    if (token && token !== '') {
-      // setNotFound(false);
-    }
-  });
-
-  // return (
-  //     <>
-  //         <div className="category-meals">
-  //             <h2>{category}</h2>
-  //             <div className="meals-category">
-  //                 {mealsApi.map((meal) => {
-  //                     return (
-  //                         <Meal
-  //                             key={meal.idMeal} handleAdd={handleAdd}{...meal}
-  //                             price={mealPrices.filter((price) => {
-  //                                 return price.id === parseInt(meal.idMeal);
-  //                             })[0].price
-  //                             }
-  //                         />
-  //                     );
-  //                 })}
-  //             </div>
-  //         </div>
-  //     </>
-  // );
+  if (loading) {
+    return (
+      <main>
+        <Loading />
+      </main>
+    );
+  }
 
   return (
     <>
