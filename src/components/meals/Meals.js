@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { axios, axiosSpring } from '../../common/axios';
-import Loading from '../loading/Loading';
 import Meal from './Meal';
+import { toast } from 'react-toastify';
+import { Cookies } from 'js-cookie';
 
 const Meals = () => {
-  const [loading, setLoading] = useState(true);
   const [mealsApi, setMealsApi] = useState();
   const [mealPrices, setMealPrices] = useState();
   const [favorite, setFavorite] = useState();
   const [cart, setCart] = useState();
+  const [token, setToken] = useState('');
 
   const param = useParams();
   const category = param.strCategory;
@@ -43,33 +44,41 @@ const Meals = () => {
   };
 
   const handleAddToCart = async (id, price) => {
-    let res = await axiosSpring.post('/cart', {
-      id: `${id}`,
-      price: `${price}`,
-    });
+    let res = await axiosSpring.post(
+      '/cart/add-meal',
+      {
+        mealId: `${id}`,
+        price: `${price}`,
+        quantity: 1,
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
     if (res.status !== 200) {
+      toast.success('Add successful in Meals!');
     }
-    setCart({ id: id, price: price });
+    // setCart({ id: id, price: price });
   };
 
   const matchingPrices = async () => {
-    setLoading(true);
     await getMealsApi();
     await getMealPrices();
-    setLoading(false);
   };
 
+  // useEffect(() => {
+  //   matchingPrices();
+  // }, []);
+
   useEffect(() => {
+    setToken(Cookies.get('token'));
+    if (token && token !== '') {
+      // setNotFound(false);
+    }
     matchingPrices();
   }, []);
-
-  if (loading) {
-    return (
-      <main>
-        <Loading />
-      </main>
-    );
-  }
 
   return (
     <>
