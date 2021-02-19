@@ -78,7 +78,7 @@ const Meals = () => {
       // setNotFound(false);
     }
     matchingPrices();
-  }, []);
+  }, [token]);
 
   return (
     <>
