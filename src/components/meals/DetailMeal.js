@@ -7,7 +7,7 @@ const DetailMeal = () => {
   const [loading, setLoading] = useState(true);
   const [detailMealApi, setDetailMealApi] = useState();
   const [readMore, setReadMore] = useState(false);
-  const [mealPrices, setMealPrices] = useState();
+  const [mealPrices, setMealPrices] = useState([]);
 
   const param = useParams();
 
@@ -32,7 +32,7 @@ const DetailMeal = () => {
   };
 
   const handleAdd = async () => {
-    await axiosSpring.post('/favorites', {
+    await axiosSpring.post('/favoriteMeal', {
       id: `${detailMealApi.idMeal}`,
       price: `${prices}`,
     });
@@ -50,6 +50,7 @@ const DetailMeal = () => {
       </main>
     );
   }
+  
   let prices = mealPrices.filter((price) => {
     return price.id === parseInt(detailMealApi.idMeal);
   })[0].price;

@@ -24,8 +24,6 @@ export default function AddRecipes() {
         name: recipeNameRef.current.value,
         description:  descriptionRef.current.value,
       };
-  console.log("obiect",object);
-  console.log("token", Cookies.get('token'))
   
       let res = await axiosSpring.post('/recipes/addRecipe', object,{
           headers:{
@@ -39,7 +37,7 @@ export default function AddRecipes() {
         // window.location.href = 'http://localhost:3000';
         return true;
       }
-      toast.error('Register not successful! Please check input data');
+      toast.error('Try again');
       return false;
     };
 

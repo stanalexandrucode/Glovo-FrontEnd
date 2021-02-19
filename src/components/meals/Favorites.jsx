@@ -12,7 +12,7 @@ export default function Favorites() {
 
   const getFavoritesMealsDb = async () => {
     const response = await axiosSpring
-      .get(`/favorites`, {
+      .get(`/favoriteMeal`, {
         headers: {
           Authorization: 'Bearer ' + token,
         },

@@ -11,6 +11,9 @@ const Navbar = () => {
       <NavLink className="navbar-brand" to="/favorites">
         my favorites
       </NavLink>
+      <NavLink className="navbar-brand" to="/recipes/addRecipe">
+        add recipe
+      </NavLink>
       {/* <NavLink className="navbar-brand" to="/login">
         login
       </NavLink> */}

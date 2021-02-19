@@ -33,12 +33,12 @@ const Meals = () => {
 
   const handleAdd = async (id, price) => {
 
-    let res = await axiosSpring.post('/favorites', {
+    let res = await axiosSpring.post('/favoriteMeal/addMeal', {
       id: `${id}`,
       price: `${price}`,
     });
-    if (res.status !== 200) {
-    }
+    // if (res.status !== 200) {
+    // }
     setFavorite({ id: id, price: price });
   };
 
