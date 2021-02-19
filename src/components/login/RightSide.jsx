@@ -1,8 +1,6 @@
 import React from 'react';
 
 export default function RightSide(props) {
-  console.log("in right side");
-console.log(props);
 
   return (
     <div
