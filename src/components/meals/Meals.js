@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { axios, axiosSpring } from '../../common/axios';
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {axios, axiosSpring} from '../../common/axios';
 import Loading from '../loading/Loading';
 import Meal from './Meal';
+
 import { toast } from 'react-toastify';
 import { Cookies } from 'js-cookie';
 
@@ -11,38 +12,51 @@ const Meals = () => {
   const [mealsApi, setMealsApi] = useState();
   const [mealPrices, setMealPrices] = useState();
   const [favorite, setFavorite] = useState();
-  // const [cart, setCart] = useState();
+  let token = Cookies.get('token');
 
-  const param = useParams();
-  const category = param.strCategory;
 
-  const getMealsApi = async () => {
-    const response = await axios
-      .get(`/filter.php?c=${category}`)
-      .catch((err) => console.log('Error:', err));
-    if (response && response.data) {
-      setMealsApi(response.data.meals);
+    const param = useParams();
+    const category = param.strCategory;
+
+    const getMealsApi = async () => {
+        let response = await axios
+            .get(`/filter.php?c=${category}`)
+            .catch((err) => console.log('Error:', err));
+        if (response && response.data) {
+            setMealsApi(response.data.meals);
+        }
+    };
+
+    const getMealPrices = async () => {
+        let response = await axios({
+            method: 'get',
+            url: 'http://localhost:8080/prices',
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+            .catch((err) => console.log('Error:', err));
+        if (response && response.data) {
+            setMealPrices(response.data);
+        }
+    };
+
+
+    const handleAdd = async (id, price) => {
+        let res = await axios({
+            method: 'post',
+            url: 'http://localhost:8080/favorite/addMeal',
+            data: {mealId: id, price: price},
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }).catch((err) => console.log('Error:', err));
+        if (res.status === 200) {
+            setFavorite({mealId: id, price: price});
+        }
+
     }
-  };
 
-  const getMealPrices = async () => {
-    const response = await axiosSpring
-      .get('/prices')
-      .catch((err) => console.log('Error:', err));
-    if (response && response.data) {
-      setMealPrices(response.data);
-    }
-  };
-
-  const handleAddToFav = async (id, price) => {
-    let res = await axiosSpring.post('/favorites', {
-      id: `${id}`,
-      price: `${price}`,
-    });
-    if (res.status !== 200) {
-    }
-    setFavorite({ id: id, price: price });
-  };
 
   const handleAddToCart = async (id, price) => {
     let res = await axiosSpring.post(
@@ -71,15 +85,44 @@ const Meals = () => {
     setLoading(false);
   };
 
-  useEffect(() => {
-    matchingPrices();
-  }, []);
+    const matchingPrices = async () => {
+        setLoading(true);
+        await getMealsApi();
+        await getMealPrices();
+        setLoading(false);
+    };
 
-  if (loading) {
+    useEffect(() => {
+        matchingPrices();
+    }, []);
+
+    if (loading) {
+        return (
+            <main>
+                <Loading/>
+            </main>
+        );
+    }
+
     return (
-      <main>
-        <Loading />
-      </main>
+        <>
+            <div className="category-meals">
+                <h2>{category}</h2>
+                <div className="meals-category">
+                    {mealsApi.map((meal) => {
+                        return (
+                            <Meal
+                                key={meal.idMeal} handleAdd={handleAdd}{...meal}
+                                price={mealPrices.filter((price) => {
+                                    return price.id === parseInt(meal.idMeal);
+                                })[0].price
+                                }
+                            />
+                        );
+                    })}
+                </div>
+            </div>
+        </>
     );
   }
 
