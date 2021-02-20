@@ -76,7 +76,7 @@ const DetailMeal = () => {
                                         </p>
                                         <h5>Area food: {state.value.strArea}</h5>
 
-                                        <p className="price">
+                                        <div className="price">
                                             {price.loading
                                                 ? <div>Loading...</div>
                                                 : price.error
@@ -84,7 +84,7 @@ const DetailMeal = () => {
                                                     : <div>Price {price.value}$</div>
                                             }
 
-                                        </p>
+                                        </div>
                                         <div>
                                             <button className="btn-detail-meal" onClick={handleAdd}>
                                                 {' '}

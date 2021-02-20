@@ -50,9 +50,9 @@ const Navbar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <Link className="navbar-brand">
-        {loggedUser !== 'empty' ? Cookies.get('name') : 'not logged in'}
-      </Link>
+      {/*<Link className="navbar-brand">*/}
+      {/*  {loggedUser !== 'empty' ? Cookies.get('name') : 'not logged in'}*/}
+      {/*</Link>*/}
     </nav>
   );
 };

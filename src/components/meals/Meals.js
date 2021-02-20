@@ -97,27 +97,6 @@ const Meals = () => {
         );
     }
 
-    // return (
-    //     <>
-    //         <div className="category-meals">
-    //             <h2>{category}</h2>
-    //             <div className="meals-category">
-    //                 {mealsApi.map((meal) => {
-    //                     return (
-    //                         <Meal
-    //                             key={meal.idMeal} handleAdd={handleAdd}{...meal}
-    //                             price={mealPrices.filter((price) => {
-    //                                 return price.id === parseInt(meal.idMeal);
-    //                             })[0].price
-    //                             }
-    //                         />
-    //                     );
-    //                 })}
-    //             </div>
-    //         </div>
-    //     </>
-    // );
-
 
     return (
         <>

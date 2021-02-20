@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {axios} from '../../common/axios';
 import FavoriteMeal from './FavoriteMeal';
 import Cookies from 'js-cookie';
-import NotFound from '../NotFound';
+import Loading from "../loading/Loading";
 
 export default function Favorites() {
     const [mealsDb, setMealsDb] = useState([]);
     const [mealsApi, setMealsApi] = useState([]);
-    const [notFound, setNotFound] = useState(true);
+    const [loading, setLoading] = useState(false);
     let token = Cookies.get('token');
 
 
@@ -30,7 +30,7 @@ export default function Favorites() {
     const getMealsApi = async (meals) => {
         let dataApi = [];
         for (var i = 0; i < meals.length; i++) {
-            const response = await axios.get(`/lookup.php?i=${meals[i]}`);
+            const response = await axios.get(`/lookup.php?i=${meals[i].mealId}`);
             if (response && response.data) {
                 dataApi.push(response.data.meals[0]);
             }
@@ -57,43 +57,39 @@ export default function Favorites() {
                 Authorization: 'Bearer ' + token
             }
         }).catch((err) => console.log('Error:', err));
-        // if (res.status === 200) {
-        // }
         setMealsApi(removeMealDbById);
     }
 
 
-    if (notFound) {
+    if (loading) {
         return (
-            <main>
-                <NotFound/>
-            </main>
-        );
-    } else {
-        return (
-            <>
-                <div className="container">
-                    <div>
-                        <h2 className="">My favorites</h2>
-                    </div>
-                    <div className="display-categories">
-                        {mealsApi.map((product) => {
-                            return (
-                                <FavoriteMeal
-                                    key={product.idMeal}
-                                    handleDelete={handleDelete}
-                                    {...product}
-                                    // price={
-                                    //     mealsDb.filter((price) => {
-                                    //         return price.id === parseInt(product.idMeal);
-                                    //     })[0].price
-                                    // }
-                                />
-                            );
-                        })}
-                    </div>
-                </div>
-            </>
+            <Loading/>
         );
     }
+
+    return (
+        <>
+            <div className="container">
+                <div>
+                    <h2 className="">My favorites</h2>
+                </div>
+                <div className="display-categories">
+                    {mealsApi.map((product) => {
+                        return (
+                            <FavoriteMeal
+                                key={product.idMeal}
+                                handleDelete={handleDelete}
+                                {...product}
+                                price={
+                                    mealsDb.filter((price) => {
+                                        return price.mealId === parseInt(product.idMeal);
+                                    })[0].price
+                                }
+                            />
+                        );
+                    })}
+                </div>
+            </div>
+        </>
+    );
 }
