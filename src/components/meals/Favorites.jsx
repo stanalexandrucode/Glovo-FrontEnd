@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {axios, axiosSpring} from '../../common/axios';
+import {axios} from '../../common/axios';
 import FavoriteMeal from './FavoriteMeal';
 import Cookies from 'js-cookie';
 import NotFound from '../NotFound';
@@ -7,8 +7,8 @@ import NotFound from '../NotFound';
 export default function Favorites() {
     const [mealsDb, setMealsDb] = useState([]);
     const [mealsApi, setMealsApi] = useState([]);
-    const [token, setToken] = useState('');
     const [notFound, setNotFound] = useState(true);
+    let token = Cookies.get('token');
 
 
     const getFavoritesMealsDb = async () => {
@@ -22,7 +22,6 @@ export default function Favorites() {
             .catch((err) => console.log('Error:', err));
         if (response && response.data) {
             setMealsDb(response.data);
-            console.log("responeeeee", response.data);
             return response.data;
         }
     };
@@ -31,7 +30,6 @@ export default function Favorites() {
     const getMealsApi = async (meals) => {
         let dataApi = [];
         for (var i = 0; i < meals.length; i++) {
-            console.log("meluriii", meals[i])
             const response = await axios.get(`/lookup.php?i=${meals[i]}`);
             if (response && response.data) {
                 dataApi.push(response.data.meals[0]);
@@ -46,12 +44,8 @@ export default function Favorites() {
     };
 
     useEffect(() => {
-        setToken(Cookies.get('token'));
-        if (token && token !== '') {
-            setNotFound(false);
-            showMeals();
-        }
-    }, [token]);
+        showMeals();
+    }, []);
 
 
     const handleDelete = async (id) => {
@@ -65,7 +59,7 @@ export default function Favorites() {
         }).catch((err) => console.log('Error:', err));
         // if (res.status === 200) {
         // }
-            setMealsApi(removeMealDbById);
+        setMealsApi(removeMealDbById);
     }
 
 
