@@ -1,10 +1,9 @@
-import React, { containerRef, useEffect, useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Form, Button, Card } from 'react-bootstrap';
-import { toast } from 'react-toastify';
-import { axiosSpring } from '../../common/axios';
+import React, {containerRef, useRef} from 'react';
+import {useHistory} from 'react-router-dom';
+import {Button, Card, Form} from 'react-bootstrap';
+import {toast} from 'react-toastify';
+import {axiosSpring} from '../../common/axios';
 import Cookies from 'js-cookie';
-import NotFound from '../NotFound';
 import './Style.scss';
 
 const Login = () => {

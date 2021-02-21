@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState, useEffect, containerRef } from 'react';
+import { useState, useEffect } from 'react';
 import { axios, axiosSpring } from '../../common/axios';
 import Cookies from 'js-cookie';
 import './Details.css';

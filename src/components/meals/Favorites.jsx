@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {axios} from '../../common/axios';
 import FavoriteMeal from './FavoriteMeal';
 import Cookies from 'js-cookie';
@@ -7,7 +7,7 @@ import Loading from "../loading/Loading";
 export default function Favorites() {
     const [mealsDb, setMealsDb] = useState([]);
     const [mealsApi, setMealsApi] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     let token = Cookies.get('token');
 
 
@@ -29,7 +29,7 @@ export default function Favorites() {
 
     const getMealsApi = async (meals) => {
         let dataApi = [];
-        for (var i = 0; i < meals.length; i++) {
+        for (let i = 0; i < meals.length; i++) {
             const response = await axios.get(`/lookup.php?i=${meals[i].mealId}`);
             if (response && response.data) {
                 dataApi.push(response.data.meals[0]);
@@ -39,8 +39,10 @@ export default function Favorites() {
     };
 
     const showMeals = async () => {
+        setLoading(true)
         let meals = await getFavoritesMealsDb();
         await getMealsApi(meals);
+        setLoading(false)
     };
 
     useEffect(() => {
@@ -50,7 +52,7 @@ export default function Favorites() {
 
     const handleDelete = async (id) => {
         let removeMealDbById = mealsApi.filter((meal) => meal.idMeal !== id);
-        let res = await axios({
+         await axios({
             method: 'delete',
             url: `http://localhost:8080/favorite/${id}`,
             headers: {
