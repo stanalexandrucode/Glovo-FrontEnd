@@ -22,7 +22,6 @@ export default function Favorites() {
             .catch((err) => console.log('Error:', err));
         if (response && response.data) {
             setMealsDb(response.data);
-            console.log("responeeeee", response.data);
             return response.data;
         }
     };
@@ -31,7 +30,6 @@ export default function Favorites() {
     const getMealsApi = async (meals) => {
         let dataApi = [];
         for (var i = 0; i < meals.length; i++) {
-            console.log("meluriii", meals[i])
             const response = await axios.get(`/lookup.php?i=${meals[i]}`);
             if (response && response.data) {
                 dataApi.push(response.data.meals[0]);

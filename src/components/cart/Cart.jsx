@@ -26,6 +26,21 @@ export default function Cart() {
     }
   };
 
+  const updateCart = async (mealId, direction) => {
+    const response = await axiosSpring
+      .put(`/cart/${direction}/${mealId}`, mealId, {
+        headers: {
+          Authorization: 'Bearer ' + Cookies.get('token'),
+        },
+      })
+      .catch((err) => console.log('Error:', err));
+    console.log(response);
+    if (response.status === 200) {
+      // setCart(response.data);
+      return 'ok';
+    }
+  };
+
   const getMealsApi = async () => {
     let dataApi = [];
     for (let i = 0; i < cart.length; i++) {
@@ -45,13 +60,19 @@ export default function Cart() {
     getTotal();
   };
 
-  const reduction = () => {
-    'msg';
-    console.log('reduction');
+  const reduction = (mealId) => {
+    const update = updateCart(mealId, 'decrease');
+    // if (update === 'ok') {
+    //   const newCart = cart.map((item) => {
+    //     item.mealId === mealId ? item.quantity++ : '';
+    //   });
+    //   setCart(newCart);
+    //   getTotal();
+    // }
   };
-  const increase = () => {
-    'msg';
-    console.log('increase');
+
+  const increase = (mealId) => {
+    const update = updateCart(mealId, 'increase');
   };
 
   const removeProduct = async (mealId) => {
@@ -114,13 +135,7 @@ export default function Cart() {
               <div className="amount">
                 <button
                   className="count"
-                  onClick={() =>
-                    reduction(
-                      cart.filter((cartItem) => {
-                        return cartItem.mealId == item.idMeal;
-                      })[0].quantity
-                    )
-                  }
+                  onClick={() => reduction(item.idMeal)}
                 >
                   {' '}
                   -{' '}
@@ -132,16 +147,7 @@ export default function Cart() {
                     })[0].quantity
                   }
                 </span>
-                <button
-                  className="count"
-                  onClick={() =>
-                    increase(
-                      cart.filter((cartItem) => {
-                        return cartItem.mealId == item.idMeal;
-                      })[0].quantity
-                    )
-                  }
-                >
+                <button className="count" onClick={() => increase(item.idMeal)}>
                   {' '}
                   +{' '}
                 </button>
