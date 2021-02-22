@@ -6,9 +6,10 @@ h3{
 }
 .categories{
 
-    width: 100%;
+    width: 70%;
     padding: 3em;
     flex-direction: column;
+    margin: 0 auto;
    
 }
 
