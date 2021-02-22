@@ -5,7 +5,7 @@ The place to choose your next gastronomical delight by browsing through the avai
 ![Chef Recommends](/img/recommendation.png 'Chef Recommends')
 
 By Register and Login the user will be able to access new options (add to favorites, add to cart).
-
+ 
 ![Favorites](/img/favorites.png 'Favorites')
 
 The favorites route allows the user to retain his/hers choices for later review.
