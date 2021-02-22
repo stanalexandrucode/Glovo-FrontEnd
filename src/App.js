@@ -1,43 +1,34 @@
-import React, {useEffect, useState} from "react";
-import './App.css';
-
-import {axios} from "./common/axios";
+import React from "react";
+import {Redirect, Route, Switch} from "react-router-dom";
+import {ToastContainer} from "react-toastify";
+import NotFound from "./components/NotFound";
+import NavBar from "./components/Navbar";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
 import Categories from "./components/category/Categories";
-import Loading from "./components/loading/Loading";
-
+import Meals from "./components/meals/Meals";
+import Favorites from './components/Favorites';
 
 function App() {
-    const [loading, setLoading] = useState(true);
-    const [categoriesApi, setCategoriesApi] = useState();
-
-
-    const getCategoriesApi = async () => {
-        setLoading(true)
-        const response = await axios.get('/categories.php').catch((err) => console.log("Error:", err))
-        if (response && response.data) {
-            setCategoriesApi(response.data.categories)
-            setLoading(false)
-        }
-
-
-    }
-    useEffect(() => {
-        getCategoriesApi();
-    }, [])
-
-    if (loading) {
-        return (<main>
-            <Loading/>
-        </main>)
-    }
-    console.log("data:",categoriesApi)
     return (
-        <>
-            <div>
-                <Categories categoriesApi={categoriesApi}/>
-            </div>
-
-        </>)
+        <React.Fragment>
+            <ToastContainer/>
+            <NavBar/>
+            <main className="container">
+                <Switch>
+                    <Route path="/not-found" component={NotFound}/>
+                    <Route path="/categories" component={Categories}/>
+                    <Route path="/favorites" component={Favorites}/>
+                    <Route path="/meals/:strCategory" component={Meals} />
+                    <Redirect from="/" exact to="/categories"/>
+                    <Redirect to="/not-found"/>
+                </Switch>
+            </main>
+        </React.Fragment>
+    );
 }
 
 export default App;
+
+//   {/* <Route path="/search/:country" component={HotelsList} />
+//           <Route path="/search" component={Search} /> */}
