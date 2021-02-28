@@ -4,7 +4,6 @@ import { AuthContext } from '../authentication/AuthContext';
 import { Route } from 'react-router-dom';
 import NotFound from '../NotFound';
 import Categories from '../category/Categories';
-import Favorites from '../meals/Favorites';
 import Meals from '../meals/Meals';
 import DetailMeal from '../meals/DetailMeal';
 import Login from '../login/Login';
@@ -16,6 +15,8 @@ import MainPage from './../MainPage';
 import AppLogin from './../login/AppLogin';
 import SearchItems from '../search/SearchItems';
 import Cart from '../cart/Cart';
+import Favorites from "../meals/Favorites";
+import MealTest from "../tests/MealTest"
 
 
 const Routes = () => {
@@ -36,7 +37,7 @@ const Routes = () => {
           auth={Auth.authorization}
           component={Login}
         />
-
+        <Route path="/teste" component={MealTest}/>
         <Route path="/meals/:strCategory" component={Meals} />
         <Route path="/meal/:id" component={DetailMeal} />
         <Route path="/search/:mainIngredient" component={SearchItems} />
