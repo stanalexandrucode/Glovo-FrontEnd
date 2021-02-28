@@ -12,6 +12,7 @@ export default function Favorites() {
 
 
     const getFavoritesMealsDb = async () => {
+        setLoading(true)
         let response = await axios({
             method: 'get',
             url: 'http://localhost:8080/favorite',
@@ -22,6 +23,7 @@ export default function Favorites() {
             .catch((err) => console.log('Error:', err));
         if (response && response.data) {
             setMealsDb(response.data);
+            setLoading(false)
             return response.data;
         }
     };
@@ -30,7 +32,7 @@ export default function Favorites() {
     const getMealsApi = async (meals) => {
         let dataApi = [];
         for (let i = 0; i < meals.length; i++) {
-            const response = await axios.get(`/lookup.php?i=${meals[i].mealId}`);
+            const response = await axios.get(`/lookup.php?i=${meals[i].idMeal}`);
             if (response && response.data) {
                 dataApi.push(response.data.meals[0]);
             }
@@ -52,7 +54,7 @@ export default function Favorites() {
 
     const handleDelete = async (id) => {
         let removeMealDbById = mealsApi.filter((meal) => meal.idMeal !== id);
-         await axios({
+        await axios({
             method: 'delete',
             url: `http://localhost:8080/favorite/${id}`,
             headers: {
@@ -84,7 +86,7 @@ export default function Favorites() {
                                 {...product}
                                 price={
                                     mealsDb.filter((price) => {
-                                        return price.mealId === parseInt(product.idMeal);
+                                        return price.idMeal === parseInt(product.idMeal);
                                     })[0].price
                                 }
                             />
