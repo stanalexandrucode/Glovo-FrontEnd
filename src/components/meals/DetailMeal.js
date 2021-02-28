@@ -26,8 +26,7 @@ const DetailMeal = () => {
                     }
                 }
             );
-            const result = await response.json();
-            return result
+            return await response.json()
         }, []);
 
         const handleAdd = async () => {
