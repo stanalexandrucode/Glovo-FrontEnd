@@ -16,7 +16,7 @@ import AppLogin from './../login/AppLogin';
 import SearchItems from '../search/SearchItems';
 import Cart from '../cart/Cart';
 import Favorites from "../meals/Favorites";
-import MealTest from "../tests/MealTest"
+
 
 
 const Routes = () => {
@@ -37,7 +37,7 @@ const Routes = () => {
           auth={Auth.authorization}
           component={Login}
         />
-        <Route path="/teste" component={MealTest}/>
+
         <Route path="/meals/:strCategory" component={Meals} />
         <Route path="/meal/:id" component={DetailMeal} />
         <Route path="/search/:mainIngredient" component={SearchItems} />
