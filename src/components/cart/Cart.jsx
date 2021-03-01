@@ -37,7 +37,10 @@ export default function Cart() {
     console.log(response);
     if (response.status === 200) {
       // setCart(response.data);
+      // getTotal();
       return 'ok';
+    } else {
+      toast.error('Check connection with the server');
     }
   };
 
@@ -60,8 +63,37 @@ export default function Cart() {
     getTotal();
   };
 
-  const reduction = (mealId) => {
-    const update = updateCart(mealId, 'decrease');
+  const reduction = async (mealId) => {
+    const update = await updateCart(mealId, 'decrease');
+    console.log(update);
+    console.log('jos');
+    console.log(mealId);
+    if (update === 'ok') {
+      console.log('in cart');
+      console.log(cart);
+      const newCart = cart.map((item) => {
+        console.log(typeof mealId);
+        console.log(typeof parseInt(item.mealId));
+
+        // console.log(object);
+        if (parseInt(item.mealId) === mealId) {
+          console.log(item.quantity);
+          item.quantity--;
+          console.log(item.quantity);
+          console.log('in map');
+        }
+        return item;
+      });
+      console.log(newCart);
+      setCart(newCart);
+      getTotal();
+    }
+  };
+
+  const increase = (mealId) => {
+    const update = updateCart(mealId, 'increase');
+    console.log('sus');
+    console.log(mealId);
     // if (update === 'ok') {
     //   const newCart = cart.map((item) => {
     //     item.mealId === mealId ? item.quantity++ : '';
@@ -69,10 +101,6 @@ export default function Cart() {
     //   setCart(newCart);
     //   getTotal();
     // }
-  };
-
-  const increase = (mealId) => {
-    const update = updateCart(mealId, 'increase');
   };
 
   const removeProduct = async (mealId) => {
