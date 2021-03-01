@@ -2,11 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {axios, axiosSpring} from '../../common/axios';
 import Meal from './Meal';
-
-
 import {toast} from 'react-toastify';
 import Cookies from 'js-cookie';
 import Axios from "axios";
+import {FormControl, FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
 
 const Meals = () => {
 
@@ -14,8 +13,8 @@ const Meals = () => {
     const param = useParams();
     const category = param.strCategory;
 
-
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    const [filterData, setFilterData] = useState([]);
 
 
     const fetchData = () => {
@@ -30,7 +29,6 @@ const Meals = () => {
                 const allDataApi = allData[0].data.meals;
                 const getDataPrice = allData[1].data;
 
-
                 const keys = Object.keys(allDataApi);
                 let mergedData = keys.map(key => {
                     return {
@@ -40,11 +38,12 @@ const Meals = () => {
                     };
                 })
                 setData(mergedData)
-                console.log("data", mergedData);
+                setFilterData(mergedData);
             })
         )
     }
     useEffect(() => {
+
         fetchData();
     }, [])
 
@@ -82,13 +81,35 @@ const Meals = () => {
         // setCart({ id: id, price: price });
     };
 
+    const handleChange = (e) => {
+        let value = e.target.value;
+        if (value === "low") {
+            setFilterData(data.filter(data => data.price <= 20))
+        } else if (value === "medium") {
+
+            setFilterData(data.filter(data => data.price <= 40))
+
+        } else if (value === "high") {
+
+            setFilterData(data)
+        }
+    }
+
 
     return (
         <>
+            <FormControl style={{backgroundColor: 'white'}}>
+                <RadioGroup onChange={handleChange}>
+                    <FormControlLabel value="low" control={<Radio/>} label="1 - 20 $"/>
+                    <FormControlLabel value="medium" control={<Radio/>} label="21 - 50 $"/>
+                    <FormControlLabel value="high" control={<Radio/>} label="51 - 100 $"/>
+                </RadioGroup>
+            </FormControl>
+
             <div className="category-meals">
                 <h2>{category}</h2>
                 <div className="meals-category">
-                    {data.map((meal) => {
+                    {filterData.map((meal) => {
                         return (
                             <Meal
                                 key={meal.idMeal}
