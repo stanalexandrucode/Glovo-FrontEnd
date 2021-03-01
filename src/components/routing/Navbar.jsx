@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Link, NavLink} from 'react-router-dom';
 import logo from '../../logo2.png';
-import { Cookies } from 'js-cookie';
-import { AuthContext } from '../login/AuthContext';
 
 const Navbar = () => {
   const [loggedUser, setLoggedUser] = useState('empty');
@@ -50,9 +48,9 @@ const Navbar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <Link className="navbar-brand">
-        {loggedUser !== 'empty' ? Cookies.get('name') : 'not logged in'}
-      </Link>
+      {/*<Link className="navbar-brand">*/}
+      {/*  {loggedUser !== 'empty' ? Cookies.get('name') : 'not logged in'}*/}
+      {/*</Link>*/}
     </nav>
   );
 };
