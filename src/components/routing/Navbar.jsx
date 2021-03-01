@@ -33,6 +33,9 @@ const Navbar = () => {
       <NavLink className="navbar-brand" to="/recipes/addRecipe">
         add recipe
       </NavLink>
+        <NavLink className="navbar-brand" to="/recipes/all">
+        recipes
+      </NavLink>
       {/* <NavLink className="navbar-brand" to="/login">
         login
       </NavLink> */}

@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { axiosSpring } from '../../common/axios';
 import Cookies from 'js-cookie';
+import Recipe from "./Recipe";
 
 
 export default function Recipes() {
@@ -18,23 +19,26 @@ export default function Recipes() {
     })
     .catch((err) => console.log('Error:', err));
     console.log(response)
-  if (response.status===201 && response.data) {
+  if (response.status===200 && response.data) {
     console.log("data",response);
     setRecipes(response.data)
     return response.data;
   }}
- console.log( "get",getAllRecipes())
+
 
  useEffect(() => {
     setToken(Cookies.get('token'));
     if (token && token !== '') {
       setNotFound(false)
+        getAllRecipes()
     }
   }, [token]);
-
+ console.log("all ",recipes)
     return (
         <div>
-            CEVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            {recipes.map((recipe)=>{
+                return <Recipe {...recipe}/>
+            })}
         </div>
     )
 }

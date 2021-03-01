@@ -2,8 +2,8 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import './StyleProvider.scss'
 
-const Recipe = ({id, name, description, userFirstName, userId,picture}) => {
-    console.log("COOKIE ID ", Cookies.get())
+const Recipe = ({id, name, description, userFirstName, userId, picture}) => {
+
     return (
         <div className='recipe-item'>
             <div>
@@ -16,7 +16,13 @@ const Recipe = ({id, name, description, userFirstName, userId,picture}) => {
                 <p>{description}</p>
             </div>
             <div>
-               <img src={picture} />
+                {userId === parseInt(Cookies.get("id_user_DB")) ?
+                    <div>
+                        <button>REMOVE</button>
+                    </div> :
+                   null
+                }
+
             </div>
         </div>
     );
