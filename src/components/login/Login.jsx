@@ -8,14 +8,14 @@ import NotFound from '../NotFound';
 import './Style.scss';
 
 const Login = () => {
-    const history = useHistory();
-    const emailRef = useRef();
-    const passwordRef = useRef();
+  const history = useHistory();
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        login();
-    };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login();
+  };
 
     const login = async () => {
         const object = {
@@ -23,9 +23,9 @@ const Login = () => {
             password: passwordRef.current.value,
         };
 
-        let res = await axiosSpring.post('/login', object).catch(() => {
-            toast.error();
-        });
+    let res = await axiosSpring.post('/login', object).catch(() => {
+      toast.error();
+    });
 
         if (res.status === 200 && res.data) {
             toast.success('Hi, ' + res.data.name + ' !');

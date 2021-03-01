@@ -31,7 +31,7 @@ export default function AppLogin() {
       <div className="login">
         <div className="container">
           <div className="image">
-            <img src={loginImg}></img>
+            <img src={loginImg} alt={loginImg}></img>
           </div>
           {toggle ? (
             <Login containerRef={current} />

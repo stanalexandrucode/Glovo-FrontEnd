@@ -22,7 +22,7 @@ const FavoriteMeal = ({
   
           <div>
             <img className='photo' src={strMealThumb} alt={strMeal} />
-            <p className="price-add-meal">${price}</p>
+            <p className="price-add-meal">Price ${price}</p>
             <div>
               <button className='btn-meal-remove' onClick={()=>handleDelete(idMeal)}>
                 remove

@@ -5,8 +5,6 @@ import {Link} from "react-router-dom";
 const RandomMeal = ({
                         idMeal,
                         strMeal,
-                        // strCategory,
-                        // strArea,
                         strMealThumb,
                         randomMealIndex,
                         index,

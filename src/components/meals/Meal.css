@@ -21,7 +21,7 @@ h5{
 }
 
 .meals-category {
-  width: 100%;
+  width: 70%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
