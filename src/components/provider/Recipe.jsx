@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Cookies from 'js-cookie';
 import './StyleProvider.scss'
 
 const Recipe = ({id, name, description, userFirstName, userId, handleDeleteRecipeById}) => {
-
+    const [readMore, setReadMore] = useState(false);
     return (
         <div className='recipe-item'>
             <div>
@@ -13,14 +13,23 @@ const Recipe = ({id, name, description, userFirstName, userId, handleDeleteRecip
                 <h3>{name}</h3>
             </div>
             <div>
-                <p>{description}</p>
+                <p className="description-meal">
+                    {readMore
+                        ? description
+                        : `${description.substring(0, 100)}...`}
+                    <button
+                        className="showBtn"
+                        onClick={() => setReadMore(!readMore)}>
+                        {readMore ? 'show less' : 'read more'}
+                    </button>
+                </p>
             </div>
             <div>
                 {userId === parseInt(Cookies.get("id_user_DB")) ?
                     <div>
-                        <button onClick={()=>handleDeleteRecipeById(id)}>REMOVE</button>
+                        <button onClick={() => handleDeleteRecipeById(id)}>REMOVE</button>
                     </div> :
-                   null
+                    null
                 }
 
             </div>
