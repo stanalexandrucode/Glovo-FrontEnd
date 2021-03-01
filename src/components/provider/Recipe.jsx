@@ -2,7 +2,7 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import './StyleProvider.scss'
 
-const Recipe = ({id, name, description, userFirstName, userId, picture}) => {
+const Recipe = ({id, name, description, userFirstName, userId, handleDeleteRecipeById}) => {
 
     return (
         <div className='recipe-item'>
@@ -18,7 +18,7 @@ const Recipe = ({id, name, description, userFirstName, userId, picture}) => {
             <div>
                 {userId === parseInt(Cookies.get("id_user_DB")) ?
                     <div>
-                        <button>REMOVE</button>
+                        <button onClick={()=>handleDeleteRecipeById(id)}>REMOVE</button>
                     </div> :
                    null
                 }

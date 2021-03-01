@@ -7,6 +7,7 @@ export default function Logout() {
   const navigateTo = () => {
     Cookies.remove('token');
     Cookies.remove('name');
+     Cookies.remove('id_user_DB');
     history.push('/');
   };
 
