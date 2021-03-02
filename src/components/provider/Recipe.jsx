@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import Cookies from 'js-cookie';
 import './StyleProvider.scss'
 
-const Recipe = ({id, name, description, userFirstName, userId, handleDeleteRecipeById}) => {
+const Recipe = ({id, name, description, userFirstName, userId, image,handleDeleteRecipeById}) => {
     const [readMore, setReadMore] = useState(false);
+
+    console.log("IMAGE RECIPE ",image)
     return (
         <div className='recipe-item'>
             <div>
@@ -11,6 +13,9 @@ const Recipe = ({id, name, description, userFirstName, userId, handleDeleteRecip
             </div>
             <div>
                 <h3>{name}</h3>
+            </div>
+            <div>
+              <img src={image} style={{ width: 100, height: 100 }}/>
             </div>
             <div>
                 <p className="description-meal">

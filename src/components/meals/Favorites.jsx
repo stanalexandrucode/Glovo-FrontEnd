@@ -3,6 +3,7 @@ import {axios} from '../../common/axios';
 import FavoriteMeal from './FavoriteMeal';
 import Cookies from 'js-cookie';
 import Loading from "../loading/Loading";
+import {Redirect} from "react-router-dom";
 
 export default function Favorites() {
     const [mealsDb, setMealsDb] = useState([]);
@@ -40,6 +41,9 @@ export default function Favorites() {
         setMealsApi(dataApi);
     };
 
+     if(token===undefined){
+        <Redirect to="/not-found"/>
+    }
     const showMeals = async () => {
         setLoading(true)
         let meals = await getFavoritesMealsDb();
@@ -63,6 +67,8 @@ export default function Favorites() {
         }).catch((err) => console.log('Error:', err));
         setMealsApi(removeMealDbById);
     }
+
+
 
 
     if (loading) {
