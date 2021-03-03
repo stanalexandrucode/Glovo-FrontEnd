@@ -19,7 +19,7 @@ const DetailMeal = () => {
         }, []);
 
         const price = useAsync(async () => {
-            const response = await fetch(`http://localhost:8080/prices/${param.id}`, {
+            const response = await fetch(`http://localhost:8080/prices/id/${param.id}`, {
                     method: "GET",
                     headers: {
                         Authorization: 'Bearer ' + token
