@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import Recipe from "./Recipe";
 import axios from "axios";
 import {toast} from "react-toastify";
+import AddRecipes from "./AddRecipes";
 
 
 export default function Recipes() {
@@ -43,17 +44,24 @@ export default function Recipes() {
             url: `http://localhost:8080/recipes/${id}`,
         }).catch((err) => console.log("Error ", err))
 
-        if(res.status ===200){
-         toast.success('Recipe was deleted!');
-        setRecipes(removeRecipeById)
-    }}
+        if (res.status === 200) {
+            toast.success('Recipe was deleted!');
+            setRecipes(removeRecipeById)
+        }
+    }
 
 
     return (
-        <div>
-            {recipes.map((recipe) => {
-                return <Recipe key={recipe.id} handleDeleteRecipeById={handleDeleteRecipeById} {...recipe}/>
-            })}
+        <div className="page-recipes">
+            <div id="col-1">
+                {recipes.map((recipe) => {
+                    return <Recipe key={recipe.id} handleDeleteRecipeById={handleDeleteRecipeById} {...recipe}/>
+                })}
+            </div>
+            <div id="col-2">
+                {token ?
+                <AddRecipes/> : null}
+            </div>
         </div>
     )
 }

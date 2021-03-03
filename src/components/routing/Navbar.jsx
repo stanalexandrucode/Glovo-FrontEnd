@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import logo from '../../logo2.png';
+import Cookies from 'js-cookie';
 
 const Navbar = () => {
   const [loggedUser, setLoggedUser] = useState('empty');
@@ -28,9 +29,9 @@ const Navbar = () => {
       <NavLink className="navbar-brand" to="/favorites">
         my favorites
       </NavLink>
-      <NavLink className="navbar-brand" to="/recipes/addRecipe">
-        add recipe
-      </NavLink>
+      {/*<NavLink className="navbar-brand" to="/recipes/addRecipe">*/}
+      {/*  add recipe*/}
+      {/*</NavLink>*/}
         <NavLink className="navbar-brand" to="/recipes/all">
         recipes
       </NavLink>
@@ -46,6 +47,11 @@ const Navbar = () => {
       <NavLink className="navbar-brand" to="/cart">
         cart
       </NavLink>
+        <div>
+        {Cookies.get('token')?
+        <div className="navbar-brand name">Welcome, you are logged as {Cookies.get('name')}</div>: null
+        }
+        </div>
       <button
         className="navbar-toggler"
         type="button"
