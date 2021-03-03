@@ -61,6 +61,7 @@ textarea {
   margin: 0 auto !important;
   padding: 1em;
   text-align: center !important;
+  font-size: 2rem;
 }
 
 .image-recipe{
@@ -90,14 +91,18 @@ border: #cce2e9 1px solid !important;
     margin-top: .3em;
     font-size: 2rem;
     font-family: 'Single Sleeve', sans-serif;
+   text-decoration-line: underline;
 }
 .description-meal{
-  font-size: medium;
+  font-size: 1.2rem;
 }
 
 .btn-danger{
  margin-left: 10px!important ;
   margin-bottom: 5px !important;
   padding: 1px !important;
-
+}
+#name{
+   text-decoration-line: underline !important;
+  color: #f7f7f7;
 }

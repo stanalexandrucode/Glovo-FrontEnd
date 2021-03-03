@@ -75,7 +75,7 @@ export default function AddRecipes() {
         <div>
             <Card className="recipe" ref={containerRef}>
                 <Card.Body>
-                    <div className='header-recipe'>Recipe</div>
+                    <div className='header-recipe' id='name'>Recipe</div>
                     {error && <Alert variant='danger'>{error}</Alert>}
                      <form onSubmit={handleUploadImage}>
                     <label>
@@ -85,12 +85,12 @@ export default function AddRecipes() {
                 </form>
                     <Form className='form' onSubmit={handleSubmit}>
                         <div className='form-group'>
-                            <Form.Group id='name'>
-                                <Form.Label> Recipe Name</Form.Label>
+                            <Form.Group >
+                                <Form.Label id='name'> Recipe Name</Form.Label>
                                 <Form.Control type='text' ref={recipeNameRef} required/>
                             </Form.Group>
                         </div>
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label id='name'>Description</Form.Label>
                         <textarea className='form-group' type='textarea' ref={descriptionRef} required></textarea>
                         <Button className='btn' type='submit'>
                             Add recipe
