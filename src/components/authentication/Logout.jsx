@@ -1,6 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
+import './Register.css'
 
 export default function Logout() {
   const history = useHistory();
@@ -12,9 +13,9 @@ export default function Logout() {
   };
 
   return (
-    <div>
-      <h1>Welcome to logout</h1>
-      <button onClick={navigateTo}>Logout</button>
+    <div className="logout">
+      <h1>Welcome to logout. Are you sure?</h1>
+      <button  onClick={navigateTo}>Logout</button>
     </div>
   );
 }
