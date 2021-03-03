@@ -3,10 +3,10 @@ import {Link, NavLink} from 'react-router-dom';
 import logo from '../../logo2.png';
 import Cookies from 'js-cookie';
 
-const Navbar = () => {
+const Navbar = ({auth}) => {
     const [loggedUser, setLoggedUser] = useState('empty');
 
-    // const [userName, setUserName] = useContext(AuthContext);
+    // const [auth, setUserName] = useContext(AuthContext);
 
     // console.log('object');
     // const readCookie = () => {
@@ -32,7 +32,7 @@ const Navbar = () => {
             </NavLink>
 
 
-            {!Cookies.get('token') ?
+            {!auth ?
                 <div>
                     <NavLink className="navbar-brand" to="/register">
                         register/login

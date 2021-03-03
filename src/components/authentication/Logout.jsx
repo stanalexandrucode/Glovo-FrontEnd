@@ -12,9 +12,10 @@ export default function Logout() {
     history.push('/');
   };
 
+
   return (
     <div className="logout">
-      <h1>Welcome to logout. Are you sure?</h1>
+      <h1>Welcome to logout. Are you sure you want this?</h1>
       <button  onClick={navigateTo}>Logout</button>
     </div>
   );

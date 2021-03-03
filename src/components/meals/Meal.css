@@ -18,13 +18,13 @@ h5 {
 
 }
 
-/*.container h2 {*/
-/*    font-family: 'Single Sleeve', sans-serif !important;*/
-/*    margin-left:9em !important;*/
-/*    font-size: 3.5rem !important;*/
-/*    justify-content: space-between !important;*/
-/*    */
-/*}*/
+.container h2 {
+    font-family: 'Single Sleeve', sans-serif !important;
+    margin-left:9em !important;
+    font-size: 3.5rem !important;
+    justify-content: space-between !important;
+
+}
 
 .meals-category-display {
     /*  display: -ms-flex;*/
