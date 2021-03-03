@@ -4,7 +4,8 @@ import React from "react";
 const MealFilterByPrice = ({handleChange,event,value}) => {
     return (
         <>
-            <FormControl style={{backgroundColor: 'white'}}>
+            <FormControl className="filter-by-price">
+                <h3>Sort by prices</h3>
                 <RadioGroup onChange={(event)=>handleChange(event)}>
                     <FormControlLabel value="low" control={<Radio/>} label="1 - 20 $"/>
                     <FormControlLabel value="medium" control={<Radio/>} label="21 - 50 $"/>

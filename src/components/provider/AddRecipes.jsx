@@ -46,7 +46,7 @@ export default function AddRecipes() {
     };
 
     const handleUploadImage = (event) => {
-        if(fileInput.current.files.length() !==0) {
+        // if(fileInput.current.files.length() !==0) {
             event.preventDefault();
             let file = fileInput.current.files[0];
             let newFilename = fileInput.current.files[0].name;
@@ -67,7 +67,7 @@ export default function AddRecipes() {
                     console.log("fail");
                 }
             })
-        }
+        // }
     }
 
 
