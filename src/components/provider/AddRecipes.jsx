@@ -51,9 +51,9 @@ export default function AddRecipes() {
             let file = fileInput.current.files[0];
             let newFilename = fileInput.current.files[0].name;
             const config = {
-                bucketName:
-                region:
-                accessKeyId:
+                bucketName:,
+                region: ,
+                accessKeyId: ,
                 secretAccessKey:
             }
 

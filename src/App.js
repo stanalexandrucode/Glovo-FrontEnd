@@ -10,7 +10,6 @@ import './App.css';
 
 function App() {
   const [auth, setAuth] = useState(false);
-
   const readCookie = () => {
     const user = Cookies.get('name');
     if (user) {

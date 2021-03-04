@@ -14,7 +14,9 @@ h3{
 }
 
 .categories h2{
-    margin-left: 14em;
+    margin: 0 auto;
+    text-align: center;
+    /*margin-left: 14em;*/
     font-family: 'Single Sleeve', sans-serif;
    font-size: 4rem;
     justify-content: space-between;
