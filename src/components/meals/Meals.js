@@ -19,26 +19,26 @@ const Meals = () => {
 
     const fetchData = () => {
         const api = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`
-        const db = `http://localhost:8080/prices`
+        const db = `http://localhost:8080/prices/category/${category}`
 
         const getApiData = Axios.get(api)
         const getPrice = Axios.get(db, {headers: {Authorization: 'Bearer ' + token}})
 
         Axios.all([getApiData, getPrice]).then(
             Axios.spread((...allData) => {
-                const allDataApi = allData[0].data.meals;
-                const getDataPrice = allData[1].data;
+                const dataApi = allData[0].data.meals;
+                const dataPrice = allData[1].data;
 
-                const keys = Object.keys(allDataApi);
-                let mergedData = keys.map(key => {
-                    return {
-                        ...allDataApi[key],
-                        ...getDataPrice[key],
-                        price: getDataPrice[key].price
-                    };
-                })
-                setData(mergedData)
-                setFilterData(mergedData);
+                //>>>>method for creating a state from 2 data apis<<<<<
+
+                for (let i = 0; i < dataApi.length; i++) {
+                    let matching = dataPrice.find((item) => parseInt(item.idMeal) === parseInt(dataApi[i].idMeal))
+                    if (matching) {
+                        dataApi[i].price = matching.price
+                    }
+                }
+                setData(dataApi)
+                setFilterData(dataApi);
             })
         )
     }
@@ -55,7 +55,6 @@ const Meals = () => {
                 Authorization: 'Bearer ' + token,
             },
         }).catch((err) => console.log('Error:', err));
-
     };
 
     const handleAddToCart = async (id, price) => {
@@ -85,11 +84,8 @@ const Meals = () => {
         if (value === "low") {
             setFilterData(data.filter(data => data.price <= 20))
         } else if (value === "medium") {
-
             setFilterData(data.filter(data => data.price <= 40))
-
         } else if (value === "high") {
-
             setFilterData(data)
         }
     }
@@ -123,3 +119,4 @@ const Meals = () => {
 };
 
 export default Meals;
+

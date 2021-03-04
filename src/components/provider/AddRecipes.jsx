@@ -51,10 +51,14 @@ export default function AddRecipes() {
             let file = fileInput.current.files[0];
             let newFilename = fileInput.current.files[0].name;
             const config = {
-                bucketName:,
-                region: ,
-                accessKeyId: ,
-                secretAccessKey:
+                // bucketName:,
+                // region: ,
+                // accessKeyId: ,
+                // secretAccessKey:
+                accessKeyId:'AKIA6BTMWHJPQZNAQDPD',
+secretAccessKey:'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',
+region:'eu-central-1',
+Bucket:'images-team-delivery'
             }
 
             const ReactS3Client = new S3(config);

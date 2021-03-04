@@ -20,9 +20,7 @@ import Recipes from './../provider/Recipes';
 
 
 import Cart from '../cart/Cart';
-import Favorites from "../meals/Favorites";
-
-
+import Favorites from '../meals/Favorites';
 
 const Routes = () => {
   const Auth = useContext(AuthContext);
