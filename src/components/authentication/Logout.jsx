@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function Logout() {
   const history = useHistory();
+  
   const navigateTo = () => {
     Cookies.remove('token');
     Cookies.remove('name');
