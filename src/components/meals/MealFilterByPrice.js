@@ -1,7 +1,7 @@
 import {FormControl, FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
 import React from "react";
 
-const MealFilterByPrice = ({handleChange,event,value}) => {
+const MealFilterByPrice = ({handleChange}) => {
     return (
         <>
             <FormControl style={{backgroundColor: 'white'}}>
