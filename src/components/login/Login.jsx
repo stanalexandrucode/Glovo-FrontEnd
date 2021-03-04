@@ -1,9 +1,10 @@
-import React, {containerRef, useRef} from 'react';
-import {useHistory} from 'react-router-dom';
-import {Button, Card, Form} from 'react-bootstrap';
-import {toast} from 'react-toastify';
-import {axiosSpring} from '../../common/axios';
+import React, { containerRef, useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Form, Button, Card } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import { axiosSpring } from '../../common/axios';
 import Cookies from 'js-cookie';
+import NotFound from '../NotFound';
 import './Style.scss';
 
 const Login = () => {
@@ -30,7 +31,9 @@ const Login = () => {
       toast.success('Hi, ' + res.data.name + ' !');
       Cookies.set('token', res.data.token);
       Cookies.set('name', res.data.name);
-      history.push('/');
+      Cookies.set('id_user_DB', res.data.id);
+      // history.push('/');
+      window.location.href = '/';
     } else {
       toast.error('Login not successful! Please check input data');
     }

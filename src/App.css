@@ -37,7 +37,9 @@ justify-content: center !important;
   font-size: 1.25rem;
   line-height:normal !important;
   white-space: nowrap !important;
- 
+}
+.name{
+    color: #f7f7f7 !important;
 }
 
 .img-logo{

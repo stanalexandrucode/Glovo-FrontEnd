@@ -93,22 +93,25 @@ const Meals = () => {
 
     return (
         <>
-            <MealFilterByPrice handleChange={handleChange}/>
-
-            <div className="category-meals">
-                <h2>{category}</h2>
-                <div className="meals-category">
-                    {filterData.map((meal) => {
-                        return (
-                            <Meal
-                                key={meal.idMeal}
-                                handleAddToFav={handleAdd}
-                                handleAddToCart={handleAddToCart}
-                                {...meal}
-                                price={meal.price}
-                            />
-                        );
-                    })}
+                    <h2 className="title-category">{category}</h2>
+            <div className="meals-category-display">
+                <div className="category-meals" id="meals-category">
+                <div className="meal-sort-by-price">
+                <MealFilterByPrice  handleChange={handleChange}/>
+                </div>
+                    <div className="meals-category">
+                        {filterData.map((meal) => {
+                            return (
+                                <Meal
+                                    key={meal.idMeal}
+                                    handleAddToFav={handleAdd}
+                                    handleAddToCart={handleAddToCart}
+                                    {...meal}
+                                    price={meal.price}
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </>
