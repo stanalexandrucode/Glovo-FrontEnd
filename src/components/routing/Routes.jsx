@@ -15,9 +15,7 @@ import MainPage from './../MainPage';
 import AppLogin from './../login/AppLogin';
 import SearchItems from '../search/SearchItems';
 import Cart from '../cart/Cart';
-import Favorites from "../meals/Favorites";
-
-
+import Favorites from '../meals/Favorites';
 
 const Routes = () => {
   const Auth = useContext(AuthContext);

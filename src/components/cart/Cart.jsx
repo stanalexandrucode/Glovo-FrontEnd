@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+// import { useHistory } from 'react-router-dom';
 import { axios, axiosSpring } from '../../common/axios';
 import Cookies from 'js-cookie';
 import './Details.css';
@@ -10,7 +11,9 @@ import { toast } from 'react-toastify';
 export default function Cart() {
   const [cart, setCart] = useState([]);
   const [mealsApi, setMealsApi] = useState([]);
-  const [total, setTotal] = useState([]);
+  const [total, setTotal] = useState();
+
+  // const history = useHistory();
 
   const getCartMealsDb = async () => {
     const response = await axiosSpring
@@ -22,22 +25,7 @@ export default function Cart() {
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
       setCart(response.data);
-      return response.data;
-    }
-  };
-
-  const updateCart = async (mealId, direction) => {
-    const response = await axiosSpring
-      .put(`/cart/${direction}/${mealId}`, mealId, {
-        headers: {
-          Authorization: 'Bearer ' + Cookies.get('token'),
-        },
-      })
-      .catch((err) => console.log('Error:', err));
-    console.log(response);
-    if (response.status === 200) {
-      // setCart(response.data);
-      return 'ok';
+      // return response.data;
     }
   };
 
@@ -55,13 +43,66 @@ export default function Cart() {
   };
 
   const showMeals = async () => {
-    let meals = await getCartMealsDb();
-    await getMealsApi(meals);
+    await getCartMealsDb();
+    await getMealsApi();
     getTotal();
   };
 
-  const reduction = (mealId) => {
-    const update = updateCart(mealId, 'decrease');
+  // const showMeals = async () => {
+  //   let meals = await getCartMealsDb();
+  //   await getMealsApi(meals);
+  //   getTotal();
+  // };
+
+  const updateCart = async (mealId, direction) => {
+    const response = await axiosSpring
+      .put(`/cart/${direction}/${mealId}`, mealId, {
+        headers: {
+          Authorization: 'Bearer ' + Cookies.get('token'),
+        },
+      })
+      .catch((err) => console.log('Error:', err));
+    console.log(response);
+    if (response.status === 200) {
+      // setCart(response.data);
+      // getTotal();
+      return 'ok';
+    } else {
+      toast.error('Check connection with the server');
+    }
+  };
+
+  const reduction = async (mealId) => {
+    const update = await updateCart(mealId, 'decrease');
+    console.log(update);
+    console.log('jos');
+    console.log(mealId);
+    if (update === 'ok') {
+      console.log('in cart');
+      console.log(cart);
+      const newCart = cart.map((item) => {
+        console.log(typeof mealId);
+        console.log(typeof parseInt(item.mealId));
+
+        // console.log(object);
+        if (parseInt(item.mealId) === mealId) {
+          console.log(item.quantity);
+          item.quantity--;
+          console.log(item.quantity);
+          console.log('in map');
+        }
+        return item;
+      });
+      console.log(newCart);
+      setCart(newCart);
+      showMeals();
+    }
+  };
+
+  const increase = (mealId) => {
+    const update = updateCart(mealId, 'increase');
+    console.log('sus');
+    console.log(mealId);
     // if (update === 'ok') {
     //   const newCart = cart.map((item) => {
     //     item.mealId === mealId ? item.quantity++ : '';
@@ -71,11 +112,32 @@ export default function Cart() {
     // }
   };
 
-  const increase = (mealId) => {
-    const update = updateCart(mealId, 'increase');
-  };
+  // const removeProduct = async (mealId) => {
+
+  //   const response = await axiosSpring
+  //     .delete(`/cart/delete-meal/${mealId}`, {
+  //       headers: {
+  //         Authorization: 'Bearer ' + Cookies.get('token'),
+  //       },
+  //     })
+  //     .catch((err) => console.log('Error:', err));
+  //   if (response.status === 200) {
+  //     toast.success('Delete successful!');
+  //     const newCart = cart.filter((item) => {
+  //       return item.mealId !== mealId;
+  //     });
+  //     console.log('inainte de newcart');
+  //     setCart(newCart);
+  //     getTotal();
+  //     console.log('dupa total 121');
+  //   } else {
+  //     toast.error('Not Deleted');
+  //   }
+  // };
 
   const removeProduct = async (mealId) => {
+    const newCart = cart.filter((item) => item.mealId !== mealId);
+    // setCart(newCart);
     const response = await axiosSpring
       .delete(`/cart/delete-meal/${mealId}`, {
         headers: {
@@ -85,12 +147,13 @@ export default function Cart() {
       .catch((err) => console.log('Error:', err));
     if (response.status === 200) {
       toast.success('Delete successful!');
-      const newCart = cart.filter((item) => {
-        return item.mealId !== mealId;
-      });
+
       setCart(newCart);
+
+      window.location.reload(); //f urat trebuie rezolvata mai elegant
+    } else {
+      toast.error('Not Deleted');
     }
-    toast.error('Not Deleted');
   };
 
   const getTotal = () => {
@@ -98,6 +161,8 @@ export default function Cart() {
       .map((cartItem) => cartItem.price * cartItem.quantity)
       .reduce((a, b) => a + b, 0);
     setTotal(sum);
+    console.log('suma in getTotal');
+    console.log(sum);
   };
 
   useEffect(() => {
@@ -105,7 +170,7 @@ export default function Cart() {
   }, [total]);
 
   if (cart.length === 0) {
-    return <h2 style={{ textAlign: 'center' }}>No Product</h2>;
+    return <h2 style={{ textAlign: 'center' }}>The cart is empty</h2>;
   } else {
     return (
       <section className="cart-box">
@@ -125,7 +190,6 @@ export default function Cart() {
                     })[0].quantity}
                 </span>
               </div>
-
               <p>
                 Category: <b>{item.strCategory}</b>
               </p>
