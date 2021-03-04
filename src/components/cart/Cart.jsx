@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { axios, axiosSpring } from '../../common/axios';
 import Cookies from 'js-cookie';
 import './Details.css';
@@ -13,8 +12,6 @@ export default function Cart() {
   const [mealsApi, setMealsApi] = useState([]);
   const [total, setTotal] = useState();
 
-  // const history = useHistory();
-
   const getCartMealsDb = async () => {
     const response = await axiosSpring
       .get('/cart', {
@@ -25,7 +22,6 @@ export default function Cart() {
       .catch((err) => console.log('Error:', err));
     if (response && response.data) {
       setCart(response.data);
-      // return response.data;
     }
   };
 
@@ -48,12 +44,6 @@ export default function Cart() {
     getTotal();
   };
 
-  // const showMeals = async () => {
-  //   let meals = await getCartMealsDb();
-  //   await getMealsApi(meals);
-  //   getTotal();
-  // };
-
   const updateCart = async (mealId, direction) => {
     const response = await axiosSpring
       .put(`/cart/${direction}/${mealId}`, mealId, {
@@ -62,10 +52,7 @@ export default function Cart() {
         },
       })
       .catch((err) => console.log('Error:', err));
-    console.log(response);
     if (response.status === 200) {
-      // setCart(response.data);
-      // getTotal();
       return 'ok';
     } else {
       toast.error('Check connection with the server');
@@ -74,70 +61,35 @@ export default function Cart() {
 
   const reduction = async (mealId) => {
     const update = await updateCart(mealId, 'decrease');
-    console.log(update);
-    console.log('jos');
-    console.log(mealId);
     if (update === 'ok') {
-      console.log('in cart');
-      console.log(cart);
       const newCart = cart.map((item) => {
-        console.log(typeof mealId);
-        console.log(typeof parseInt(item.mealId));
-
-        // console.log(object);
         if (parseInt(item.mealId) === mealId) {
-          console.log(item.quantity);
+          //de rezolvat situatia unui produs cu cantitate 0
           item.quantity--;
-          console.log(item.quantity);
-          console.log('in map');
         }
         return item;
       });
-      console.log(newCart);
       setCart(newCart);
       showMeals();
     }
   };
 
-  const increase = (mealId) => {
-    const update = updateCart(mealId, 'increase');
-    console.log('sus');
-    console.log(mealId);
-    // if (update === 'ok') {
-    //   const newCart = cart.map((item) => {
-    //     item.mealId === mealId ? item.quantity++ : '';
-    //   });
-    //   setCart(newCart);
-    //   getTotal();
-    // }
+  const increase = async (mealId) => {
+    const update = await updateCart(mealId, 'increase');
+    if (update === 'ok') {
+      const newCart = cart.map((item) => {
+        if (parseInt(item.mealId) === mealId) {
+          item.quantity++;
+        }
+        return item;
+      });
+      setCart(newCart);
+      showMeals();
+    }
   };
-
-  // const removeProduct = async (mealId) => {
-
-  //   const response = await axiosSpring
-  //     .delete(`/cart/delete-meal/${mealId}`, {
-  //       headers: {
-  //         Authorization: 'Bearer ' + Cookies.get('token'),
-  //       },
-  //     })
-  //     .catch((err) => console.log('Error:', err));
-  //   if (response.status === 200) {
-  //     toast.success('Delete successful!');
-  //     const newCart = cart.filter((item) => {
-  //       return item.mealId !== mealId;
-  //     });
-  //     console.log('inainte de newcart');
-  //     setCart(newCart);
-  //     getTotal();
-  //     console.log('dupa total 121');
-  //   } else {
-  //     toast.error('Not Deleted');
-  //   }
-  // };
 
   const removeProduct = async (mealId) => {
     const newCart = cart.filter((item) => item.mealId !== mealId);
-    // setCart(newCart);
     const response = await axiosSpring
       .delete(`/cart/delete-meal/${mealId}`, {
         headers: {
@@ -146,13 +98,8 @@ export default function Cart() {
       })
       .catch((err) => console.log('Error:', err));
     if (response.status === 200) {
-      toast.success('Delete successful!');
-
       setCart(newCart);
-
       window.location.reload(); //f urat trebuie rezolvata mai elegant
-    } else {
-      toast.error('Not Deleted');
     }
   };
 
@@ -161,8 +108,6 @@ export default function Cart() {
       .map((cartItem) => cartItem.price * cartItem.quantity)
       .reduce((a, b) => a + b, 0);
     setTotal(sum);
-    console.log('suma in getTotal');
-    console.log(sum);
   };
 
   useEffect(() => {
