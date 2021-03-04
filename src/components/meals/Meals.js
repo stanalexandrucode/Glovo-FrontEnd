@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { axios, axiosSpring } from '../../common/axios';
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {axios, axiosSpring} from '../../common/axios';
 import Meal from './Meal';
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 import Cookies from 'js-cookie';
-import Axios from 'axios';
-import MealFilterByPrice from './MealFilterByPrice';
+import Axios from "axios";
+import MealFilterByPrice from "./MealFilterByPrice"
 
 const Meals = () => {
 
@@ -29,16 +29,14 @@ const Meals = () => {
                 const dataApi = allData[0].data.meals;
                 const dataPrice = allData[1].data;
 
-                //>>>>Cipi method for creating a state from 2 states<<<<<
+                //>>>>method for creating a state from 2 data apis<<<<<
 
                 for (let i = 0; i < dataApi.length; i++) {
-                    let matching = dataPrice.find((item) => item.idMeal == dataApi[i].idMeal)
+                    let matching = dataPrice.find((item) => parseInt(item.idMeal) === parseInt(dataApi[i].idMeal))
                     if (matching) {
                         dataApi[i].price = matching.price
                     }
                 }
-                console.log("data", dataApi);
-
                 setData(dataApi)
                 setFilterData(dataApi);
             })
@@ -91,42 +89,30 @@ const Meals = () => {
             setFilterData(data)
         }
     }
-    // setCart({ id: id, price: price });
-  };
 
-  const handleChange = (e) => {
-    let value = e.target.value;
-    if (value === 'low') {
-      setFilterData(data.filter((data) => data.price <= 20));
-    } else if (value === 'medium') {
-      setFilterData(data.filter((data) => data.price <= 40));
-    } else if (value === 'high') {
-      setFilterData(data);
-    }
-  };
 
-  return (
-    <>
-      <MealFilterByPrice handleChange={handleChange} />
+    return (
+        <>
+            <MealFilterByPrice handleChange={handleChange}/>
 
-      <div className="category-meals">
-        <h2>{category}</h2>
-        <div className="meals-category">
-          {filterData.map((meal) => {
-            return (
-              <Meal
-                key={meal.idMeal}
-                handleAddToFav={handleAdd}
-                handleAddToCart={handleAddToCart}
-                {...meal}
-                price={meal.price}
-              />
-            );
-          })}
-        </div>
-      </div>
-    </>
-  );
+            <div className="category-meals">
+                <h2>{category}</h2>
+                <div className="meals-category">
+                    {filterData.map((meal) => {
+                        return (
+                            <Meal
+                                key={meal.idMeal}
+                                handleAddToFav={handleAdd}
+                                handleAddToCart={handleAddToCart}
+                                {...meal}
+                                price={meal.price}
+                            />
+                        );
+                    })}
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default Meals;
