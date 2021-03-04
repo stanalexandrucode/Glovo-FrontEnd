@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { axios, axiosSpring } from '../../common/axios';
-import Cookies from 'js-cookie';
+import Cookies from '../../../node_modules/js-cookie';
 import './Details.css';
 import './Cart.css';
 import { toast } from 'react-toastify';

@@ -1,5 +1,5 @@
 import useAsync from "../../getData/misc/useAsync";
-import Cookies from "js-cookie";
+import Cookies from '../../../node_modules/js-cookie';
 import {useParams} from "react-router-dom";
 import {useState} from "react";
 import axios from "axios";

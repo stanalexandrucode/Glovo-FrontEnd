@@ -1,5 +1,5 @@
 import React from 'react';
-import Cookies from 'js-cookie';
+import Cookies from '../../../node_modules/js-cookie';
 import { useHistory } from 'react-router-dom';
 import './Register.css';
 

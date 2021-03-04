@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Form, Button, Card } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { axiosSpring } from '../../common/axios';
-import Cookies from 'js-cookie';
+import Cookies from '../../../node_modules/js-cookie';
 import NotFound from '../NotFound';
 import './Style.scss';
 

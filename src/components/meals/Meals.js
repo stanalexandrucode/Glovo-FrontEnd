@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import {axios, axiosSpring} from '../../common/axios';
 import Meal from './Meal';
 import {toast} from 'react-toastify';
-import Cookies from 'js-cookie';
+import Cookies from '../../../node_modules/js-cookie';
 import Axios from "axios";
 import MealFilterByPrice from "./MealFilterByPrice"
 

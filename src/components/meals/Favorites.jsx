@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {axios} from '../../common/axios';
 import FavoriteMeal from './FavoriteMeal';
-import Cookies from 'js-cookie';
+import Cookies from '../../../node_modules/js-cookie';
 import Loading from "../loading/Loading";
 import {Redirect} from "react-router-dom";
 
