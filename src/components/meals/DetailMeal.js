@@ -1,102 +1,107 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { axios, axiosSpring } from '../../common/axios';
-import Loading from '../loading/Loading';
-import Cookies from 'js-cookie';
+import useAsync from "../../getData/misc/useAsync";
+import Cookies from '../../../node_modules/js-cookie';
+import {useParams} from "react-router-dom";
+import {useState} from "react";
+import axios from "axios";
+
 
 const DetailMeal = () => {
-  const [loading, setLoading] = useState(true);
-  const [detailMealApi, setDetailMealApi] = useState();
-  const [readMore, setReadMore] = useState(false);
-  const [mealPrices, setMealPrices] = useState();
+        let token = Cookies.get('token');
+        const param = useParams();
 
-  const param = useParams();
+        const [readMore, setReadMore] = useState(false);
 
-  const getDetailMealApi = async () => {
-    setLoading(true);
-    const response = await axios
-      .get(`/lookup.php?i=${param.id}`)
-      .catch((err) => console.log('Error:', err));
-    if (response && response.data) {
-      setDetailMealApi(response.data.meals[0]);
-      setLoading(false);
+
+        const state = useAsync(async () => {
+            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${param.id}`);
+            const result = await response.json();
+            return result.meals[0]
+        }, []);
+
+        const price = useAsync(async () => {
+            const response = await fetch(`http://localhost:8080/prices/id/${param.id}`, {
+                    method: "GET",
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
+                }
+            );
+            return await response.json()
+        }, []);
+
+        const handleAdd = async () => {
+            await axios({
+                method: 'post',
+                url: 'http://localhost:8080/favorite/addMeal',
+                data: {mealId: param.id},
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            }).catch((err) => console.log('Error:', err));
+
+        }
+
+        return (
+            <>
+                {state.loading
+                    ? <div>Loading...</div>
+                    : state.error
+                        ? <div>Error: {state.error.message}</div>
+                        : <div className="detail-mail-container">
+                            <div className="header-detailMeal">
+                                <div className="text-name-detail-meal">
+                                    <h3>{state.value.strMeal}</h3>
+                                </div>
+                                <div className="detailMeal-page">
+                                    <div>
+                                        <img
+                                            src={state.value.strMealThumb}
+                                            className="photo"
+                                            alt={state.value.strMeal}
+                                        />
+                                    </div>
+                                    <div>
+                                        <h5>Instructions:</h5>
+                                        <p className="description-meal">
+                                            {readMore
+                                                ? state.value.strInstructions
+                                                : `${state.value.strInstructions.substring(0, 200)}...`}
+                                            <button
+                                                className="showBtn"
+                                                onClick={() => setReadMore(!readMore)}
+                                            >
+                                                {readMore ? 'show less' : 'read more'}
+                                            </button>
+                                        </p>
+                                        <h5>Area food: {state.value.strArea}</h5>
+
+                                        <div className="price">
+                                            {price.loading
+                                                ? <div>Loading...</div>
+                                                : price.error
+                                                    ? <div>Error: {price.error.message}</div>
+                                                    : <div>Price {price.value}$</div>
+                                            }
+
+                                        </div>
+                                        <div>
+                                            <button className="btn-detail-meal" onClick={handleAdd}>
+                                                {' '}
+                                                add
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                }
+
+
+            </>
+
+        );
     }
-  };
-
-  const getMealPrices = async () => {
-    const response = await axiosSpring
-      .get('/prices')
-      .catch((err) => console.log('Error:', err));
-    if (response && response.data) {
-      setMealPrices(response.data);
-    }
-  };
-
-  const handleAdd = async () => {
-    await axiosSpring.post('/favorites', {
-      id: `${detailMealApi.idMeal}`,
-      price: `${prices}`,
-    });
-  };
-
-  useEffect(() => {
-    getDetailMealApi();
-    getMealPrices();
-  }, []);
-
-  if (loading) {
-    return (
-      <main>
-        <Loading />
-      </main>
-    );
-  }
-  let prices = mealPrices.filter((price) => {
-    return price.id === parseInt(detailMealApi.idMeal);
-  })[0].price;
-
-  return (
-    <div className="detail-mail-container">
-      <div className="header-detailMeal">
-        <div className="text-name-detail-meal">
-          <h3>{detailMealApi.strMeal}</h3>
-        </div>
-        <div className="detailMeal-page">
-          <div>
-            <img
-              src={detailMealApi.strMealThumb}
-              className="photo"
-              alt={detailMealApi.strMeal}
-            />
-          </div>
-          <div>
-            <h5>Instructions:</h5>
-
-            <p className="description-meal">
-              {readMore
-                ? detailMealApi.strInstructions
-                : `${detailMealApi.strInstructions.substring(0, 200)}...`}
-              <button
-                className="showBtn"
-                onClick={() => setReadMore(!readMore)}
-              >
-                {readMore ? 'show less' : 'read more'}
-              </button>
-            </p>
-            <h5>Area food: {detailMealApi.strArea}</h5>
-            <p className="price">Price {prices}$</p>
-
-            <div>
-              <button className="btn-detail-meal" onClick={handleAdd}>
-                {' '}
-                add
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
+;
 export default DetailMeal;

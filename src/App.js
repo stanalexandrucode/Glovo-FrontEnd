@@ -4,13 +4,12 @@ import Navbar from './components/routing/Navbar';
 import { AuthContext } from './components/authentication/AuthContext';
 import { useState } from 'react';
 import Routes from './components/routing/Routes';
-import Cookies from 'js-cookie';
+import Cookies from './../node_modules/js-cookie';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 function App() {
   const [auth, setAuth] = useState(false);
-
   const readCookie = () => {
     const user = Cookies.get('name');
     if (user) {

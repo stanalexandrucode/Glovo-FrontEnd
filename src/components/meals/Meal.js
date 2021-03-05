@@ -15,10 +15,12 @@ const Meal = ({idMeal, strMeal, strMealThumb, price, handleAddToFav, handleAddTo
                 </div>
                 <div>
                     <div className="price-add-meal">
+                        <Link to={`/meal/${idMeal}`}>
                         <img className='photo' src={strMealThumb} alt={strMeal}/>
-                        <p className="price">${price}</p>
+                        </Link>
+                        <p className="price">Price ${price}</p>
                         <div>
-                            <button className="btn-meal" onClick={() => handleAddToFav(idMeal, price)}> add</button>
+                            <button className="btn-meal" onClick={() => handleAddToFav(idMeal, price)}> add fav</button>
                             <button className="btn-addCart" onClick={() => handleAddToCart(idMeal, price)}>Add to cart</button>
                         </div>
                     </div>

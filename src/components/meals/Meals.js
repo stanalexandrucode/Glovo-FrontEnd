@@ -1,122 +1,122 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { axios, axiosSpring } from '../../common/axios';
-import Loading from '../loading/Loading';
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {axios, axiosSpring} from '../../common/axios';
 import Meal from './Meal';
-import { toast } from 'react-toastify';
-import Cookies from 'js-cookie';
+import {toast} from 'react-toastify';
+import Cookies from '../../../node_modules/js-cookie';
+import Axios from "axios";
+import MealFilterByPrice from "./MealFilterByPrice"
 
 const Meals = () => {
-  const [loading, setLoading] = useState(true);
-  const [mealsApi, setMealsApi] = useState();
-  const [mealPrices, setMealPrices] = useState();
-  const [favorite, setFavorite] = useState();
-  let token = Cookies.get('token');
 
-  const param = useParams();
-  const category = param.strCategory;
+    let token = Cookies.get('token');
+    const param = useParams();
+    const category = param.strCategory;
 
-  const getMealsApi = async () => {
-    let response = await axios
-      .get(`/filter.php?c=${category}`)
-      .catch((err) => console.log('Error:', err));
-    if (response && response.data) {
-      setMealsApi(response.data.meals);
-    }
-  };
+    const [data, setData] = useState([]);
+    const [filterData, setFilterData] = useState([]);
 
-  const getMealPrices = async () => {
-    let response = await axios({
-      method: 'get',
-      url: 'http://localhost:8080/prices',
-      headers: {
-        Authorization: 'Bearer ' + token,
-      },
-    }).catch((err) => console.log('Error:', err));
-    if (response && response.data) {
-      setMealPrices(response.data);
-    }
-  };
 
-  const handleAdd = async (id, price) => {
-    let res = await axios({
-      method: 'post',
-      url: 'http://localhost:8080/favorite/addMeal',
-      data: { mealId: id, price: price },
-      headers: {
-        Authorization: 'Bearer ' + token,
-      },
-    }).catch((err) => console.log('Error:', err));
-    // if (res.status !== 200) {
-    // }
-    setFavorite({ mealId: id, price: price });
-  };
+    const fetchData = () => {
+        const api = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`
+        const db = `http://localhost:8080/prices/category/${category}`
 
-  const handleAddToCart = async (id, price) => {
-    const object = {
-      mealId: `${id}`,
-      price: `${price}`,
-      quantity: 1,
-    };
-    let res = await axiosSpring
-      .post('/cart/add-meal', object, {
-        headers: {
-          Authorization: 'Bearer ' + Cookies.get('token'),
-        },
-      })
-      .catch(() => {
-        toast.error();
-      });
+        const getApiData = Axios.get(api)
+        const getPrice = Axios.get(db, {headers: {Authorization: 'Bearer ' + token}})
 
-    if (res.status === 201 && res.data) {
-      toast.success('Add successful in Meals!');
-    }
-    // setCart({ id: id, price: price });
-  };
+        Axios.all([getApiData, getPrice]).then(
+            Axios.spread((...allData) => {
+                const dataApi = allData[0].data.meals;
+                const dataPrice = allData[1].data;
 
-  const matchingPrices = async () => {
-    setLoading(true);
-    await getMealsApi();
-    await getMealPrices();
-    setLoading(false);
-  };
+                //>>>>method for creating a state from 2 data apis<<<<<
 
-  useEffect(() => {
-    matchingPrices();
-  }, []);
-
-  if (loading) {
-    return (
-      <main>
-        <Loading />
-      </main>
-    );
-  }
-
-  return (
-    <>
-      <div className="category-meals">
-        <h2>{category}</h2>
-        <div className="meals-category">
-          {mealsApi.map((meal) => {
-            return (
-              <Meal
-                key={meal.idMeal}
-                handleAddToFav={handleAdd}
-                handleAddToCart={handleAddToCart}
-                {...meal}
-                price={
-                  mealPrices.filter((price) => {
-                    return price.id === parseInt(meal.idMeal);
-                  })[0].price
+                for (let i = 0; i < dataApi.length; i++) {
+                    let matching = dataPrice.find((item) => parseInt(item.idMeal) === parseInt(dataApi[i].idMeal))
+                    if (matching) {
+                        dataApi[i].price = matching.price
+                    }
                 }
-              />
-            );
-          })}
-        </div>
-      </div>
-    </>
-  );
+                setData(dataApi)
+                setFilterData(dataApi);
+            })
+        )
+    }
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    const handleAdd = async (id, price) => {
+        await axios({
+            method: 'post',
+            url: 'http://localhost:8080/favorite/addMeal',
+            data: {mealId: id, price: price},
+            headers: {
+                Authorization: 'Bearer ' + token,
+            },
+        }).catch((err) => console.log('Error:', err));
+    };
+
+    const handleAddToCart = async (id, price) => {
+        const object = {
+            mealId: `${id}`,
+            price: `${price}`,
+            quantity: 1,
+        };
+        let res = await axiosSpring
+            .post('/cart/add-meal', object, {
+                headers: {
+                    Authorization: 'Bearer ' + Cookies.get('token'),
+                },
+            })
+            .catch(() => {
+                toast.error();
+            });
+
+        if (res.status === 201 && res.data) {
+            toast.success('Add successful in Meals!');
+        }
+        // setCart({ id: id, price: price });
+    };
+
+    const handleChange = (e) => {
+        let value = e.target.value;
+        if (value === "low") {
+            setFilterData(data.filter(data => data.price <= 20))
+        } else if (value === "medium") {
+            setFilterData(data.filter(data => data.price <= 40))
+        } else if (value === "high") {
+            setFilterData(data)
+        }
+    }
+
+
+    return (
+        <>
+                    <h2 className="title-category">{category}</h2>
+            <div className="meals-category-display">
+                <div className="category-meals" id="meals-category">
+                <div className="meal-sort-by-price">
+                <MealFilterByPrice  handleChange={handleChange}/>
+                </div>
+                    <div className="meals-category">
+                        {filterData.map((meal) => {
+                            return (
+                                <Meal
+                                    key={meal.idMeal}
+                                    handleAddToFav={handleAdd}
+                                    handleAddToCart={handleAddToCart}
+                                    {...meal}
+                                    price={meal.price}
+                                />
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default Meals;
+

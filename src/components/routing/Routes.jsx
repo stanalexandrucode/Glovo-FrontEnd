@@ -4,7 +4,6 @@ import { AuthContext } from '../authentication/AuthContext';
 import { Route } from 'react-router-dom';
 import NotFound from '../NotFound';
 import Categories from '../category/Categories';
-import Favorites from '../meals/Favorites';
 import Meals from '../meals/Meals';
 import DetailMeal from '../meals/DetailMeal';
 import Login from '../login/Login';
@@ -15,8 +14,10 @@ import Logout from '../authentication/Logout';
 import MainPage from './../MainPage';
 import AppLogin from './../login/AppLogin';
 import SearchItems from '../search/SearchItems';
+import AddRecipes from './../recipe/AddRecipes';
+import Recipes from './../recipe/Recipes';
 import Cart from '../cart/Cart';
-
+import Favorites from '../meals/Favorites';
 
 const Routes = () => {
   const Auth = useContext(AuthContext);
@@ -45,6 +46,8 @@ const Routes = () => {
         <Route path="/logout" component={Logout} />
         <Route path="/favorites" component={Favorites} />
         <Route path="/categories" component={Categories} />
+        <Route path="/recipes/all" component={Recipes} />
+        <Route path="/recipes/addRecipe" component={AddRecipes} />
         <Route path="/not-found" component={NotFound} />
         <Route path="/" exact component={MainPage} />
         <Redirect from="/" exact to="/categories" />

@@ -1,10 +1,12 @@
-import React, { containerRef, useRef } from 'react';
+import React, { containerRef, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Form, Button, Card } from 'react-bootstrap';
 import { axiosSpring } from '../../common/axios';
 import './Style.scss';
 
 export default function Register() {
+  const [error, setError] = useState('');
+  const [provider, setProvider] = useState('');
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
@@ -26,6 +28,7 @@ export default function Register() {
       lastName: lastNameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
+      provider: provider
     };
 
     let res = await axiosSpring.post('/register', object);
@@ -76,6 +79,15 @@ export default function Register() {
           </Button>
         </Form>
       </Card.Body>
+      <div>
+        <div className='checkbox'>Are you provider? </div>
+        <input
+          type='checkbox'
+          onClick={() => {
+            provider === true ? setProvider(false) : setProvider(true);
+          }}
+        />
+      </div>
     </Card>
   );
 }
