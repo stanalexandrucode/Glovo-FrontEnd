@@ -19,7 +19,7 @@ const Meals = () => {
 
     const fetchData = () => {
         const api = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`
-        const db = `http://localhost:8080/prices/category/${category}`
+        const db = `https://tt-glovo.herokuapp.com/prices/category/${category}`
 
         const getApiData = Axios.get(api)
         const getPrice = Axios.get(db, {headers: {Authorization: 'Bearer ' + token}})
@@ -49,7 +49,7 @@ const Meals = () => {
     const handleAdd = async (id, price) => {
         await axios({
             method: 'post',
-            url: 'http://localhost:8080/favorite/addMeal',
+            url: 'https://tt-glovo.herokuapp.com/favorite/addMeal',
             data: {mealId: id, price: price},
             headers: {
                 Authorization: 'Bearer ' + token,

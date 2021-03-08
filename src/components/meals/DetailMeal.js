@@ -19,7 +19,7 @@ const DetailMeal = () => {
         }, []);
 
         const price = useAsync(async () => {
-            const response = await fetch(`http://localhost:8080/prices/id/${param.id}`, {
+            const response = await fetch(`https://tt-glovo.herokuapp.com/prices/id/${param.id}`, {
                     method: "GET",
                     headers: {
                         Authorization: 'Bearer ' + token
@@ -32,7 +32,7 @@ const DetailMeal = () => {
         const handleAdd = async () => {
             await axios({
                 method: 'post',
-                url: 'http://localhost:8080/favorite/addMeal',
+                url: 'https://tt-glovo.herokuapp.com/favorite/addMeal',
                 data: {mealId: param.id},
                 headers: {
                     Authorization: 'Bearer ' + token

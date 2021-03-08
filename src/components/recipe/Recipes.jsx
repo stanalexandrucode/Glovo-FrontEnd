@@ -41,7 +41,7 @@ export default function Recipes() {
         let removeRecipeById = recipes.filter((recipe) => recipe.id !== id);
         let res = await axios({
             method: 'delete',
-            url: `http://localhost:8080/recipes/${id}`,
+            url: `https://tt-glovo.herokuapp.com/recipes/${id}`,
         }).catch((err) => console.log("Error ", err))
 
         if (res.status === 200) {

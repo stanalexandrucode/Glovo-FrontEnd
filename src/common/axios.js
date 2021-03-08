@@ -5,7 +5,7 @@ export const axios = Axios.create({
 });
 
 export const axiosSpring = Axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://tt-glovo.herokuapp.com",
 });
 
 

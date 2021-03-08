@@ -16,7 +16,7 @@ export default function Favorites() {
         setLoading(true)
         let response = await axios({
             method: 'get',
-            url: 'http://localhost:8080/favorite',
+            url: 'https://tt-glovo.herokuapp.com/favorite',
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -60,7 +60,7 @@ export default function Favorites() {
         let removeMealDbById = mealsApi.filter((meal) => meal.idMeal !== id);
         await axios({
             method: 'delete',
-            url: `http://localhost:8080/favorite/${id}`,
+            url: `https://tt-glovo.herokuapp.com/favorite/${id}`,
             headers: {
                 Authorization: 'Bearer ' + token
             }
