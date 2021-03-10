@@ -1,31 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { axiosSpring } from "../../common/axios";
+import React from "react";
+import {Link} from "react-router-dom";
+import "./Meal.css"
 
-const Meal = ({ idMeal, strMeal, strMealThumb }) => {
-  const [addedToFav, setAddedToFav] = useState(false);
+const Meal = ({idMeal, strMeal, strMealThumb, price, handleAddToFav, handleAddToCart}) => {
 
-  useEffect(() => {
-    console.log("schimb culorile cu style");
-  }, [addedToFav]);
 
-  const handleAddToFavorites = async () => {
-    const object = { name: `${strMeal}`, id: `${idMeal}`, thumbnail: `${strMealThumb}` };
-    let res = await axiosSpring.post("/favorites", object);
-    if (res.status === 200) {
-      setAddedToFav(true);
-      console.log("fac butonul rosu - addedToFav se schimba in true");
-    }
-  };
+    return (
+        <>
+            <div className='meal'>
+                <div >
+                    <Link to={`/meal/${idMeal}`}>
+                        <h3 className="text-meal">{strMeal}</h3>
+                    </Link>
+                </div>
+                <div>
+                    <div className="price-add-meal">
+                        <Link to={`/meal/${idMeal}`}>
+                        <img className='photo' src={strMealThumb} alt={strMeal}/>
+                        </Link>
+                        <p className="price">Price ${price}</p>
+                        <div>
+                            <button className="btn-meal" onClick={() => handleAddToFav(idMeal, price)}> add fav</button>
+                            <button className="btn-addCart" onClick={() => handleAddToCart(idMeal, price)}>Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  return (
-    <>
-      <h3>{strMeal}</h3>
-      <img src={strMealThumb} alt={strMeal} />
-      <button className="btn-primary" onClick={handleAddToFavorites}>
-        Add
-      </button>
-    </>
-  );
+        </>
+    );
 };
 
 export default Meal;

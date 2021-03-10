@@ -1,31 +1,37 @@
-import React from "react";
-import {Redirect, Route, Switch} from "react-router-dom";
-import {ToastContainer} from "react-toastify";
-import NotFound from "./components/NotFound";
-import NavBar from "./components/Navbar";
-import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
-import Categories from "./components/category/Categories";
-import Meals from "./components/meals/Meals";
-import Favorites from './components/Favorites';
+import React, { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+import Navbar from './components/routing/Navbar';
+import { AuthContext } from './components/authentication/AuthContext';
+import { useState } from 'react';
+import Routes from './components/routing/Routes';
+import Cookies from './../node_modules/js-cookie';
+import 'react-toastify/dist/ReactToastify.css';
+import './App.css';
 
 function App() {
-    return (
-        <React.Fragment>
-            <ToastContainer/>
-            <NavBar/>
-            <main className="container">
-                <Switch>
-                    <Route path="/not-found" component={NotFound}/>
-                    <Route path="/categories" component={Categories}/>
-                    <Route path="/favorites" component={Favorites}/>
-                    <Route path="/meals/:strCategory" component={Meals} />
-                    <Redirect from="/" exact to="/categories"/>
-                    <Redirect to="/not-found"/>
-                </Switch>
-            </main>
-        </React.Fragment>
-    );
+  const [auth, setAuth] = useState(false);
+  const readCookie = () => {
+    const user = Cookies.get('name');
+    if (user) {
+      setAuth(true);
+    }
+  };
+
+  useEffect(() => {
+    readCookie();
+  }, []);
+
+  return (
+    <React.Fragment>
+      <ToastContainer />
+      <AuthContext.Provider value={{ authorization: [auth, setAuth] }}>
+        <Navbar auth={auth} />
+        <main>
+          <Routes />
+        </main>
+      </AuthContext.Provider>
+    </React.Fragment>
+  );
 }
 
 export default App;
