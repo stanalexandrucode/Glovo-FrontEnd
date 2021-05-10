@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@font-face {
+  font-family: 'Single Sleeve';
+  src: local('Single Sleeve'), url(./fonts/sing.ttf) format('truetype');
+}
+
+.showBtn {
+  /* background: var(--clr-primary-7); */
+
+  border-radius: var(--radius);
+  text-transform: capitalize;
+  font-size: .7rem;
+  padding: 0.2em;
+  
+
+  /* letter-spacing: var(--spacing); */
+
+  cursor: pointer;
+  /*margin-top: 2rem;*/
+  /*font-size: 1.2rem;*/
+}
+h5,
+h2 {
+  padding: 17px;
+  color: rgb(229, 238, 238);
+  font-family: 'Segoe UI', sans-serif;
+}

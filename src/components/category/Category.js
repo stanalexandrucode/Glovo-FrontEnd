@@ -1,20 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import "./Category.css";
 
 const Category = ({
-  idCategory,
+
   strCategory,
   strCategoryThumb,
-  strCategoryDescription,
+
 }) => {
   return (
-    <div>
+    <div className="card-category">
       <Link className="" to={`/meals/${strCategory}`} >
-        <h3>{strCategory}</h3>
+        <h3 className="text-card-category">{strCategory}</h3>
       </Link>
-      <img src={strCategoryThumb} alt={strCategory} />
-      <p>Description {strCategoryDescription}</p>
+      <img className="photo-category" src={strCategoryThumb} alt={strCategory} />
     </div>
   );
 };
