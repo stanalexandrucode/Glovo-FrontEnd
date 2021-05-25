@@ -24,18 +24,17 @@ const Login = () => {
         };
 
         let res = await axiosSpring.post('/login', object).catch(() => {
-            window.location.href = '/';
-            toast.error("Username or Password mismatch");
-        });
 
-        if (res.status === 200 && res.data) {
+        });
+        if (!res) {
+            toast.error("Username or Password mismatch");
+            history.push('/');
+        } else {
             toast.success('Hi, ' + res.data.name + ' !');
             Cookies.set('token', res.data.token);
             Cookies.set('name', res.data.name);
             Cookies.set('id_user_DB', res.data.id);
             history.push('/');
-
-        } else {
 
         }
     };
