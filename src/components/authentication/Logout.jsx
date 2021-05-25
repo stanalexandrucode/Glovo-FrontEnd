@@ -9,6 +9,7 @@ export default function Logout() {
   const handleLogout = () => {
     Cookies.remove('token');
     Cookies.remove('name');
+    Cookies.remove('auth');
     Cookies.remove('id_user_DB');
     window.location.href = '/';
     // history.push('/');

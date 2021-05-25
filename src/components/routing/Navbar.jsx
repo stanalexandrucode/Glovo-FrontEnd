@@ -5,25 +5,8 @@ import Cookies from 'js-cookie';
 import {AuthContext} from "../authentication/AuthContext";
 
 const Navbar = () => {
-    // const [loggedUser, setLoggedUser] = useState('empty');
-    const {auth} = useContext(AuthContext);
-
-    // console.log('object');
-    // const readCookie = () => {
-    //   const user = Cookies.get('name');
-    //   if (user) {
-    //     setLoggedUser(user);
-    //   }
-    // };
-    //
-    // useEffect(() => {
-    //     // readCookie();
-    // }, [loggedUser]);
-
-    useEffect(() => {
-        // console.log(AuthContext(auth));
-        console.log(auth)
-    }, []);
+    // const {auth} = useContext(AuthContext);
+    const auth = Cookies.get('auth')
 
     return (
         <nav className="navbar">
