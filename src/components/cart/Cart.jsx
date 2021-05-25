@@ -120,20 +120,12 @@ export default function Cart() {
     return (
       <section className="cart-box">
         {mealsApi.map((item) => (
-          <div className="details cart" key={item.idMeal}>
-            <div style={{ color: 'red' }}>{}</div>
+          <div className="details cart" key={item.idMeal} >
             <img src={item.strMealThumb} alt="" />
             <div className="box">
               <div className="row">
                 <h2>{item.strMeal}</h2>
-                <span>
-                  {cart.filter((cartItem) => {
-                    return cartItem.mealId == item.idMeal;
-                  })[0].price *
-                    cart.filter((cartItem) => {
-                      return cartItem.mealId == item.idMeal;
-                    })[0].quantity}
-                </span>
+
               </div>
               <p>
                 Category: <b>{item.strCategory}</b>
@@ -141,7 +133,9 @@ export default function Cart() {
               <p>
                 Cuisine: <b>{item.strArea}</b>
               </p>
+
               <div className="amount">
+
                 <button
                   className="count"
                   onClick={() => reduction(item.idMeal)}
@@ -160,7 +154,16 @@ export default function Cart() {
                   {' '}
                   +{' '}
                 </button>
+                <span className="total_price_quantity">
+                 ${cart.filter((cartItem) => {
+                    return cartItem.mealId == item.idMeal;
+                  })[0].price *
+                    cart.filter((cartItem) => {
+                      return cartItem.mealId == item.idMeal;
+                    })[0].quantity}
+                </span>
               </div>
+
             </div>
             <div className="delete" onClick={() => removeProduct(item.idMeal)}>
               X
@@ -170,7 +173,7 @@ export default function Cart() {
         <div className="details cart">
           <div className="total">
             <Link to="/payment">Payment</Link>
-            <h3>Total: ${total}</h3>
+            <h1>Total:  ${total} </h1>
           </div>
         </div>
       </section>
