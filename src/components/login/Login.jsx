@@ -1,16 +1,17 @@
-import React, {containerRef, useEffect, useRef, useState} from 'react';
+import React, {containerRef, useContext, useEffect, useRef, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {Form, Button, Card} from 'react-bootstrap';
 import {toast} from 'react-toastify';
 import {axiosSpring} from '../../common/axios';
 import Cookies from '../../../node_modules/js-cookie';
-import NotFound from '../NotFound';
+import {AuthContext} from "../authentication/AuthContext";
 import './Style.scss';
 
 const Login = () => {
     const history = useHistory();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const {setAuth} = useContext(AuthContext);
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -22,20 +23,18 @@ const Login = () => {
             email: emailRef.current.value,
             password: passwordRef.current.value,
         };
-
         let res = await axiosSpring.post('/login', object).catch(() => {
-
         });
         if (!res) {
             toast.error("Username or Password mismatch");
-            history.push('/');
         } else {
             toast.success('Hi, ' + res.data.name + ' !');
             Cookies.set('token', res.data.token);
             Cookies.set('name', res.data.name);
             Cookies.set('id_user_DB', res.data.id);
+            setAuth(true);
             history.push('/');
-
+            // window.location.assign("/");
         }
     };
 

@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import logo from '../../logo2.png';
 import Cookies from 'js-cookie';
+import {AuthContext} from "../authentication/AuthContext";
 
-const Navbar = ({auth}) => {
+const Navbar = () => {
     // const [loggedUser, setLoggedUser] = useState('empty');
-
-    // const [auth, setUserName] = useContext(AuthContext);
+    const {auth} = useContext(AuthContext);
 
     // console.log('object');
     // const readCookie = () => {
@@ -19,6 +19,11 @@ const Navbar = ({auth}) => {
     // useEffect(() => {
     //     // readCookie();
     // }, [loggedUser]);
+
+    useEffect(() => {
+        // console.log(AuthContext(auth));
+        console.log(auth)
+    }, []);
 
     return (
         <nav className="navbar">
