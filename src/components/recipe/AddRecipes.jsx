@@ -54,6 +54,7 @@ export default function AddRecipes() {
 
     const ReactS3Client = new S3(config);
     ReactS3Client.uploadFile(file, newFilename).then((data) => {
+      console.log(config)
       if (data.status === 204) {
         toast.success('Image was added!');
         setImage(data.location);
