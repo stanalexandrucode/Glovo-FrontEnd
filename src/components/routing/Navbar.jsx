@@ -5,8 +5,8 @@ import Cookies from 'js-cookie';
 import {AuthContext} from "../authentication/AuthContext";
 
 const Navbar = () => {
-    // const {auth} = useContext(AuthContext);
-    const auth = Cookies.get('auth')
+    const {auth} = useContext(AuthContext);
+    // const auth = Cookies.get('auth')
 
     return (
         <nav className="navbar">
@@ -17,6 +17,7 @@ const Navbar = () => {
             <NavLink className="navbar-brand" to="/recipes/all">
                 recipes
             </NavLink>
+            <div>{auth}</div>
 
             {!auth ? (
                 <div>

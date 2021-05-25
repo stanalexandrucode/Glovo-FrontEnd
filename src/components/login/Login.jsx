@@ -11,6 +11,7 @@ const Login = () => {
     const history = useHistory();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const {setAuth} = useContext(AuthContext);
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -29,7 +30,8 @@ const Login = () => {
         } else {
             toast.success('Hi, ' + res.data.name + ' !');
             Cookies.set('token', res.data.token);
-            Cookies.set('auth', true);
+            setAuth(true);
+            // Cookies.set('auth', true);
             Cookies.set('name', res.data.name);
             Cookies.set('id_user_DB', res.data.id);
             history.push('/');
