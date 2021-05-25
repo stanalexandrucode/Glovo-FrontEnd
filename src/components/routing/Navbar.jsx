@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, { useContext} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import logo from '../../logo2.png';
 import Cookies from 'js-cookie';

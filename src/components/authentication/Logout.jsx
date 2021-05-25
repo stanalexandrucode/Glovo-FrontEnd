@@ -1,10 +1,8 @@
 import React from 'react';
 import Cookies from '../../../node_modules/js-cookie';
-import { useHistory } from 'react-router-dom';
 import './Register.css';
 
 export default function Logout() {
-  const history = useHistory();
 
   const handleLogout = () => {
     Cookies.remove('token');
@@ -12,7 +10,6 @@ export default function Logout() {
     Cookies.remove('auth');
     Cookies.remove('id_user_DB');
     window.location.href = '/';
-    // history.push('/');
   };
 
   return (

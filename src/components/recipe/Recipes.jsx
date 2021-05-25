@@ -57,7 +57,7 @@ export default function Recipes() {
                 })}
             </div>
             <div id="col-2">
-                {token ?
+                {notFound ?
                 <AddRecipes/> : null}
             </div>
         </div>

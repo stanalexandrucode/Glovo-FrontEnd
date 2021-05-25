@@ -19,7 +19,7 @@ function App() {
         if (Cookies.get('token')) {
             setAuth(true);
         }
-    }, auth);
+    }, [auth]);
 
     return (
         <React.Fragment>

@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import { axios, axiosSpring } from '../../common/axios';
 
 import Meal from '../meals/Meal';
-// import PageLoader from '../loading/Loading';
+import PageLoader from "../loading/Loading";
 
 export default function SearchItems() {
   const [loading, setLoading] = useState(true);
   const [mealsByIngredient, setMealsByIngredient] = useState();
   const [mealPrices, setMealPrices] = useState();
-  const [favorite, setFavorite] = useState();
+  // const [favorite, setFavorite] = useState();
 
   const param = useParams();
   const ingredient = param.mainIngredient;
@@ -38,9 +38,8 @@ export default function SearchItems() {
       price: `${price}`,
     });
     if (res.status !== 200) {
-      console.log(favorite);
     }
-    setFavorite({ id: id, price: price });
+    // setFavorite({ id: id, price: price });
   };
 
   const matchingPrices = async () => {
@@ -51,13 +50,13 @@ export default function SearchItems() {
   };
 
   useEffect(() => {
-    matchingPrices();
+    matchingPrices().then(r => console.log(r));
   }, []);
 
   if (loading) {
     return (
       <main>
-        <loading />
+        <PageLoader />
       </main>
     );
   }
