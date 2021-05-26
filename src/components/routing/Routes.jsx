@@ -8,7 +8,7 @@ import Meals from '../meals/Meals';
 import DetailMeal from '../meals/DetailMeal';
 import Login from '../login/Login';
 import ProtectedRoute from '../authentication/ProtectedRoute';
-import Payment from '../authentication/Payment';
+import Payment from '../payment/Payment';
 import ProtectedLogin from '../authentication/ProtectedLogin';
 import Logout from '../authentication/Logout';
 import MainPage from './../MainPage';
@@ -46,6 +46,7 @@ const Routes = () => {
                 <Route path="/logout" component={Logout}/>
                 <Route path="/favorites" component={Favorites}/>
                 <Route path="/categories" component={Categories}/>
+                <Route path="/payment" component={Payment}/>
                 <Route path="/recipes/all" component={Recipes}/>
                 <Route path="/recipes/addRecipe" component={AddRecipes}/>
                 <Route path="/not-found" component={NotFound}/>

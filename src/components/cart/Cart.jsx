@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {axios, axiosSpring} from '../../common/axios';
 import Cookies from '../../../node_modules/js-cookie';
@@ -9,6 +9,7 @@ import './Cart.css';
 export default function Cart() {
     const [total, setTotal] = useState();
     const [cartMealsWithPrices, setCartMealsWithPrices] = useState([]);
+    const history = useHistory();
 
     const getMealsApi = async cartSelections => {
         let dataApi = [];
@@ -52,6 +53,42 @@ export default function Cart() {
         getTotal();
     };
 
+
+    const reduction = async (mealId) => {
+        setCartMealsWithPrices(cartMealsWithPrices.map(c => {
+            if (c.idMeal === mealId) {
+                c.quantity--;
+            }
+            return c;
+        }).filter(c => c.quantity !== 0))
+        getTotal()
+
+    };
+
+    const increase = async (mealId) => {
+        setCartMealsWithPrices(cartMealsWithPrices.map(c => {
+            if (c.idMeal === mealId) {
+                c.quantity++;
+            }
+            return c;
+        }))
+        getTotal()
+
+    };
+
+    const removeProduct = async (mealId) => {
+        setCartMealsWithPrices(cartMealsWithPrices.filter(c => c.idMeal !== mealId))
+        getTotal()
+    };
+
+    const  handleGoToPayment = () => {
+        console.log(cartMealsWithPrices)
+       // updateCart()
+        history.push("/payment")
+
+    }
+
+
     const updateCart = async (mealId, direction) => {
         // const response = await axiosSpring
         //   .put(`/cart/${direction}/${mealId}`, mealId, {
@@ -65,38 +102,6 @@ export default function Cart() {
         // } else {
         //   toast.error('Check connection with the server');
         // }
-    };
-
-    const reduction = async (mealId) => {
-
-
-        setCartMealsWithPrices(cartMealsWithPrices.map(c => {
-            if (c.idMeal === mealId) {
-                c.quantity--;
-            }
-            return c;
-        }).filter(c => c.quantity !== 0))
-        getTotal()
-
-    };
-
-    const increase = async (mealId) => {
-
-
-        setCartMealsWithPrices(cartMealsWithPrices.map(c => {
-            if (c.idMeal === mealId) {
-                c.quantity++;
-            }
-            return c;
-        }))
-        getTotal()
-
-    };
-
-    const removeProduct = async (mealId) => {
-
-        setCartMealsWithPrices(cartMealsWithPrices.filter(c => c.idMeal !== mealId))
-        getTotal()
     };
 
 
@@ -155,7 +160,7 @@ export default function Cart() {
                 ))}
                 <div className="details cart">
                     <div className="total">
-                        <Link to="/payment">Payment</Link>
+                        <button className="btn btn-dark" onClick={handleGoToPayment}>Payment</button>
                         <h1>Total: ${total} </h1>
                     </div>
                 </div>
