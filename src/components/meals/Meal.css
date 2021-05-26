@@ -3,8 +3,8 @@ h5 {
 }
 
 .category-meals {
-    margin: 0 auto;
-    display: flex;
+   width : 100%;
+    /*display: flex;*/
 
 }
 
@@ -48,7 +48,8 @@ h5 {
 
 
 .category-meals h2 {
-    margin-left: 14em;
+    text-align: center;
+    /*margin-left: 50%;*/
     font-family: 'Single Sleeve', sans-serif;
     font-size: 4rem;
     justify-content: space-between;
