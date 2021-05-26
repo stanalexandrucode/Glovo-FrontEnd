@@ -1,8 +1,9 @@
 import React from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import {axios, axiosSpring} from '../../common/axios';
 import Cookies from '../../../node_modules/js-cookie';
+import {toast} from 'react-toastify';
 import './Details.css';
 import './Cart.css';
 
@@ -21,6 +22,7 @@ export default function Cart() {
                 const mealWithPrice = response.data.meals[0];
                 mealWithPrice.price = cartSelections[i].price;
                 mealWithPrice.quantity = cartSelections[i].quantity;
+                mealWithPrice.mealId = mealWithPrice.idMeal;
                 dataApi.push(mealWithPrice);
             }
         }
@@ -81,27 +83,25 @@ export default function Cart() {
         getTotal()
     };
 
-    const  handleGoToPayment = () => {
-        console.log(cartMealsWithPrices)
-       // updateCart()
+    const handleGoToPayment = () => {
+        updateCart()
         history.push("/payment")
 
     }
 
-
-    const updateCart = async (mealId, direction) => {
-        // const response = await axiosSpring
-        //   .put(`/cart/${direction}/${mealId}`, mealId, {
-        //     headers: {
-        //       Authorization: 'Bearer ' + Cookies.get('token'),
-        //     },
-        //   })
-        //   .catch((err) => console.log('Error:', err));
-        // if (response.status === 200) {
-        //   return 'ok';
-        // } else {
-        //   toast.error('Check connection with the server');
-        // }
+    const updateCart = async () => {
+        const response = await axiosSpring
+            .post(`/cart/update-cart`, cartMealsWithPrices, {
+                headers: {
+                    Authorization: 'Bearer ' + Cookies.get('token'),
+                },
+            })
+            .catch((err) => console.log('Error:', err));
+        if (response.status === 201) {
+            return 'ok';
+        } else {
+            toast.error('Check connection with the server');
+        }
     };
 
 
