@@ -87,7 +87,7 @@ const DetailMeal = () => {
                                         <div>
                                             <button className="btn-detail-meal" onClick={handleAdd}>
                                                 {' '}
-                                                add
+                                                add fav
                                             </button>
                                         </div>
 

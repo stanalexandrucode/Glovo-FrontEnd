@@ -21,9 +21,7 @@ export default function Recipes() {
                 },
             })
             .catch((err) => console.log('Error:', err));
-        console.log(response)
         if (response.status === 200 && response.data) {
-            console.log("data", response);
             setRecipes(response.data)
             return response.data;
         }
