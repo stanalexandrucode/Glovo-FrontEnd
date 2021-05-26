@@ -27,6 +27,7 @@ export default function Cart() {
             }
         }
         setCartMealsWithPrices(dataApi);
+        getTotal();
     };
 
     const getCartMealsDb = async () => {
