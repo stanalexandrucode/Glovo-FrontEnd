@@ -7,9 +7,6 @@ const Meal = ({idMeal, strMeal, strMealThumb, price, handleAddToFav, handleAddTo
 
     const {auth} = useContext(AuthContext);
 
-    useEffect(() => {
-
-    }, [auth])
     return (
         <>
             <div className='meal'>
