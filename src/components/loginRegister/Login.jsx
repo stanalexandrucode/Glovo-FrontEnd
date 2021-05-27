@@ -25,10 +25,7 @@ const Login = () => {
         };
         let res = await axiosSpring.post('/login', object).catch(() => {
         });
-        console.log("Response from login")
-        console.group()
-        console.log(res)
-        console.groupEnd()
+
         if (!res) {
             toast.error("Username or Password mismatch");
         } else {
