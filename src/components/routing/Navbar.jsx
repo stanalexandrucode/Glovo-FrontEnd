@@ -6,7 +6,7 @@ import {AuthContext} from "../authentication/AuthContext";
 
 const Navbar = () => {
     const {auth} = useContext(AuthContext);
-    // const auth = Cookies.get('auth')
+    const loggedUser = Cookies.get('name');
 
     return (
         <nav className="navbar">
@@ -17,7 +17,6 @@ const Navbar = () => {
             <NavLink className="navbar-brand" to="/recipes/all">
                 recipes
             </NavLink>
-            <div>{auth}</div>
 
             {!auth ? (
                 <div>
@@ -38,7 +37,7 @@ const Navbar = () => {
                     </Link>
                     <div className="navbar-brand name">
                         {' '}
-                        logged as {Cookies.get('name')}
+                        logged as {loggedUser}
                     </div>
                 </div>
             )}

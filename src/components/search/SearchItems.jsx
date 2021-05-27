@@ -7,7 +7,6 @@ import PageLoader from "../loading/Loading";
 
 export default function SearchItems() {
     const [loading, setLoading] = useState(true);
-    const [mealsByIngredient, setMealsByIngredient] = useState([]);
     const [mealPrices, setMealPrices] = useState([]);
     // const [favorite, setFavorite] = useState();
     const history = useHistory();
@@ -22,7 +21,6 @@ export default function SearchItems() {
                 history.push('/')
             });
         if (response && response.data) {
-            setMealsByIngredient(response.data);
             return response.data.meals;
         }
     };
@@ -79,7 +77,7 @@ export default function SearchItems() {
     return (
         <>
             <div className="category-meals">
-                <h2>Selections having {ingredient}</h2>
+                <h2>Selections having: "{ingredient}"</h2>
                 <div className="meals-category">
                     {mealPrices.map((meal) => {
                         return (

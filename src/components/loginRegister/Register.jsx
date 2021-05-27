@@ -32,10 +32,16 @@ export default function Register() {
         };
 
         let res = await axiosSpring.post('/register', object);
+        console.log("Response from register")
+        console.group()
+        console.log(res)
+        console.groupEnd()
+        console.log( "Response from register", res)
         if (res.status === 200 && res.data) {
             toast.success('Registration successful!');
+        } else {
+            toast.error('Register not successful! Please check input data');
         }
-        toast.error('Register not successful! Please check input data');
     };
 
     return (

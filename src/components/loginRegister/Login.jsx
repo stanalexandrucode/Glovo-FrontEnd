@@ -23,16 +23,15 @@ const Login = () => {
             email: emailRef.current.value,
             password: passwordRef.current.value,
         };
-        let res = await axiosSpring.post('/login', object).catch(() => {
+        let res = await axiosSpring.post('/loginRegister', object).catch(() => {
         });
         if (!res) {
             toast.error("Username or Password mismatch");
         } else {
             toast.success('Hi, ' + res.data.name + ' !');
+            Cookies.set('name', res.data.name);
             Cookies.set('token', res.data.token);
             setAuth(true);
-            // Cookies.set('auth', true);
-            Cookies.set('name', res.data.name);
             Cookies.set('id_user_DB', res.data.id);
             history.push('/');
         }
