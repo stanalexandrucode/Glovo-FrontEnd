@@ -6,7 +6,6 @@ import './Style.scss';
 
 export default function Register() {
     // const [error, setError] = useState('');
-    // const [provider, setProvider] = useState('');
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const emailRef = useRef();
@@ -28,14 +27,10 @@ export default function Register() {
             lastName: lastNameRef.current.value,
             email: emailRef.current.value,
             password: passwordRef.current.value,
-            // provider: provider
         };
 
         let res = await axiosSpring.post('/register', object);
-        console.log("Response from register")
-        console.group()
-        console.log(res)
-        console.groupEnd()
+
         if (res.status === 200 && res.data) {
             toast.success('Registration successful!');
         } else {
@@ -84,15 +79,7 @@ export default function Register() {
                     </Button>
                 </Form>
             </Card.Body>
-            {/*<div>*/}
-            {/*    <div className='checkbox'>Are you a provider?</div>*/}
-            {/*    <input*/}
-            {/*        type='checkbox'*/}
-            {/*        onClick={() => {*/}
-            {/*            provider === true ? setProvider(false) : setProvider(true);*/}
-            {/*        }}*/}
-            {/*    />*/}
-            {/*</div>*/}
+
         </Card>
     );
 }
