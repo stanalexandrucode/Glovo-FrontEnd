@@ -24,18 +24,15 @@ const Login = () => {
             password: passwordRef.current.value,
         };
         await axiosSpring.post('/login', object).then(({data}) => {
-            if (data.isNonLocked === true) {
-                toast.error("User has been locked");
-            } else {
                 toast.success('Hi, ' + data.name + ' !');
                 Cookies.set('name', data.name);
                 Cookies.set('token', data.token);
                 setAuth(true);
                 Cookies.set('id_user_DB', data.id);
                 history.push('/');
-            }
-        }).catch(() => {
-            toast.error("Username or Password mismatch");
+        }).catch(error=> {
+            console.log("data",error.response.data.message);
+            toast.error(error.response.data.message);
         });
     };
 
