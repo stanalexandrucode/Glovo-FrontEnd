@@ -1,4 +1,4 @@
-import React, { containerRef , useContext, useRef} from 'react';
+import React, {containerRef, useContext, useRef} from 'react';
 import {useHistory} from 'react-router-dom';
 import {Form, Button, Card} from 'react-bootstrap';
 import {toast} from 'react-toastify';
@@ -23,19 +23,20 @@ const Login = () => {
             email: emailRef.current.value,
             password: passwordRef.current.value,
         };
-        let res = await axiosSpring.post('/login', object).catch(() => {
-        });
-
-        if (!res) {
+        await axiosSpring.post('/login', object).then(({data}) => {
+            if (data.isNonLocked === true) {
+                toast.error("User has been locked");
+            } else {
+                toast.success('Hi, ' + data.name + ' !');
+                Cookies.set('name', data.name);
+                Cookies.set('token', data.token);
+                setAuth(true);
+                Cookies.set('id_user_DB', data.id);
+                history.push('/');
+            }
+        }).catch(() => {
             toast.error("Username or Password mismatch");
-        } else {
-            toast.success('Hi, ' + res.data.name + ' !');
-            Cookies.set('name', res.data.name);
-            Cookies.set('token', res.data.token);
-            setAuth(true);
-            Cookies.set('id_user_DB', res.data.id);
-            history.push('/');
-        }
+        });
     };
 
     return (
