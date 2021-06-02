@@ -34,7 +34,7 @@ export default function AddRecipes() {
     if (res.status === 202) {
       setError('');
       toast.success('Recipe was added!');
-      window.location.href = 'http://localhost:3000/recipes/all';
+      window.location.href = '/recipes/all';
       return true;
     }
     toast.error('Try again');
