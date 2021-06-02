@@ -11,7 +11,6 @@ export default function Recipes() {
 
     const [recipes, setRecipes] = useState([])
     const [token, setToken] = useState('');
-    // const [notFound, setNotFound] = useState(true);
 
     const getAllRecipes = async () => {
         const response = await axiosSpring
@@ -31,7 +30,6 @@ export default function Recipes() {
         getAllRecipes()
         setToken(Cookies.get('token'));
         if (token && token !== '') {
-            // setNotFound(false)
         }
     }, [token]);
 
@@ -47,7 +45,6 @@ export default function Recipes() {
             setRecipes(removeRecipeById)
         }
     }
-
 
     return (
         <div className="page-recipes">
