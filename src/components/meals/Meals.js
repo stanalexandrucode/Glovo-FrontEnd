@@ -19,7 +19,7 @@ const Meals = () => {
 
     const fetchData = () => {
         const api = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`
-        const db = process.env.REACT_APP_API_URL + `/prices/category/${category}`
+        const db =`${process.env.REACT_APP_API_URL}/prices/category/${category}`
 
         const getApiData = Axios.get(api)
         const getPrice = Axios.get(db, {headers: {Authorization: 'Bearer ' + token}})
