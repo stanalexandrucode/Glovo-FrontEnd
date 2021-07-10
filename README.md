@@ -2,6 +2,8 @@
 
 The place to choose your next gastronomical delight by browsing through the available categories, by choosing from the "Chef's recommendations" or by using the search bar and entering a main component by witch to filter.
 
+## For the [back-end](https://github.com/stanalexandrucode/GlovoBE) of the app.
+
 ![Chef Recommends](/img/recommendation.png 'Chef Recommends')
 
 By Register and Login the user will be able to access new options (add to favorites, add to cart).
@@ -16,7 +18,6 @@ Add to cart option is the last step before the payment and on this page, the use
 
 Don't stay hungry and visit us!
 
-## For the [back-end](https://github.com/stanalexandrucode/GlovoBE) of the app.
 
 ---
 
