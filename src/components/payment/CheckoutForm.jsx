@@ -5,7 +5,8 @@ import {
     useElements
 } from "@stripe/react-stripe-js";
 import Cookies from "js-cookie";
-import "./payment.css"
+import "./Payment.css"
+import {log} from "async";
 
 export default function CheckoutForm() {
     const [succeeded, setSucceeded] = useState(false);
@@ -13,9 +14,12 @@ export default function CheckoutForm() {
     const [processing, setProcessing] = useState();
     const [disabled, setDisabled] = useState(true);
     const [clientSecret, setClientSecret] = useState('');
+    const [email, setEmail] = useState('');
     const stripe = useStripe();
     const elements = useElements();
+
     let token = Cookies.get('token');
+
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -35,7 +39,6 @@ export default function CheckoutForm() {
                 setClientSecret(data.clientSecret);
             });
     }, []);
-
     const cardStyle = {
         style: {
             base: {
@@ -53,24 +56,22 @@ export default function CheckoutForm() {
             }
         }
     };
-
     const handleChange = async (event) => {
         // Listen for changes in the CardElement
         // and display any errors as the customer types their card details
         setDisabled(event.empty);
         setError(event.error ? event.error.message : "");
     };
-
     const handleSubmit = async ev => {
         ev.preventDefault();
         setProcessing(true);
-
         const payload = await stripe.confirmCardPayment(clientSecret, {
+            receipt_email: email,
             payment_method: {
                 card: elements.getElement(CardElement)
             }
         });
-
+        console.log("payload", payload);
         if (payload.error) {
             setError(`Payment failed ${payload.error.message}`);
             setProcessing(false);
@@ -83,8 +84,12 @@ export default function CheckoutForm() {
 
     return (
         <form id="payment-form" onSubmit={handleSubmit}>
-            <label htmlFor="ceva">ceva</label>
-            <input type="text" id="ceva"/>
+            <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter email address"
+            />
             <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
             <button className="buttonPayment"
                 disabled={processing || disabled || succeeded}

@@ -11,18 +11,14 @@ export default function Recipes() {
 
     const [recipes, setRecipes] = useState([])
     const [token, setToken] = useState('');
-    // const [notFound, setNotFound] = useState(true);
 
     const getAllRecipes = async () => {
         const response = await axiosSpring
-            .get(`/recipes/all`, {
-                headers: {
-                    Authorization: 'Bearer ' + Cookies.get('token'),
-                },
-            })
+            .get(`/recipes/all`, {})
             .catch((err) => console.log('Error:', err));
         if (response.status === 200 && response.data) {
             setRecipes(response.data)
+            console.log("recipes", recipes);
             return response.data;
         }
     }
@@ -30,9 +26,6 @@ export default function Recipes() {
     useEffect(() => {
         getAllRecipes()
         setToken(Cookies.get('token'));
-        if (token && token !== '') {
-            // setNotFound(false)
-        }
     }, [token]);
 
     const handleDeleteRecipeById = async (id) => {
@@ -58,7 +51,7 @@ export default function Recipes() {
             </div>
             <div id="col-2">
                 {token ?
-                <AddRecipes/> : null}
+                    <AddRecipes/> : null}
             </div>
         </div>
     )

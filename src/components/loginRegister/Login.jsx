@@ -23,15 +23,14 @@ const Login = () => {
             email: emailRef.current.value,
             password: passwordRef.current.value,
         };
-        await axiosSpring.post('/login', object).then(({data}) => {
-                toast.success('Hi, ' + data.name + ' !');
-                Cookies.set('name', data.name);
-                Cookies.set('token', data.token);
-                setAuth(true);
-                Cookies.set('id_user_DB', data.id);
-                history.push('/');
-        }).catch(error=> {
-            console.log("data",error.response.data.message);
+        await axiosSpring.post('/user/login', object).then((response) => {
+            toast.success('Hi, ' + response.data.lastName + ' !');
+            Cookies.set('name', response.data.lastName);
+            Cookies.set('token', response.headers.jwttoken);
+            Cookies.set('email', response.data.email);
+            setAuth(true);
+            history.push('/');
+        }).catch(error => {
             toast.error(error.response.data.message.toLowerCase());
         });
     };

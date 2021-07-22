@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Cookies from 'js-cookie';
 import './StyleProvider.scss'
 
-const Recipe = ({id, name, description, userFirstName, userId, image, handleDeleteRecipeById}) => {
+const Recipe = ({id, name, description, userFirstName, email, image, handleDeleteRecipeById}) => {
     const [readMore, setReadMore] = useState(false);
 
 
@@ -26,7 +26,7 @@ const Recipe = ({id, name, description, userFirstName, userId, image, handleDele
                 <img className="image-recipe" src={image} alt='description'/>
             </div>
             <div>
-                {userId === parseInt(Cookies.get("id_user_DB")) ?
+                {email === Cookies.get("email") ?
                     <div>
                         <button  className="btn btn-danger" onClick={() => handleDeleteRecipeById(id)}>REMOVE</button>
                     </div> :

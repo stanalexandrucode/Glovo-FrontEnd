@@ -29,7 +29,7 @@ export default function Register() {
             password: passwordRef.current.value,
         };
 
-        let res = await axiosSpring.post('/register', object);
+        let res = await axiosSpring.post('/user/register', object);
 
         if (res.status === 200 && res.data) {
             toast.success('Registration successful!');
